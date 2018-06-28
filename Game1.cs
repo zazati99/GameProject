@@ -19,7 +19,7 @@ namespace GameProject
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-           jeff = new Color(32, 43, 13);
+           jeff = new Color(128, 111, 99);
         }
 
         /// <summary>
