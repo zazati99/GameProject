@@ -11,11 +11,15 @@ namespace GameProject
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        Color color;
         
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            color = new Color(32, 43, 13);
         }
 
         /// <summary>
@@ -73,12 +77,7 @@ namespace GameProject
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-<<<<<<< HEAD
-            
-            GraphicsDevice.Clear(new Color(25,200,136));
-=======
-            GraphicsDevice.Clear(Color.Green);
->>>>>>> d0198fd6702f2557e9c0a520c52bad1302fcfcda
+            GraphicsDevice.Clear(color);
 
             // TODO: Add your drawing code here
 
