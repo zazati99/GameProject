@@ -73,8 +73,12 @@ namespace GameProject
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+<<<<<<< HEAD
             
             GraphicsDevice.Clear(new Color(25,200,136));
+=======
+            GraphicsDevice.Clear(Color.Green);
+>>>>>>> d0198fd6702f2557e9c0a520c52bad1302fcfcda
 
             // TODO: Add your drawing code here
 
