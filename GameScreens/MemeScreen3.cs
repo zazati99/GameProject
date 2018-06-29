@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
+
+using GameProject.GameUtils;
 
 namespace GameProject.GameScreens
 {
@@ -39,7 +40,7 @@ namespace GameProject.GameScreens
         {
             base.Update();
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (GameInput.KeyPressed(Keys.Escape))
             {
                 ScreenManager.Instance.ChangeScreen(new MemeScreen());
             }
@@ -50,7 +51,5 @@ namespace GameProject.GameScreens
         {
             spriteBatch.Draw(connection, connectloss);
         }
-
-
     }
 }

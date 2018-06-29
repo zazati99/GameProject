@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 
+using GameProject.GameUtils;
+
 namespace GameProject.GameScreens
 {
     public class MemeScreen2 : GameScreen
@@ -38,7 +40,7 @@ namespace GameProject.GameScreens
         {
             base.Update();
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (GameInput.KeyPressed(Keys.Escape))
             {
                 ScreenManager.Instance.ChangeScreen(new MemeScreen3());
             }

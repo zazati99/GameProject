@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using GameProject.GameScreens;
+using GameProject.GameUtils;
 
 namespace GameProject
 {
@@ -11,17 +12,22 @@ namespace GameProject
     /// </summary>
     public class MainGame : Game
     {
+        // important memes
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        public GameScreen CurrentScreen;
-        
+        // Game view
+        GameView gameView;
+
         public MainGame()
         {
-            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            CurrentScreen = new MemeScreen3();
+            graphics = new GraphicsDeviceManager(this);
+            graphics.HardwareModeSwitch = false;
+            graphics.GraphicsProfile = GraphicsProfile.Reach;
+
+            gameView = new GameView(graphics);
         }
 
         /// <summary>
@@ -32,8 +38,7 @@ namespace GameProject
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
+            // venne tbh
             base.Initialize();
         }
 
@@ -46,10 +51,8 @@ namespace GameProject
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            // Loads content in ScreenManager
             ScreenManager.Instance.LoadContent(Content);
-
-            // TODO: use this.Content to load your game content here
-
         }
 
         /// <summary>
@@ -58,7 +61,7 @@ namespace GameProject
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+            ScreenManager.Instance.UnloadContent();
         }
 
         /// <summary>
@@ -68,8 +71,19 @@ namespace GameProject
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // TODO: Add your update logic here
+            // Input start uppdatering
+            GameInput.UpdateStart();
+
+            // switch fullscreen
+            if (GameInput.KeyPressed(Keys.F5)) gameView.SwitchFullscreen();
+
+            GameView.SetRotation(GameView.GetRotation() + .01f);
+
+            // Updaterar ScreenManager och allt i den
             ScreenManager.Instance.Update();
+
+            // Input slut uppdatering
+            GameInput.UpdateEnd();
 
             base.Update(gameTime);
         }
@@ -82,13 +96,23 @@ namespace GameProject
         {
             GraphicsDevice.Clear(Color.Azure);
 
-            spriteBatch.Begin();
+            // Begin spritebatch and feed in values to make view correct
+            spriteBatch.Begin
+            (
+                SpriteSortMode.BackToFront,
+                BlendState.AlphaBlend,
+                SamplerState.PointClamp,
+                null,
+                null,
+                null,
+                gameView.GetTransformation()
+            );
 
+            // Målar screenmanager och allt i den som GameScreens
             ScreenManager.Instance.Draw(spriteBatch);
 
+            // end of normal spritebatch
             spriteBatch.End();
-            
-            // TODO: Add your drawing code here
 
             base.Draw(gameTime);
         }
