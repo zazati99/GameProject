@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using GameProject.GameScreens;
+
 namespace GameProject
 {
     /// <summary>
@@ -12,20 +14,14 @@ namespace GameProject
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Vector2 be;
-        Vector2 E;
-
-        Texture2D jeff;
-        Texture2D PepeDab;
-        Texture2D connection;
+        GameScreen currentScreen;
         
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            be = new Vector2(50, 60);
-            E = new Vector2(0, 0);
+            currentScreen = new MemeScreen();
         }
 
         /// <summary>
@@ -50,10 +46,9 @@ namespace GameProject
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            currentScreen.LoadContent(Content);
+
             // TODO: use this.Content to load your game content here
-            jeff = Content.Load<Texture2D>("jeff");
-            PepeDab = Content.Load<Texture2D>("PepeDab");
-            connection = Content.Load<Texture2D>("connection");
 
         }
 
@@ -64,9 +59,6 @@ namespace GameProject
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
-            jeff.Dispose();
-            PepeDab.Dispose();
-            connection.Dispose();
         }
 
         /// <summary>
@@ -77,9 +69,9 @@ namespace GameProject
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
 
             // TODO: Add your update logic here
+            currentScreen.Update();
 
             base.Update(gameTime);
         }
@@ -94,9 +86,7 @@ namespace GameProject
 
             spriteBatch.Begin();
 
-            spriteBatch.Draw(jeff, Vector2.Zero);
-            spriteBatch.Draw(PepeDab,be);
-            spriteBatch.Draw(connection, E);
+            currentScreen.Draw(spriteBatch);
 
             spriteBatch.End();
             
