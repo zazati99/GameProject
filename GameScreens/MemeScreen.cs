@@ -23,6 +23,12 @@ namespace GameProject.GameScreens
             pepe = Content.Load<Texture2D>("PepeDab");
         }
 
+        public override void UnloadContent()
+        {
+            base.UnloadContent();
+            pepe.Dispose();
+        }
+
         public override void Update()
         {
             base.Update();

@@ -60,6 +60,11 @@ namespace GameProject.GameScreens
 
         public void ChangeScreen(GameScreen screen)
         {
+            currentScreen.UnloadContent();
+            currentScreen = null;
+
+            GC.Collect();
+
             currentScreen = screen;
             screen.LoadContent(Content);
         }

@@ -29,6 +29,12 @@ namespace GameProject.GameScreens
             connection = Content.Load<Texture2D>("connection");
         }
 
+        public override void UnloadContent()
+        {
+            base.UnloadContent();
+            connection.Dispose();
+        }
+
         public override void Update()
         {
             base.Update();
