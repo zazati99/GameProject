@@ -13,9 +13,11 @@ namespace GameProject
         SpriteBatch spriteBatch;
 
         Vector2 be;
+        Vector2 E;
 
         Texture2D jeff;
         Texture2D PepeDab;
+        Texture2D connection;
         
         public Game1()
         {
@@ -23,6 +25,7 @@ namespace GameProject
             Content.RootDirectory = "Content";
 
             be = new Vector2(50, 60);
+            E = new Vector2(0, 0);
         }
 
         /// <summary>
@@ -50,6 +53,8 @@ namespace GameProject
             // TODO: use this.Content to load your game content here
             jeff = Content.Load<Texture2D>("jeff");
             PepeDab = Content.Load<Texture2D>("PepeDab");
+            connection = Content.Load<Texture2D>("connection");
+
         }
 
         /// <summary>
@@ -88,6 +93,7 @@ namespace GameProject
 
             spriteBatch.Draw(jeff, Vector2.Zero);
             spriteBatch.Draw(PepeDab,be);
+            spriteBatch.Draw(connection, E);
 
             spriteBatch.End();
             
