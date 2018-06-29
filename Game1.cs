@@ -11,8 +11,9 @@ namespace GameProject
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        Vector2 be = new Vector2(52, 36);
         Texture2D jeff;
+        Texture2D PepeDab;
         
         public Game1()
         {
@@ -44,6 +45,7 @@ namespace GameProject
 
             // TODO: use this.Content to load your game content here
             jeff = Content.Load<Texture2D>("jeff");
+            PepeDab = Content.Load<Texture2D>("PepeDab");
         }
 
         /// <summary>
@@ -80,6 +82,7 @@ namespace GameProject
 
             spriteBatch.Begin();
             spriteBatch.Draw(jeff, Vector2.Zero);
+            spriteBatch.Draw(PepeDab,be);
             spriteBatch.End();
             
             // TODO: Add your drawing code here
