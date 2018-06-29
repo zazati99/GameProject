@@ -12,14 +12,12 @@ namespace GameProject
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Color jeff;
+        Texture2D jeff;
         
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
-           jeff = new Color(15,200,45);
         }
 
         /// <summary>
@@ -45,6 +43,7 @@ namespace GameProject
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            jeff = Content.Load<Texture2D>("jeff");
         }
 
         /// <summary>
@@ -77,8 +76,12 @@ namespace GameProject
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(jeff);
+            GraphicsDevice.Clear(Color.Azure);
 
+            spriteBatch.Begin();
+            spriteBatch.Draw(jeff, Vector2.Zero);
+            spriteBatch.End();
+            
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
