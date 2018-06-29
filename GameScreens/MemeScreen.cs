@@ -27,6 +27,10 @@ namespace GameProject.GameScreens
         {
             base.Update();
             
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                ScreenManager.Instance.ChangeScreen(new MemeScreen2());
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)

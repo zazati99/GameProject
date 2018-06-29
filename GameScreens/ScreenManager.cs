@@ -58,5 +58,11 @@ namespace GameProject.GameScreens
             currentScreen.Draw(spriteBatch);
         }
 
+        public void ChangeScreen(GameScreen screen)
+        {
+            currentScreen = screen;
+            screen.LoadContent(Content);
+        }
+
     }
 }
