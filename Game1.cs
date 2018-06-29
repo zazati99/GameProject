@@ -21,7 +21,7 @@ namespace GameProject
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            currentScreen = new MemeScreen();
+            currentScreen = new MemeScreen3();
         }
 
         /// <summary>
