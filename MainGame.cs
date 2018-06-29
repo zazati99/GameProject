@@ -14,14 +14,14 @@ namespace GameProject
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        GameScreen currentScreen;
+        public GameScreen CurrentScreen;
         
         public MainGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            currentScreen = new MemeScreen3();
+            CurrentScreen = new MemeScreen3();
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace GameProject
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            currentScreen.LoadContent(Content);
+            ScreenManager.Instance.LoadContent(Content);
 
             // TODO: use this.Content to load your game content here
 
@@ -68,10 +68,8 @@ namespace GameProject
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-
             // TODO: Add your update logic here
-            currentScreen.Update();
+            ScreenManager.Instance.Update();
 
             base.Update(gameTime);
         }
@@ -86,7 +84,7 @@ namespace GameProject
 
             spriteBatch.Begin();
 
-            currentScreen.Draw(spriteBatch);
+            ScreenManager.Instance.Draw(spriteBatch);
 
             spriteBatch.End();
             
