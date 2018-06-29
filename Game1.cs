@@ -11,7 +11,9 @@ namespace GameProject
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Vector2 be = new Vector2(52, 36);
+
+        Vector2 be;
+
         Texture2D jeff;
         Texture2D PepeDab;
         
@@ -19,6 +21,8 @@ namespace GameProject
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            be = new Vector2(50, 60);
         }
 
         /// <summary>
@@ -81,8 +85,10 @@ namespace GameProject
             GraphicsDevice.Clear(Color.Azure);
 
             spriteBatch.Begin();
+
             spriteBatch.Draw(jeff, Vector2.Zero);
             spriteBatch.Draw(PepeDab,be);
+
             spriteBatch.End();
             
             // TODO: Add your drawing code here
