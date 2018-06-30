@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
+using GameProject.GameUtils;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +36,7 @@ namespace GameProject.GameScreens
         // Constructor meme
         public ScreenManager()
         {
-            currentScreen = new MemeScreen();
+            currentScreen = XMLManager.Load<MemeScreen>("Testeroni.xml");
         }
 
         // Loads content lul
@@ -55,12 +57,23 @@ namespace GameProject.GameScreens
         public void Update()
         {
             currentScreen.Update();
+
+            if (GameInput.KeyPressed(Microsoft.Xna.Framework.Input.Keys.F9))
+            {
+                XMLManager.Save(currentScreen, "Testeroni.xml");
+            }
         }
 
         // Målar currentScreen och kanske annat i framtiden
         public void Draw(SpriteBatch spriteBatch)
         {
             currentScreen.Draw(spriteBatch);
+        }
+
+        // Målar GUI i current screen
+        public void DrawGUI(SpriteBatch spriteBatch)
+        {
+            currentScreen.DrawGUI(spriteBatch);
         }
 
         // byter screen (kan kommas åt överallt genom ScreenManager.Instante.ChangeScreen(screen))

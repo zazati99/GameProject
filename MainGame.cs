@@ -77,8 +77,6 @@ namespace GameProject
             // switch fullscreen
             if (GameInput.KeyPressed(Keys.F5)) gameView.SwitchFullscreen();
 
-            GameView.SetRotation(GameView.GetRotation() + .01f);
-
             // Updaterar ScreenManager och allt i den
             ScreenManager.Instance.Update();
 
@@ -110,6 +108,24 @@ namespace GameProject
 
             // Målar screenmanager och allt i den som GameScreens
             ScreenManager.Instance.Draw(spriteBatch);
+
+            // end of normal spritebatch
+            spriteBatch.End();
+
+            // SpriteBatch som används för GUI
+            spriteBatch.Begin
+            (
+                SpriteSortMode.BackToFront,
+                BlendState.AlphaBlend,
+                SamplerState.PointClamp,
+                null,
+                null,
+                null,
+                gameView.GetUITransformation()
+            );
+
+            // Målar screenmanager och allt i den som GameScreens
+            ScreenManager.Instance.DrawGUI(spriteBatch);
 
             // end of normal spritebatch
             spriteBatch.End();

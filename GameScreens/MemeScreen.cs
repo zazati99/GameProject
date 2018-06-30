@@ -17,11 +17,16 @@ namespace GameProject.GameScreens
     {
 
         Texture2D pepe;
+        Texture2D connectionLost;
+
+        Vector2 pepePosition = new Vector2(0,0);
+        int speed = 5;
 
         public override void LoadContent(ContentManager content)
         {
             base.LoadContent(content);
             pepe = Content.Load<Texture2D>("PepeDab");
+            connectionLost = Content.Load<Texture2D>("connection");
         }
 
         public override void UnloadContent()
@@ -33,8 +38,11 @@ namespace GameProject.GameScreens
         public override void Update()
         {
             base.Update();
+
+            pepePosition.X += speed;
+            if (pepePosition.X >= 200 || pepePosition.X <= 0) speed = -speed;
             
-            if (GameInput.KeyPressed(Keys.Escape))
+            if (GameInput.KeyPressed(Keys.Escape) || GameInput.ButtonPressed(Buttons.B))
             {
                 ScreenManager.Instance.ChangeScreen(new MemeScreen2());
             }
@@ -42,7 +50,13 @@ namespace GameProject.GameScreens
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(pepe, Vector2.Zero);
+            spriteBatch.Draw(pepe, pepePosition);
+        }
+
+        public override void DrawGUI(SpriteBatch spriteBatch)
+        {
+            base.DrawGUI(spriteBatch);
+            spriteBatch.Draw(connectionLost, Vector2.Zero);
         }
 
     }
