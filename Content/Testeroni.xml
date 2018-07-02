@@ -6,7 +6,7 @@
         <X>0</X>
         <Y>0</Y>
       </Position>
-      <TexturePath>PepeDab</TexturePath>
+      <TexturePath>connection</TexturePath>
     </GameObject>
     <GameObject>
       <Position>
@@ -20,7 +20,14 @@
         <X>300</X>
         <Y>200</Y>
       </Position>
-      <TexturePath>PepeDab</TexturePath>
+      <TexturePath>connection</TexturePath>
+    </GameObject>
+    <GameObject>
+      <Position>
+        <X>0</X>
+        <Y>0</Y>
+      </Position>
+      <TexturePath>jeff</TexturePath>
     </GameObject>
   </GameObjects>
 </GameScreen>
