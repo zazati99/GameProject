@@ -38,7 +38,8 @@ namespace GameProject
         /// </summary>
         protected override void Initialize()
         {
-            // venne tbh
+            ScreenManager.Instance.Initialize();
+
             base.Initialize();
         }
 

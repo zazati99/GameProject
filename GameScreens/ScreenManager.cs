@@ -36,7 +36,13 @@ namespace GameProject.GameScreens
         // Constructor meme
         public ScreenManager()
         {
-            currentScreen = XMLManager.Load<MemeScreen>("Testeroni.xml");
+            currentScreen = XMLManager.Load<GameScreen>("Testeroni.xml");
+        }
+
+        // Initialize stuff
+        public void Initialize()
+        {
+            currentScreen.Initialize();
         }
 
         // Loads content lul
@@ -81,10 +87,11 @@ namespace GameProject.GameScreens
         {
             currentScreen.UnloadContent();
             currentScreen = null;
-
             GC.Collect();
 
             currentScreen = screen;
+
+            screen.Initialize();
             screen.LoadContent(Content);
         }
     }
