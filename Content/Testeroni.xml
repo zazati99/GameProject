@@ -6,6 +6,13 @@
         <X>0</X>
         <Y>0</Y>
       </Position>
+      <TexturePath>jeff</TexturePath>
+    </GameObject>
+    <GameObject>
+      <Position>
+        <X>0</X>
+        <Y>0</Y>
+      </Position>
       <TexturePath>connection</TexturePath>
     </GameObject>
     <GameObject>
@@ -21,13 +28,6 @@
         <Y>200</Y>
       </Position>
       <TexturePath>connection</TexturePath>
-    </GameObject>
-    <GameObject>
-      <Position>
-        <X>0</X>
-        <Y>0</Y>
-      </Position>
-      <TexturePath>jeff</TexturePath>
     </GameObject>
   </GameObjects>
 </GameScreen>
