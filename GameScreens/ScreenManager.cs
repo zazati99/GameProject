@@ -36,7 +36,7 @@ namespace GameProject.GameScreens
         // Constructor meme
         public ScreenManager()
         {
-            currentScreen = XMLManager.Load<GameScreen>("GameProject/Content/Testeroni.xml");
+            currentScreen = XMLManager.Load<GameScreen>("Teest.xml");
         }
 
         // Initialize stuff
