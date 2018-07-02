@@ -29,12 +29,6 @@ namespace GameProject.GameScreens
             connectionLost = Content.Load<Texture2D>("connection");
         }
 
-        public override void UnloadContent()
-        {
-            base.UnloadContent();
-            pepe.Dispose();
-        }
-
         public override void Update()
         {
             base.Update();

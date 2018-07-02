@@ -79,11 +79,6 @@ namespace GameProject.GameScreens
         // byter screen (kan kommas åt överallt genom ScreenManager.Instante.ChangeScreen(screen))
         public void ChangeScreen(GameScreen screen)
         {
-            currentScreen.UnloadContent();
-            currentScreen = null;
-
-            GC.Collect();
-
             currentScreen = screen;
             screen.LoadContent(Content);
         }

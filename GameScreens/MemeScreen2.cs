@@ -30,12 +30,6 @@ namespace GameProject.GameScreens
             jeff = Content.Load<Texture2D>("jeff");
         }
 
-        public override void UnloadContent()
-        {
-            base.UnloadContent();
-            jeff.Dispose();
-        }
-
         public override void Update()
         {
             base.Update();
