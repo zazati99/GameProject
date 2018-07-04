@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,10 +9,11 @@ using Microsoft.Xna.Framework.Content;
 using System.Xml.Serialization;
 
 using GameProject.GameObjects;
+using GameProject.GameObjects.ObjectComponents;
 
 namespace GameProject.GameScreens
 {
-    [XmlInclude(typeof(TestObject))]
+
     [Serializable]
     public class GameScreen
     {
@@ -28,7 +26,7 @@ namespace GameProject.GameScreens
         // Constructor
         public GameScreen()
         {
-            
+            GameObjects = new List<GameObject>();
         }
 
         // Initialize objects and other maymays
@@ -49,6 +47,21 @@ namespace GameProject.GameScreens
             {
                 GameObjects[i].LoadContent(Content);
             }
+
+
+            for (int i = 0; i < 8; i++)
+            {
+                Ground ground = new Ground();
+                ground.Position.X = 32*i;
+                ground.Position.Y = 200;
+                AddObject(ground);
+            }
+
+
+            PlayerObject player = new PlayerObject();
+            player.Position.X = 100;
+            player.Position.Y = 0;
+            AddObject(player);
         }
 
         // Unloads content on screen
@@ -86,5 +99,17 @@ namespace GameProject.GameScreens
                 GameObjects[i].DrawGUI(spriteBatch);
             }
         }
+
+        #region Screen functions
+
+        // Add a GameObject
+        public void AddObject(GameObject gameObject)
+        {
+            GameObjects.Add(gameObject);
+            gameObject.Initialize(this);
+            gameObject.LoadContent(Content);
+        }
+
+        #endregion
     }
 }

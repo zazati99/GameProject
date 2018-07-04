@@ -4,10 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using GameProject.GameUtils;
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameProject.GameScreens
 {
@@ -36,7 +32,7 @@ namespace GameProject.GameScreens
         // Constructor meme
         public ScreenManager()
         {
-            currentScreen = XMLManager.Load<GameScreen>("GameProject/Content/Teest.xml");
+            currentScreen = new GameScreen();
         }
 
         // Initialize stuff

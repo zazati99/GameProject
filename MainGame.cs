@@ -13,7 +13,7 @@ namespace GameProject
     public class MainGame : Game
     {
         // important memes
-        GraphicsDeviceManager graphics;
+        public static GraphicsDeviceManager Graphics;
         SpriteBatch spriteBatch;
 
         // Game view
@@ -23,11 +23,11 @@ namespace GameProject
         {
             Content.RootDirectory = "Content";
 
-            graphics = new GraphicsDeviceManager(this);
-            graphics.HardwareModeSwitch = false;
-            graphics.GraphicsProfile = GraphicsProfile.Reach;
+            Graphics = new GraphicsDeviceManager(this);
+            Graphics.HardwareModeSwitch = false;
+            Graphics.GraphicsProfile = GraphicsProfile.Reach;
 
-            gameView = new GameView(graphics);
+            gameView = new GameView(Graphics);
         }
 
         /// <summary>
