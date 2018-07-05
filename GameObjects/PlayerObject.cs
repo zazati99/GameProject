@@ -13,6 +13,8 @@ namespace GameProject.GameObjects
     public class PlayerObject : GameObject
     {
 
+        Vector2 hitPoint;
+
         public override void Initialize(GameScreen screen)
         {
             base.Initialize(screen);
@@ -25,12 +27,14 @@ namespace GameProject.GameObjects
             HitBox hitBox = new HitBox();
             BoxCollider boxCollider = new BoxCollider();
             boxCollider.Size = new Vector2(32, 64);
+            boxCollider.Offset = new Vector2(-16, -32);
             hitBox.SetCollider(boxCollider);
             AddComponent(hitBox);
 
             Sprite sprite = new Sprite();
             AddComponent(sprite);
             sprite.AddTexture(CreateRectangle(new Vector2(32, 64), Color.Blue));
+            sprite.SpriteOffset = new Vector2(-16, -32);
 
             physics.Velocity = new Vector2(0, 0);
         }
@@ -52,21 +56,26 @@ namespace GameProject.GameObjects
 
             if (GetComponent<Physics>().Grounded)
             {
-                if (GameInput.KeyPressed(Keys.Space))
+                if (GameInput.KeyPressed(Keys.Z))
                 {
                     GetComponent<Physics>().Velocity.Y = -6;
                 }
             }
 
+            hitPoint = Position + new Vector2(0, -5);
+            if (GameInput.KeyDown(Keys.Left)) hitPoint.X -= 32;
+            if (GameInput.KeyDown(Keys.Right)) hitPoint.X += 32;
+            if (GameInput.KeyDown(Keys.Up)) hitPoint.Y -= 48;
+            if (GameInput.KeyDown(Keys.Down)) hitPoint.Y += 48;
             if (GameInput.KeyPressed(Keys.X))
             {
-                Vector2 hitPoint = Position;
-                if (GameInput.KeyDown(Keys.Down)) hitPoint.Y += 64;
-
-                GameObject meme = GetComponent<HitBox>().SolidAtPoint(hitPoint);
-                if (meme != null)
+                if (ObjectAtPosition<Ground>(hitPoint) is Ground upperGround)
                 {
-                    DestroyObject(meme);
+                    DestroyObject(upperGround);
+                } 
+                else if (ObjectAtPosition<Ground>(hitPoint + new Vector2(0, 10)) is Ground lowerGround)
+                {
+                    DestroyObject(lowerGround);
                 }
             }
 
@@ -76,6 +85,8 @@ namespace GameProject.GameObjects
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
+            ShapeRenderer.FillRectangle(spriteBatch, Position, new Vector2(2, 2), 0, Color.Red);
+            ShapeRenderer.FillRectangle(spriteBatch, hitPoint, new Vector2(2, 2), 0, Color.Red);
         }
 
     }

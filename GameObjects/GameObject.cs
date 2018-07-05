@@ -109,6 +109,24 @@ namespace GameProject.GameObjects
             gameObject.UnloadContent();
         }
 
+        // Get object at position
+        public GameObject ObjectAtPosition<T>(Vector2 Position)
+        {
+            GameObject o = null;
+            for (int i = 0; i < Screen.GameObjects.Count; i++)
+            {
+                if (Screen.GameObjects[i] is GameObject temp)
+                {
+                    if (temp.GetComponent<HitBox>() is HitBox hitBox)
+                    {
+                        if (hitBox.HitBoxCollider.IsCollidingWithPoint(temp.Position, Position))
+                            return temp;
+                    }
+                }
+            }
+            return o;
+        }
+
         // Create a rectangle texture (should only bhe used for testing)
         public Texture2D CreateRectangle(Vector2 size, Color color)
         {

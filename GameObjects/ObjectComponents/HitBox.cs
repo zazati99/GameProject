@@ -7,7 +7,7 @@ namespace GameProject.GameObjects.ObjectComponents
     public class HitBox : ObjectComponent
     {
         // Collider
-        Collider collider;
+        public Collider HitBoxCollider;
 
         // Important variables
         public bool Solid; // will this hotbox interact with solid physics objects?
@@ -28,7 +28,7 @@ namespace GameProject.GameObjects.ObjectComponents
         // set a collider
         public void SetCollider(Collider collider)
         {
-            this.collider = collider;
+            this.HitBoxCollider = collider;
         }
 
         #region Collision Functions
@@ -47,7 +47,7 @@ namespace GameProject.GameObjects.ObjectComponents
                 {
                     if (hitBox.Solid)
                     {
-                        if (collider.IsColliding(hitBox.collider, position, o.Position))
+                        if (HitBoxCollider.IsColliding(hitBox.HitBoxCollider, position, o.Position))
                         {
                             return true;
                         }
@@ -55,31 +55,6 @@ namespace GameProject.GameObjects.ObjectComponents
                 }
             }
             return false;
-        }
-
-        // Get the solid object at specific point
-        public GameObject SolidAtPoint(Vector2 point)
-        {
-            GameObject o = null;
-
-            for (int i = 0; i < gameObject.Screen.GameObjects.Count; i++)
-            {
-                GameObject temp = gameObject.Screen.GameObjects[i];
-                HitBox hitBox = temp.GetComponent<HitBox>();
-
-                if (hitBox != null)
-                {
-                    if (hitBox.Solid)
-                    {
-                        if (hitBox.collider.IsCollidingWithPoint(temp.Position, point))
-                        {
-                            return o;
-                        }
-                    }
-                }
-            }
-
-            return o;
         }
 
         #endregion

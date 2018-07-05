@@ -41,7 +41,7 @@ namespace GameProject.GameObjects.ObjectComponents
                     // Gravity meme
                     if (GravityEnabled)
                     {
-                        if (!objectHitBox.SolidMeeting(new Vector2(gameObject.Position.X, gameObject.Position.Y + 1)))
+                        if (!objectHitBox.SolidMeeting(new Vector2(gameObject.Position.X, gameObject.Position.Y + Math.Sign(GRAVITY))))
                         {
                             Velocity.Y += GRAVITY;
                             Grounded = false;
@@ -52,9 +52,10 @@ namespace GameProject.GameObjects.ObjectComponents
                         }
                     }
 
-                    // Vertical collision
+                    // Horizontal collision
                     if (objectHitBox.SolidMeeting(new Vector2(gameObject.Position.X + Velocity.X, gameObject.Position.Y)))
                     {
+                        gameObject.Position.X = (Velocity.X > 0) ? (int)(gameObject.Position.X) : (int)gameObject.Position.X+1;
                         while (!objectHitBox.SolidMeeting(new Vector2(gameObject.Position.X + Math.Sign(Velocity.X), gameObject.Position.Y)))
                         {
                             gameObject.Position.X += Math.Sign(Velocity.X);
@@ -62,9 +63,10 @@ namespace GameProject.GameObjects.ObjectComponents
                         Velocity.X = 0;
                     } gameObject.Position.X += Velocity.X; // Add velocity to position
 
-                    // Horizontal collision
+                    // Vertical collision
                     if (objectHitBox.SolidMeeting(new Vector2(gameObject.Position.X, gameObject.Position.Y + Velocity.Y)))
                     {
+                        gameObject.Position.Y = (Velocity.Y > 0) ? (int)(gameObject.Position.Y) : (int)gameObject.Position.Y + 1;
                         while (!objectHitBox.SolidMeeting(new Vector2(gameObject.Position.X, gameObject.Position.Y + Math.Sign(Velocity.Y))))
                         {
                             gameObject.Position.Y += Math.Sign(Velocity.Y);

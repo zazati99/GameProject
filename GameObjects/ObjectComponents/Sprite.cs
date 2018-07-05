@@ -14,11 +14,12 @@ namespace GameProject.GameObjects.ObjectComponents
         // List of textures
         List<Texture2D> Images;
 
-        // The current displayed image
-        public float ImageIndex;
-
-        // How fast the image index will increase per frame
-        public float ImageSpeed;
+        // Cool variables
+        public float ImageIndex; // current image index
+        public float ImageSpeed; // speed of animtaion
+        public float LayerDepth; // Depth of sprite (bör vara mellan 0.4 och 0.6)
+        public Color SpriteColor; // Color of spritee (white is normal)
+        public Vector2 SpriteOffset; // position offset
 
         // Initialize things
         public override void Initialize(GameObject gameObject)
@@ -28,6 +29,9 @@ namespace GameProject.GameObjects.ObjectComponents
             Images = new List<Texture2D>();
             ImageIndex = 0;
             ImageSpeed = 0;
+            SpriteColor = Color.White;
+            SpriteOffset = Vector2.Zero;
+            LayerDepth = 0.5f;
         }
 
         // Disposes images
@@ -73,7 +77,9 @@ namespace GameProject.GameObjects.ObjectComponents
             spriteBatch.Draw
             (
                 Images[(int)ImageIndex],
-                gameObject.Position
+                gameObject.Position + SpriteOffset,
+                color: SpriteColor,
+                layerDepth: LayerDepth
             );
         }
 

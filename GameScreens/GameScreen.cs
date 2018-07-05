@@ -51,12 +51,19 @@ namespace GameProject.GameScreens
 
             for (int i = 0; i < 8; i++)
             {
-                Ground ground = new Ground();
-                ground.Position.X = 32*i;
-                ground.Position.Y = 200;
-                AddObject(ground);
+                for (int j = 0; j < 8; j++)
+                {
+                    Ground ground = new Ground();
+                    ground.Position.X = 32 * i;
+                    ground.Position.Y = 100 + 32*j;
+                    AddObject(ground);
+                }
             }
 
+            Ground g = new Ground();
+            g.Position.X = 200;
+            g.Position.Y = 0;
+            AddObject(g);
 
             PlayerObject player = new PlayerObject();
             player.Position.X = 100;
