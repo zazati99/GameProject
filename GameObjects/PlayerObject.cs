@@ -63,10 +63,10 @@ namespace GameProject.GameObjects
             }
 
             hitPoint = Position + new Vector2(0, -5);
-            if (GameInput.KeyDown(Keys.Left)) hitPoint.X -= 32;
-            if (GameInput.KeyDown(Keys.Right)) hitPoint.X += 32;
-            if (GameInput.KeyDown(Keys.Up)) hitPoint.Y -= 48;
-            if (GameInput.KeyDown(Keys.Down)) hitPoint.Y += 48;
+            if (GameInput.KeyDown(Keys.Up)) hitPoint = new Vector2(Position.X, hitPoint.Y - 48);
+            if (GameInput.KeyDown(Keys.Down)) hitPoint = new Vector2(Position.X, hitPoint.Y + 48);
+            if (GameInput.KeyDown(Keys.Left)) hitPoint = new Vector2(hitPoint.X -32, Position.Y - 5);
+            if (GameInput.KeyDown(Keys.Right)) hitPoint = new Vector2(hitPoint.X + 32, Position.Y - 5);
             if (GameInput.KeyPressed(Keys.X))
             {
                 if (ObjectAtPosition<Ground>(hitPoint) is Ground upperGround)
