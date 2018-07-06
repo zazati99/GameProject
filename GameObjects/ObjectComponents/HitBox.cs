@@ -10,7 +10,7 @@ namespace GameProject.GameObjects.ObjectComponents
         public Collider HitBoxCollider;
 
         // Important variables
-        public bool Solid; // will this hotbox interact with solid physics objects?
+        public bool Solid; // will this hitbox interact with solid physics objects?
 
         // Initialize HitBox
         public override void Initialize(GameObject gameObject)
@@ -18,8 +18,7 @@ namespace GameProject.GameObjects.ObjectComponents
             base.Initialize(gameObject);
             Solid = false;
 
-            Physics physics = gameObject.GetComponent<Physics>();
-            if (physics != null)
+            if (gameObject.GetComponent<Physics>() is Physics physics)
             {
                 physics.AddHitBox(this);
             }
@@ -28,7 +27,7 @@ namespace GameProject.GameObjects.ObjectComponents
         // set a collider
         public void SetCollider(Collider collider)
         {
-            this.HitBoxCollider = collider;
+            HitBoxCollider = collider;
         }
 
         #region Collision Functions
@@ -39,11 +38,9 @@ namespace GameProject.GameObjects.ObjectComponents
             for (int i = 0; i < gameObject.Screen.GameObjects.Count; i++)
             {
                 GameObject o = gameObject.Screen.GameObjects[i];
-                HitBox hitBox = o.GetComponent<HitBox>();
-
                 if (o == gameObject) continue;
                 
-                if (hitBox != null)
+                if (o.GetComponent<HitBox>() is HitBox hitBox)
                 {
                     if (hitBox.Solid)
                     {
@@ -55,6 +52,25 @@ namespace GameProject.GameObjects.ObjectComponents
                 }
             }
             return false;
+        }
+
+        // Object at place
+        public GameObject ObjectMeeting<T>(Vector2 position)
+        {
+            for (int i = 0; i < gameObject.Screen.GameObjects.Count; i++)
+            {
+                if (gameObject.Screen.GameObjects[i] is T)
+                {
+                    GameObject o = gameObject.Screen.GameObjects[i];
+                    if (o.GetComponent<HitBox>() is HitBox hitBox)
+                    {
+                        if (HitBoxCollider.IsColliding(hitBox.HitBoxCollider, position, o.Position))
+                            return o;
+                    }
+                }
+            }
+
+            return null;
         }
 
         #endregion

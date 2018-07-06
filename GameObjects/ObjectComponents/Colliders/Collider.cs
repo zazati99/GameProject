@@ -20,10 +20,14 @@ namespace GameProject.GameObjects.ObjectComponents
             return false;
         }
 
-        // Collision with speecific collider
+        #region Collision with specific colliders
+
+        // Collision with specific collider
         public virtual bool Collision(BoxCollider boxCollider, Vector2 p1, Vector2 p2)
         {
             return false;
         }
+
+        #endregion
     }
 }

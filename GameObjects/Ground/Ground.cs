@@ -9,7 +9,7 @@ namespace GameProject.GameObjects
 {
     public class Ground : GameObject
     {
-        // INitialize ground
+        // Initialize ground
         public override void Initialize(GameScreen screen)
         {
             base.Initialize(screen);
