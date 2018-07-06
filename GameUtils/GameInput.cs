@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 namespace GameProject.GameUtils
@@ -19,11 +14,23 @@ namespace GameProject.GameUtils
         static GamePadState currentGamePadState;
         static GamePadState oldGamePadState;
 
+        // Inputs
+        public static Input Right = new Input(Keys.Right, Buttons.DPadRight);
+        public static Input Left = new Input(Keys.Left, Buttons.DPadLeft);
+        public static Input Up = new Input(Keys.Up, Buttons.DPadUp);
+        public static Input Down = new Input(Keys.Down, Buttons.DPadDown);
+        public static Input Jump = new Input(Keys.Z, Buttons.A);
+        public static Input Dig = new Input(Keys.X, Buttons.X);
+
+        public static Vector2 LeftStick; // Left stick on controller
+
         // ska köras innan något annat i MainGame
         public static void UpdateStart()
         {
             currentKeyboardState = Keyboard.GetState();
             currentGamePadState = GamePad.GetState(0);
+
+            LeftStick = currentGamePadState.ThumbSticks.Left;
         }
 
         // Ska köras i slutet av update i MainGame
@@ -33,7 +40,7 @@ namespace GameProject.GameUtils
             oldGamePadState = currentGamePadState;
         }
 
-        #region GetInputFunctions
+        #region Get Input Functions
 
         // är knapp nedtrykt!?!?
         public static bool KeyDown(Keys key)
@@ -57,6 +64,18 @@ namespace GameProject.GameUtils
         public static bool ButtonPressed(Buttons button)
         {
             return currentGamePadState.IsButtonDown(button) && !oldGamePadState.IsButtonDown(button);
+        }
+
+        // Input Pressed
+        public static bool InputPressed(Input input)
+        {
+            return KeyPressed(input.Key) || ButtonPressed(input.Button);
+        }
+
+        // Input Down
+        public static bool InputDown(Input input)
+        {
+            return KeyDown(input.Key) || ButtonDown(input.Button);
         }
 
         #endregion

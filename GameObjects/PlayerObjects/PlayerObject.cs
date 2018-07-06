@@ -29,6 +29,9 @@ namespace GameProject.GameObjects
         HitBox hitBox;
         Sprite sprite;
 
+        // Mining tool
+        MiningTool miningTool;
+
         public override void Initialize(GameScreen screen)
         {
             base.Initialize(screen);
@@ -51,6 +54,13 @@ namespace GameProject.GameObjects
             sprite.AddTexture(CreateRectangle(new Vector2(32, 64), Color.Blue));
             sprite.SpriteOffset = new Vector2(-16, -32);
 
+            // MAke this the tafget of the Screen camera
+            screen.Camera.SetTarget(this);
+
+            // Mining tool;
+            miningTool = new MiningTool();
+            miningTool.Initialize(this);
+
             // Movement initialization
             maxSpeed = 2;
             accelerationSpeed = .5f;
@@ -67,16 +77,20 @@ namespace GameProject.GameObjects
         public override void Update()
         {
             // Horizontal movement controlls
-            bool left = GameInput.KeyDown(Keys.Left);
-            bool right = GameInput.KeyDown(Keys.Right);
+            bool left = GameInput.InputDown(GameInput.Left);
+            bool right = GameInput.InputDown(GameInput.Right);
             if (left || right)
             {
                 HorizontalMovement(((right ? 1 : 0) - (left ? 1 : 0)) * maxSpeed);
             }
+            else if (GameInput.LeftStick.X != 0)
+            {
+                HorizontalMovement(GameInput.LeftStick.X * maxSpeed);
+            }
             else StopMoving();
 
             // Jumping controlls
-            if (GameInput.KeyPressed(Keys.Z))
+            if (GameInput.InputPressed(GameInput.Jump))
                 jumpBuffer = 3;
 
             if (physics.Grounded)
@@ -85,41 +99,23 @@ namespace GameProject.GameObjects
                     Jump();
             }
 
-            if (!GameInput.KeyDown(Keys.Z))
+            if (!GameInput.InputDown(GameInput.Jump))
                 physics.Velocity.Y = Math.Max(physics.Velocity.Y, -minJumpHeight);
 
             jumpBuffer--;
 
-            // Test mining meme
-            if (GameInput.KeyPressed(Keys.X))
-            {
-                Vector2 horizontalHitPoint = Position;
-                Vector2 verticalHitPoint = Position;
-
-                if (GameInput.KeyDown(Keys.Up)) verticalHitPoint += new Vector2(0, -5);
-                if (GameInput.KeyDown(Keys.Down)) verticalHitPoint += new Vector2(0, 5);
-
-                if (GameInput.KeyDown(Keys.Left)) horizontalHitPoint += new Vector2(-5, 0);
-                if (GameInput.KeyDown(Keys.Right)) horizontalHitPoint += new Vector2(5, 0);
-
-                if (hitBox.ObjectMeeting<Ground>(horizontalHitPoint) is Ground hGround)
-                {
-                    DestroyObject(hGround);
-                }
-                else if (hitBox.ObjectMeeting<Ground>(verticalHitPoint) is Ground vGround)
-                {
-                    DestroyObject(vGround);
-                }
-            }
+            // Mining
+            miningTool.DetermineTarget();
+            miningTool.Dig();
 
             base.Update();
         }
 
         // Drawing sprite and other things
         public override void Draw(SpriteBatch spriteBatch)
-        {
+        { 
             base.Draw(spriteBatch);
-            ShapeRenderer.FillRectangle(spriteBatch, Position, new Vector2(2, 2), 0, Color.Red);
+            miningTool.Draw(spriteBatch);
         }
 
         #region Movement

@@ -23,6 +23,9 @@ namespace GameProject.GameScreens
         // List of Game Objects
         public List<GameObject> GameObjects;
 
+        // Screen Camera
+        public ScreenCamera Camera;
+
         // Constructor
         public GameScreen()
         {
@@ -32,6 +35,9 @@ namespace GameProject.GameScreens
         // Initialize objects and other maymays
         public virtual void Initialize()
         {
+            Camera = new ScreenCamera();
+            Camera.Initialize();
+
             for (int i = 0; i < GameObjects.Count; i++)
             {
                 GameObjects[i].Initialize(this);
@@ -83,10 +89,14 @@ namespace GameProject.GameScreens
         // Updates everything on screen
         public virtual void Update()
         {
+            // Update objects
             for (int i = 0; i < GameObjects.Count; i++)
             {
                 GameObjects[i].Update();
             }
+
+            // Update camera
+            Camera.Update();
         }
 
         // Draws everything on screen

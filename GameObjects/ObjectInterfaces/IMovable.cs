@@ -1,4 +1,4 @@
-﻿namespace GameProject.GameObjects.ObjectComponents
+﻿namespace GameProject.GameObjects
 {
     public interface IMovable
     {

@@ -1,5 +1,7 @@
 ﻿using System;
 
+using Microsoft.Xna.Framework;
+
 namespace GameProject.GameUtils
 {
     public class GameMath
@@ -19,6 +21,14 @@ namespace GameProject.GameUtils
         public static float Lerp(float value, float target, float speed)
         {
             return value + (target - value) * speed;
+        }
+
+        // LErp a vector
+        public static Vector2 Lerp(Vector2 value, Vector2 target, float speed)
+        {
+            value.X = Lerp(value.X, target.X, speed);
+            value.Y = Lerp(value.Y, target.Y, speed);
+            return value;
         }
 
     }
