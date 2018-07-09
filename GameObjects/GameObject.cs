@@ -110,7 +110,7 @@ namespace GameProject.GameObjects
         }
 
         // Get object at position
-        public GameObject ObjectAtPosition<T>(Vector2 Position)
+        public GameObject ObjectAtPosition<T>(Vector2 position)
         {
             GameObject o = null;
             for (int i = 0; i < Screen.GameObjects.Count; i++)
@@ -119,7 +119,7 @@ namespace GameProject.GameObjects
                 {
                     if (temp.GetComponent<HitBox>() is HitBox hitBox)
                     {
-                        if (hitBox.HitBoxCollider.IsCollidingWithPoint(temp.Position, Position))
+                        if (hitBox.HitBoxCollider.IsCollidingWithPoint(temp.Position, position))
                             return temp;
                     }
                 }

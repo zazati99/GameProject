@@ -8,8 +8,10 @@ using Microsoft.Xna.Framework.Content;
 
 using System.Xml.Serialization;
 
+using GameProject.GameUtils;
 using GameProject.GameObjects;
 using GameProject.GameObjects.ObjectComponents;
+using System.Threading;
 
 namespace GameProject.GameScreens
 {
@@ -21,14 +23,22 @@ namespace GameProject.GameScreens
         [XmlIgnore] public ContentManager Content;
 
         // List of Game Objects
+        public List<TileMap> TileMaps;
+
+        // List of GameObjects
         public List<GameObject> GameObjects;
 
         // Screen Camera
         public ScreenCamera Camera;
 
+        // LoadingTileMaps
+        TileMap loadingTileMap;
+        bool loadingTileMapReady = false;
+
         // Constructor
         public GameScreen()
         {
+            TileMaps = new List<TileMap>();
             GameObjects = new List<GameObject>();
         }
 
@@ -37,11 +47,6 @@ namespace GameProject.GameScreens
         {
             Camera = new ScreenCamera();
             Camera.Initialize();
-
-            for (int i = 0; i < GameObjects.Count; i++)
-            {
-                GameObjects[i].Initialize(this);
-            }
         }
 
         // Load content for screen
@@ -54,27 +59,12 @@ namespace GameProject.GameScreens
                 GameObjects[i].LoadContent(Content);
             }
 
-
-            for (int i = 0; i < 8; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
-                    Ground ground = new Ground();
-                    ground.Position.X = 32 * i;
-                    ground.Position.Y = 100 + 32*j;
-                    AddObject(ground);
-                }
-            }
-
-            Ground g = new Ground();
-            g.Position.X = 200;
-            g.Position.Y = 0;
-            AddObject(g);
-
+            /*
             PlayerObject player = new PlayerObject();
             player.Position.X = 100;
             player.Position.Y = 0;
             AddObject(player);
+            */
         }
 
         // Unloads content on screen
@@ -89,10 +79,31 @@ namespace GameProject.GameScreens
         // Updates everything on screen
         public virtual void Update()
         {
+            if (loadingTileMapReady)
+            {
+                AddTileMap(loadingTileMap);
+                loadingTileMapReady = false;
+            }
+
             // Update objects
             for (int i = 0; i < GameObjects.Count; i++)
             {
                 GameObjects[i].Update();
+            }
+
+            if (GameInput.KeyPressed(Keys.F6))
+            {
+
+                new Thread(() =>
+                {
+                    loadingTileMap = GameFileManager.LoadTileMap(this, "GameProject/Content/TestTile", TileMaps[TileMaps.Count - 2].Position + new Vector2(16 * 32, 0));
+                    loadingTileMapReady = true;
+                }).Start();
+
+            }
+            if (GameInput.KeyPressed(Keys.F7))
+            {
+                TileMaps[TileMaps.Count-1].DestroyTileMap();
             }
 
             // Update camera
@@ -119,8 +130,22 @@ namespace GameProject.GameScreens
 
         #region Screen functions
 
-        // Add a GameObject
-        public void AddObject(GameObject gameObject)
+        // Add a Tile map
+        public void AddTileMap(TileMap tileMap)
+        {
+            TileMaps.Add(tileMap);
+
+            for (int i = 0; i < tileMap.GameObjects.Count; i++)
+            {
+                GameObjects.Add(tileMap.GameObjects[i]);
+                tileMap.GameObjects[i].Initialize(this);
+            }
+
+            tileMap.LoadContent(Content);
+        }
+
+        // Add a gameObject
+        public void AddGameObject(GameObject gameObject)
         {
             GameObjects.Add(gameObject);
             gameObject.Initialize(this);

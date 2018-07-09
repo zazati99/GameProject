@@ -55,7 +55,7 @@ namespace GameProject.GameObjects
             sprite.SpriteOffset = new Vector2(-16, -32);
 
             // MAke this the tafget of the Screen camera
-            screen.Camera.SetTarget(this);
+            Screen.Camera.SetTarget(this);
 
             // Mining tool;
             miningTool = new MiningTool();

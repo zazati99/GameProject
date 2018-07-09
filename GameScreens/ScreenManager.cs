@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
+using GameProject.GameObjects;
 
 using GameProject.GameUtils;
 
@@ -32,13 +34,13 @@ namespace GameProject.GameScreens
         // Constructor meme
         public ScreenManager()
         {
-            currentScreen = new GameScreen();
+            
         }
 
         // Initialize stuff
         public void Initialize()
         {
-            currentScreen.Initialize();
+            
         }
 
         // Loads content lul
@@ -46,7 +48,12 @@ namespace GameProject.GameScreens
         {
             Content = new ContentManager(content.ServiceProvider, "Content");
 
+            currentScreen = new GameScreen();
+            currentScreen.Initialize();
             currentScreen.LoadContent(Content);
+            currentScreen.AddTileMap(GameFileManager.LoadTileMap(currentScreen, "GameProject/Content/TestTile", new Vector2(0,64)));
+            currentScreen.AddTileMap(GameFileManager.LoadTileMap(currentScreen, "GameProject/Content/TestTile", new Vector2(8*32, 64)));
+            currentScreen.AddGameObject(new PlayerObject());
         }
 
         // Unloads content lul
@@ -62,7 +69,7 @@ namespace GameProject.GameScreens
 
             if (GameInput.KeyPressed(Microsoft.Xna.Framework.Input.Keys.F9))
             {
-                XMLManager.Save(currentScreen, "Testeroni.xml");
+                //GameFileManager.SaveTileMap(currentScreen, "TestTile");
             }
         }
 
