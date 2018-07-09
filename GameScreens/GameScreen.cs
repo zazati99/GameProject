@@ -65,6 +65,11 @@ namespace GameProject.GameScreens
             player.Position.Y = 0;
             AddObject(player);
             */
+
+            Enemy npc = new Enemy();
+            AddGameObject(npc);
+            npc.Position.X = 200;
+            npc.Position.Y = -100;
         }
 
         // Unloads content on screen

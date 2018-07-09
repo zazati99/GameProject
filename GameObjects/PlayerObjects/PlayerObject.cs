@@ -106,6 +106,7 @@ namespace GameProject.GameObjects
 
             // Mining
             miningTool.DetermineTarget();
+            miningTool.Attack();
             miningTool.Dig();
 
             base.Update();

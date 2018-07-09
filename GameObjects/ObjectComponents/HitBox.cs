@@ -54,6 +54,28 @@ namespace GameProject.GameObjects.ObjectComponents
             return false;
         }
 
+        // Solid at place
+        public GameObject SolidAtPosition(Vector2 position)
+        {
+            GameObject o = null;
+
+            for (int i = 0; i < gameObject.Screen.GameObjects.Count; i++)
+            {
+                GameObject temp = gameObject.Screen.GameObjects[i];
+
+                if (temp.GetComponent<HitBox>() is HitBox hitBox)
+                {
+                    if (hitBox.Solid)
+                    {
+                        if (hitBox.HitBoxCollider.IsColliding(hitBox.HitBoxCollider, gameObject.Position, temp.Position))
+                            return temp;
+                    }
+                }
+            }
+
+            return o;
+        }
+
         // Object at place
         public GameObject ObjectMeeting<T>(Vector2 position)
         {

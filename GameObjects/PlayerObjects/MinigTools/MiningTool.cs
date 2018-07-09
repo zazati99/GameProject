@@ -101,6 +101,22 @@ namespace GameProject.GameObjects
             }
         }
 
+        // Atac
+        public virtual void Attack()
+        {
+            if (GameInput.InputPressed(GameInput.Dig))
+            {
+                Vector2 attackPos = player.Position;
+                if (GameInput.InputDown(GameInput.Right)) attackPos += new Vector2(32, 0);
+                if (GameInput.InputDown(GameInput.Left)) attackPos += new Vector2(-32, 0);
+
+                if (CheckEnemyCollision(attackPos) is Enemy e)
+                {
+                    e.TakeDamage(1);
+                }
+            }
+        }
+
         // Draw highlight on ground
         public virtual void Draw(SpriteBatch spriteBatch)
         {
@@ -110,7 +126,7 @@ namespace GameProject.GameObjects
             }
         }
 
-        // is tool touchin anything?
+        // is tool touchin ground?
         protected virtual List<Ground> CheckToolCollisin(Vector2 position)
         {
             List<Ground> groundList = new List<Ground>();
@@ -123,6 +139,21 @@ namespace GameProject.GameObjects
                 }
             }
             return groundList;
+        }
+
+        // is tool touching enemy!?
+        protected virtual Enemy CheckEnemyCollision(Vector2 position)
+        {
+
+            for (int i = 0; i < player.Screen.GameObjects.Count; i++)
+            {
+                if (player.Screen.GameObjects[i] is Enemy e)
+                {
+                    if (e.GetComponent<HitBox>().HitBoxCollider.IsColliding(collider, e.Position, position))
+                        return e;
+                }
+            }
+            return null;
         }
     }
 }

@@ -49,3 +49,11 @@
 /processorParam:TextureFormat=Color
 /build:connection.png
 
+#begin font.bmp
+/importer:TextureImporter
+/processor:FontTextureProcessor
+/processorParam:FirstCharacter= 
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Color
+/build:font.bmp
+
