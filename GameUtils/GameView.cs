@@ -113,6 +113,12 @@ namespace GameProject.GameUtils
             return Position;
         }
 
+        // Get view
+        public static Vector2 GetView()
+        {
+            return View;
+        }
+
         #endregion
     }
 }

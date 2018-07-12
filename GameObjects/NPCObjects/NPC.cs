@@ -10,9 +10,10 @@ namespace GameProject.GameObjects
 {
     public class NPC : GameObject, IMovable
     {
-        public override void Initialize(GameScreen screen)
+        // Constructor and initialization
+        public NPC(GameScreen gameScreen) : base(gameScreen)
         {
-            base.Initialize(screen);
+
         }
 
         public override void Update()

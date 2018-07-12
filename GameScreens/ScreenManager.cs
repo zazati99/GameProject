@@ -37,23 +37,16 @@ namespace GameProject.GameScreens
             
         }
 
-        // Initialize stuff
-        public void Initialize()
-        {
-            
-        }
-
         // Loads content lul
         public void LoadContent(ContentManager content)
         {
             Content = new ContentManager(content.ServiceProvider, "Content");
 
             currentScreen = new GameScreen();
-            currentScreen.Initialize();
             currentScreen.LoadContent(Content);
             currentScreen.AddTileMap(GameFileManager.LoadTileMap(currentScreen, "GameProject/Content/TestTile", new Vector2(0,64)));
             currentScreen.AddTileMap(GameFileManager.LoadTileMap(currentScreen, "GameProject/Content/TestTile", new Vector2(8*32, 64)));
-            currentScreen.AddGameObject(new PlayerObject());
+            currentScreen.AddGameObject(new PlayerObject(currentScreen));
         }
 
         // Unloads content lul
@@ -94,7 +87,6 @@ namespace GameProject.GameScreens
 
             currentScreen = screen;
 
-            screen.Initialize();
             screen.LoadContent(Content);
         }
     }

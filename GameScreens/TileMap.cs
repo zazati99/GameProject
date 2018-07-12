@@ -30,10 +30,10 @@ namespace GameProject.GameScreens
         // Size in tiles
         public Vector2 Size;
 
-        // Initialize TileMap
-        public void Initialize(GameScreen screen)
+        // Constructor and Initialization
+        public TileMap(GameScreen gameScreen)
         {
-            Screen = screen;
+            Screen = gameScreen;
             GameObjects = new List<GameObject>();
         }
 

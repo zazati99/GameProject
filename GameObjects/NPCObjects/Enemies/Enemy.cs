@@ -5,32 +5,45 @@ using Microsoft.Xna.Framework;
 
 namespace GameProject.GameObjects
 {
-    public class Enemy : NPC
+    public class Enemy : NPC , IActivatable
     {
         // HP of enemy
         public int HP;
 
-        // Initialize stuff
-        public override void Initialize(GameScreen screen)
+        public void Activate()
         {
-            base.Initialize(screen);
+            GetComponent<Dialogue>().StartDialogue();
+        }
 
-            HitBox hitBox = new HitBox();
+        public Enemy(GameScreen gameScreen) : base(gameScreen)
+        {
+            HitBox hitBox = new HitBox(this);
             BoxCollider collider = new BoxCollider();
             collider.Size = new Vector2(32, 64);
             hitBox.SetCollider(collider);
             AddComponent(hitBox);
 
-            Physics physics = new Physics();
+            Physics physics = new Physics(this);
             AddComponent(physics);
             physics.Solid = true;
             physics.GravityEnabled = true;
 
-            Sprite sprite = new Sprite();
+            Sprite sprite = new Sprite(this);
             AddComponent(sprite);
             sprite.AddTexture(CreateRectangle(new Vector2(32, 64), Color.Purple));
 
-            HP = 3;
+            Dialogue dialogue = new Dialogue(this);
+
+            DialogueBranch dialogueBranch = new DialogueBranch(dialogue);
+            dialogue.AddDialogueBranch("", dialogueBranch);
+
+            DialogueBox dialogueBox = new DialogueBox(dialogueBranch);
+            dialogueBranch.AddDialogueBox(dialogueBox);
+            dialogueBox.SetText("SaS och POTATis!");
+
+            ObjectComponents.Add(dialogue);
+
+            HP = 2;
         }
 
         // Take damage

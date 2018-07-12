@@ -21,11 +21,9 @@ namespace GameProject.GameObjects.ObjectComponents
         public Color SpriteColor; // Color of spritee (white is normal)
         public Vector2 SpriteOffset; // position offset
 
-        // Initialize things
-        public override void Initialize(GameObject gameObject)
+        // Constructor and initialization
+        public Sprite(GameObject gameObject) : base(gameObject)
         {
-            base.Initialize(gameObject);
-
             Images = new List<Texture2D>();
             ImageIndex = 0;
             ImageSpeed = 0;
@@ -37,10 +35,7 @@ namespace GameProject.GameObjects.ObjectComponents
         // Disposes images
         public override void UnloadContent()
         {
-            for (int i = 0; i < Images.Count; i++)
-            {
-                Images[i].Dispose();
-            }
+            
         }
 
         // Update image

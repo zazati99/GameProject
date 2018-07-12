@@ -12,7 +12,7 @@ namespace GameProject.GameObjects.ObjectComponents
         protected GameObject gameObject;
 
         // Initialize the component
-        public virtual void Initialize(GameObject gameObject)
+        public ObjectComponent(GameObject gameObject)
         {
             this.gameObject = gameObject;
         }

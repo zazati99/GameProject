@@ -20,10 +20,11 @@ namespace GameProject.GameObjects.ObjectComponents
         // HitBox of GameObject
         HitBox objectHitBox;
 
-        // Initialize
-        public override void Initialize(GameObject gameObject)
+
+
+        // Constructoar and initialization
+        public Physics(GameObject gameObject) : base(gameObject)
         {
-            base.Initialize(gameObject);
             Solid = false;
             GravityEnabled = false;
             Grounded = false;

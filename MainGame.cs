@@ -38,8 +38,6 @@ namespace GameProject
         /// </summary>
         protected override void Initialize()
         {
-            ScreenManager.Instance.Initialize();
-
             base.Initialize();
         }
 
@@ -51,6 +49,9 @@ namespace GameProject
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            // Loads fonts
+            GameFonts.LoadContent(Content);
 
             // Loads content in ScreenManager
             ScreenManager.Instance.LoadContent(Content);

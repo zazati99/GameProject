@@ -22,8 +22,7 @@ namespace GameProject.GameObjects
         // Position of GameObject in screen
         public Vector2 Position;
 
-        // Initializes components
-        public virtual void Initialize(GameScreen screen)
+        public GameObject(GameScreen screen)
         {
             Screen = screen;
             ObjectComponents = new List<ObjectComponent>();
@@ -77,7 +76,6 @@ namespace GameProject.GameObjects
         public void AddComponent(ObjectComponent objectComponent)
         {
             ObjectComponents.Add(objectComponent);
-            objectComponent.Initialize(this);
         }
 
         // Get specific component

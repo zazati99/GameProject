@@ -12,8 +12,7 @@ namespace GameProject.GameUtils
         // Load TileMap
         public static TileMap LoadTileMap(GameScreen screen, string path, Vector2 position)
         {
-            TileMap map = new TileMap();
-            map.Initialize(screen);
+            TileMap map = new TileMap(screen);
             map.Position = position;
 
             StreamReader reader = new StreamReader(path);
@@ -29,8 +28,9 @@ namespace GameProject.GameUtils
                     if (line[i] != '*')
                     {
                         Ground.GROUND_TYPE groundType = (Ground.GROUND_TYPE)int.Parse(line[i].ToString());
-                        Ground ground = Ground.MakeGround(groundType);
+                        Ground ground = Ground.MakeGround(screen, groundType);
                         map.GameObjects.Add(ground);
+                        screen.GameObjects.Add(ground);
                         ground.Position.X = xPos;
                         ground.Position.Y = yPos;
                     }

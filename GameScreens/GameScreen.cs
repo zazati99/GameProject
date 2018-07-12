@@ -40,11 +40,6 @@ namespace GameProject.GameScreens
         {
             TileMaps = new List<TileMap>();
             GameObjects = new List<GameObject>();
-        }
-
-        // Initialize objects and other maymays
-        public virtual void Initialize()
-        {
             Camera = new ScreenCamera();
             Camera.Initialize();
         }
@@ -66,7 +61,7 @@ namespace GameProject.GameScreens
             AddObject(player);
             */
 
-            Enemy npc = new Enemy();
+            Enemy npc = new Enemy(this);
             AddGameObject(npc);
             npc.Position.X = 200;
             npc.Position.Y = -100;
@@ -84,12 +79,6 @@ namespace GameProject.GameScreens
         // Updates everything on screen
         public virtual void Update()
         {
-            if (loadingTileMapReady)
-            {
-                AddTileMap(loadingTileMap);
-                loadingTileMapReady = false;
-            }
-
             // Update objects
             for (int i = 0; i < GameObjects.Count; i++)
             {
@@ -98,13 +87,7 @@ namespace GameProject.GameScreens
 
             if (GameInput.KeyPressed(Keys.F6))
             {
-
-                new Thread(() =>
-                {
-                    loadingTileMap = GameFileManager.LoadTileMap(this, "GameProject/Content/TestTile", TileMaps[TileMaps.Count - 2].Position + new Vector2(16 * 32, 0));
-                    loadingTileMapReady = true;
-                }).Start();
-
+                AddTileMap(GameFileManager.LoadTileMap(this, "GameProject/Content/TestTile", TileMaps[TileMaps.Count - 2].Position + new Vector2(16 * 32, 0)));
             }
             if (GameInput.KeyPressed(Keys.F7))
             {
@@ -139,13 +122,6 @@ namespace GameProject.GameScreens
         public void AddTileMap(TileMap tileMap)
         {
             TileMaps.Add(tileMap);
-
-            for (int i = 0; i < tileMap.GameObjects.Count; i++)
-            {
-                GameObjects.Add(tileMap.GameObjects[i]);
-                tileMap.GameObjects[i].Initialize(this);
-            }
-
             tileMap.LoadContent(Content);
         }
 
@@ -153,7 +129,6 @@ namespace GameProject.GameScreens
         public void AddGameObject(GameObject gameObject)
         {
             GameObjects.Add(gameObject);
-            gameObject.Initialize(this);
             gameObject.LoadContent(Content);
         }
 

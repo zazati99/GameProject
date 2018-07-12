@@ -12,17 +12,16 @@ namespace GameProject.GameObjects.ObjectComponents
         // Important variables
         public bool Solid; // will this hitbox interact with solid physics objects?
 
-        // Initialize HitBox
-        public override void Initialize(GameObject gameObject)
+        // Constructor and initialization
+        public HitBox(GameObject gameObject) : base(gameObject)
         {
-            base.Initialize(gameObject);
             Solid = false;
 
             if (gameObject.GetComponent<Physics>() is Physics physics)
             {
                 physics.AddHitBox(this);
             }
-        }
+        } 
 
         // set a collider
         public void SetCollider(Collider collider)
