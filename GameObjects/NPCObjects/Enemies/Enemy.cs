@@ -39,7 +39,7 @@ namespace GameProject.GameObjects
 
             DialogueBox dialogueBox = new DialogueBox(dialogueBranch);
             dialogueBranch.AddDialogueBox(dialogueBox);
-            dialogueBox.SetText("SaS och POTATis!");
+            dialogueBox.SetText("Satans POTATis!");
 
             ObjectComponents.Add(dialogue);
 
