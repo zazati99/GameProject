@@ -80,7 +80,7 @@ namespace GameProject.GameObjects
         // Draw the correct tile
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(tileTexture, position: Position - Vector2.One, sourceRectangle: sourceRectangle);
+            spriteBatch.Draw(tileTexture, position: Position - Vector2.One, sourceRectangle: sourceRectangle, layerDepth: 0.4f);
         }
 
         // deal damage to ground
@@ -159,21 +159,21 @@ namespace GameProject.GameObjects
             // different combinations of tiles
             Point tile = new Point();
             if (!right && !down && !left && !up) tile = new Point(0, 0);
-            if (right && down && !left && !up) tile = new Point(1, 0);
-            if (!right && down && left && !up) tile = new Point(2, 0);
-            if (!right && !down && left && up) tile = new Point(3, 0);
-            if (right && !down && !left && up) tile = new Point(0, 1);
-            if (!right && down && !left && !up) tile = new Point(1, 1);
-            if (!right && !down && !left && up) tile = new Point(2, 1);
-            if (right && !down && !left && !up) tile = new Point(3, 1);
-            if (!right && !down && left && !up) tile = new Point(0, 2);
-            if (right && down && left && !up) tile = new Point(1, 2);
-            if (right && !down && left && up) tile = new Point(2, 2);
-            if (!right && down && left && up) tile = new Point(3, 2);
-            if (right && down && !left && up) tile = new Point(0, 3);
-            if (right && !down && left && !up) tile = new Point(1, 3);
-            if (!right && down && !left && up) tile = new Point(2, 3);
-            if (right && down && left && up) tile = new Point(3, 3);
+            else if (right && down && !left && !up) tile = new Point(1, 0);
+            else if(!right && down && left && !up) tile = new Point(2, 0);
+            else if(!right && !down && left && up) tile = new Point(3, 0);
+            else if(right && !down && !left && up) tile = new Point(0, 1);
+            else if(!right && down && !left && !up) tile = new Point(1, 1);
+            else if(!right && !down && !left && up) tile = new Point(2, 1);
+            else if(right && !down && !left && !up) tile = new Point(3, 1);
+            else if(!right && !down && left && !up) tile = new Point(0, 2);
+            else if(right && down && left && !up) tile = new Point(1, 2);
+            else if(right && !down && left && up) tile = new Point(2, 2);
+            else if(!right && down && left && up) tile = new Point(3, 2);
+            else if(right && down && !left && up) tile = new Point(0, 3);
+            else if(right && !down && left && !up) tile = new Point(1, 3);
+            else if(!right && down && !left && up) tile = new Point(2, 3);
+            else if(right && down && left && up) tile = new Point(3, 3);
 
             // Change sourceRectangle
             sourceRectangle = new Rectangle(tile * new Point(34, 34), new Point(34, 34));

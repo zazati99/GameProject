@@ -18,6 +18,9 @@ namespace GameProject.GameScreens
         // List of GameObjects
         public List<GameObject> GameObjects;
 
+        // Dictionary of TileSets
+        Dictionary<string, Texture2D> TileSets;
+
         // GameScreen screen
         public GameScreen Screen;
 
@@ -35,6 +38,7 @@ namespace GameProject.GameScreens
         {
             Screen = gameScreen;
             GameObjects = new List<GameObject>();
+            TileSets = new Dictionary<string, Texture2D>();
         }
 
         // Load the content

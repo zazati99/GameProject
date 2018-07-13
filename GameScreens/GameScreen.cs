@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,7 +12,6 @@ using System.Xml.Serialization;
 using GameProject.GameUtils;
 using GameProject.GameObjects;
 using GameProject.GameObjects.ObjectComponents;
-using System.Threading;
 
 namespace GameProject.GameScreens
 {
@@ -28,18 +28,18 @@ namespace GameProject.GameScreens
         // List of GameObjects
         public List<GameObject> GameObjects;
 
+        // List of mfin Backgrounds
+        public List<ScreenBackground> ScreenBackgrounds;
+
         // Screen Camera
         public ScreenCamera Camera;
-
-        // LoadingTileMaps
-        TileMap loadingTileMap;
-        bool loadingTileMapReady = false;
 
         // Constructor
         public GameScreen()
         {
             TileMaps = new List<TileMap>();
             GameObjects = new List<GameObject>();
+            ScreenBackgrounds = new List<ScreenBackground>();
             Camera = new ScreenCamera();
             Camera.Initialize();
         }
@@ -54,12 +54,9 @@ namespace GameProject.GameScreens
                 GameObjects[i].LoadContent(Content);
             }
 
-            /*
-            PlayerObject player = new PlayerObject();
-            player.Position.X = 100;
-            player.Position.Y = 0;
-            AddObject(player);
-            */
+            ScreenBackground background = new ScreenBackground();
+            background.LoadContent(Content, "jeff");
+            ScreenBackgrounds.Add(background);
 
             Enemy npc = new Enemy(this);
             AddGameObject(npc);
@@ -101,9 +98,16 @@ namespace GameProject.GameScreens
         // Draws everything on screen
         public virtual void Draw(SpriteBatch spriteBatch)
         {
+            // Draws Game Objects
             for (int i = 0; i < GameObjects.Count; i++)
             {
                 GameObjects[i].Draw(spriteBatch);
+            }
+
+            // Draws Screen backgrounds
+            for (int i = 0; i < ScreenBackgrounds.Count; i++)
+            {
+                ScreenBackgrounds[i].Draw(spriteBatch);
             }
         }
 
