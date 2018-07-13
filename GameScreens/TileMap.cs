@@ -19,7 +19,7 @@ namespace GameProject.GameScreens
         public List<GameObject> GameObjects;
 
         // Dictionary of TileSets
-        Dictionary<string, Texture2D> TileSets;
+        public Dictionary<string, Texture2D> TileSets;
 
         // GameScreen screen
         public GameScreen Screen;

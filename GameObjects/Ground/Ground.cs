@@ -68,6 +68,7 @@ namespace GameProject.GameObjects
         public override void LoadContent(ContentManager content)
         {
             tileTexture = content.Load<Texture2D>("DirtTile");
+
             UpdateTile();
 
             Ground[] grounds = GetSurroundingGrounds();
