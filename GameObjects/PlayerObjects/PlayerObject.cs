@@ -42,15 +42,15 @@ namespace GameProject.GameObjects
 
             hitBox = new HitBox(this);
             BoxCollider boxCollider = new BoxCollider();
-            boxCollider.Size = new Vector2(32, 64);
-            boxCollider.Offset = new Vector2(-16, -32);
+            boxCollider.Size = new Vector2(22, 48);
+            boxCollider.Offset = new Vector2(-11, -24);
             hitBox.SetCollider(boxCollider);
             AddComponent(hitBox);
 
             sprite = new Sprite(this);
             AddComponent(sprite);
-            sprite.AddTexture(CreateRectangle(new Vector2(32, 64), Color.Blue));
-            sprite.SpriteOffset = new Vector2(-16, -32);
+            sprite.AddTexture(gameScreen.Content, "player_idle");
+            sprite.SpriteOffset = new Vector2(-22, -24);
 
             // MAke this the tafget of the Screen camera
             Screen.Camera.SetTarget(this);
