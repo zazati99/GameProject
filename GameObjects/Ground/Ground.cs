@@ -65,9 +65,16 @@ namespace GameProject.GameObjects
         }
 
         // Load Content maymay
-        public override void LoadContent(ContentManager content)
+        public override void LoadContent(ContentManager content, TileMap tileMap)
         {
-            tileTexture = content.Load<Texture2D>("DirtTile");
+            if (tileMap.TileSets.ContainsKey("DirtTile"))
+            {
+                tileTexture = tileMap.TileSets["DirtTile"];
+            } else
+            {
+                tileMap.TileSets.Add("DirtTile", content.Load<Texture2D>("DirtTile"));
+                tileTexture = tileMap.TileSets["DirtTile"];
+            }
 
             UpdateTile();
 

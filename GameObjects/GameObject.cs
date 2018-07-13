@@ -33,6 +33,11 @@ namespace GameProject.GameObjects
         {
             
         }
+        // Load Content
+        public virtual void LoadContent(ContentManager content, TileMap tileMap)
+        {
+
+        }
 
         // Unload content
         public virtual void UnloadContent()

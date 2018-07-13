@@ -48,7 +48,7 @@ namespace GameProject.GameScreens
 
             for (int i = 0; i < GameObjects.Count; i++)
             {
-                GameObjects[i].LoadContent(Content);
+                GameObjects[i].LoadContent(Content, this);
             }
         }
 
