@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 using GameProject.GameUtils;
 using GameProject.GameObjects.ObjectComponents;
+using System.Collections.Generic;
 
 namespace GameProject.GameObjects
 {
@@ -57,13 +58,28 @@ namespace GameProject.GameObjects
             if (GameInput.InputDown(GameInput.Left) || GameInput.LeftStick.X <= -.2f) horizontalHitPoint += new Vector2(-5, 0);
             if (GameInput.InputDown(GameInput.Right) || GameInput.LeftStick.X >= .2f) horizontalHitPoint += new Vector2(5, 0);
 
-            if (CheckToolCollisin(horizontalHitPoint) is Ground hGround)
+            List<Ground> hGround = CheckToolCollisin(horizontalHitPoint);
+            List<Ground> vGround = CheckToolCollisin(verticalHitPoint);
+
+            if (hGround.Count != 0)
             {
-                target = hGround;
+                Ground ground = hGround[0];
+                for(int i = 1; i < hGround.Count; i++)
+                {
+                    if (Vector2.DistanceSquared(player.Position, hGround[i].Position + new Vector2(16, 16)) < Vector2.DistanceSquared(player.Position, ground.Position + new Vector2(16, 16)))
+                        ground = hGround[i];
+                }
+                target = ground;
             }
-            else if (CheckToolCollisin(verticalHitPoint) is Ground vGround)
+            else if (vGround.Count != 0)
             {
-                target = vGround;
+                Ground ground = vGround[0];
+                for (int i = 1; i < vGround.Count; i++)
+                {
+                    if (Vector2.DistanceSquared(player.Position, vGround[i].Position + new Vector2(16,16)) < Vector2.DistanceSquared(player.Position, ground.Position + new Vector2(16, 16)))
+                        ground = vGround[i];
+                }
+                target = ground;
             }
             else target = null;
         }
@@ -85,6 +101,22 @@ namespace GameProject.GameObjects
             }
         }
 
+        // Atac
+        public virtual void Attack()
+        {
+            if (GameInput.InputPressed(GameInput.Dig))
+            {
+                Vector2 attackPos = player.Position;
+                if (GameInput.InputDown(GameInput.Right)) attackPos += new Vector2(32, 0);
+                if (GameInput.InputDown(GameInput.Left)) attackPos += new Vector2(-32, 0);
+
+                if (CheckEnemyCollision(attackPos) is Enemy e)
+                {
+                    e.TakeDamage(1);
+                }
+            }
+        }
+
         // Draw highlight on ground
         public virtual void Draw(SpriteBatch spriteBatch)
         {
@@ -94,15 +126,31 @@ namespace GameProject.GameObjects
             }
         }
 
-        // is tool touchin anything?
-        protected virtual Ground CheckToolCollisin(Vector2 position)
+        // is tool touchin ground?
+        protected virtual List<Ground> CheckToolCollisin(Vector2 position)
         {
+            List<Ground> groundList = new List<Ground>();
             for (int i = 0; i < player.Screen.GameObjects.Count; i++)
             {
                 if (player.Screen.GameObjects[i] is Ground ground)
                 {
                     if (ground.GetComponent<HitBox>().HitBoxCollider.IsColliding(collider, ground.Position, position))
-                        return ground;
+                        groundList.Add(ground);
+                }
+            }
+            return groundList;
+        }
+
+        // is tool touching enemy!?
+        protected virtual Enemy CheckEnemyCollision(Vector2 position)
+        {
+
+            for (int i = 0; i < player.Screen.GameObjects.Count; i++)
+            {
+                if (player.Screen.GameObjects[i] is Enemy e)
+                {
+                    if (e.GetComponent<HitBox>().HitBoxCollider.IsColliding(collider, e.Position, position))
+                        return e;
                 }
             }
             return null;

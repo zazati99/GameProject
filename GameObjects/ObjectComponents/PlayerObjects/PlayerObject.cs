@@ -32,30 +32,28 @@ namespace GameProject.GameObjects
         // Mining tool
         MiningTool miningTool;
 
-        public override void Initialize(GameScreen screen)
+        public PlayerObject(GameScreen gameScreen) : base(gameScreen)
         {
-            base.Initialize(screen);
-
             // Components
-            physics = new Physics();
+            physics = new Physics(this);
             AddComponent(physics);
             physics.Solid = true;
             physics.GravityEnabled = true;
 
-            hitBox = new HitBox();
+            hitBox = new HitBox(this);
             BoxCollider boxCollider = new BoxCollider();
             boxCollider.Size = new Vector2(32, 64);
             boxCollider.Offset = new Vector2(-16, -32);
             hitBox.SetCollider(boxCollider);
             AddComponent(hitBox);
 
-            sprite = new Sprite();
+            sprite = new Sprite(this);
             AddComponent(sprite);
             sprite.AddTexture(CreateRectangle(new Vector2(32, 64), Color.Blue));
             sprite.SpriteOffset = new Vector2(-16, -32);
 
             // MAke this the tafget of the Screen camera
-            screen.Camera.SetTarget(this);
+            Screen.Camera.SetTarget(this);
 
             // Mining tool;
             miningTool = new MiningTool();
@@ -106,9 +104,18 @@ namespace GameProject.GameObjects
 
             // Mining
             miningTool.DetermineTarget();
+            miningTool.Attack();
             miningTool.Dig();
 
             base.Update();
+
+            if (GameInput.InputPressed(GameInput.Dig))
+            {
+                if (ObjectAtPosition<IActivatable>(Position) is IActivatable IA)
+                {
+                    IA.Activate();
+                }
+            }
         }
 
         // Drawing sprite and other things
@@ -116,6 +123,8 @@ namespace GameProject.GameObjects
         { 
             base.Draw(spriteBatch);
             miningTool.Draw(spriteBatch);
+
+            spriteBatch.DrawString(GameFonts.font, physics.Velocity.X.ToString(), Position - new Vector2(GameFonts.font.MeasureString(physics.Velocity.X.ToString()).X/2, 48), Color.Black);
         }
 
         #region Movement
