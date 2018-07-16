@@ -34,9 +34,9 @@ namespace GameProject.GameUtils
                         ground.Position.X = xPos;
                         ground.Position.Y = yPos;
                     }
-                    xPos += 32;
+                    xPos += (int)MainGame.TILE_SIZE.X;
                 }
-                yPos += 32;
+                yPos += (int)MainGame.TILE_SIZE.Y;
             }
 
             reader.Close();

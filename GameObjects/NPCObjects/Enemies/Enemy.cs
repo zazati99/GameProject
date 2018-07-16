@@ -41,6 +41,11 @@ namespace GameProject.GameObjects
             dialogueBranch.AddDialogueBox(dialogueBox);
             dialogueBox.SetText("Satans POTATis!");
 
+            DialogueBox dialogueBox2 = new DialogueBox(dialogueBranch);
+            dialogueBranch.AddDialogueBox(dialogueBox2);
+            dialogueBox2.textSpeed = .5f;
+            dialogueBox2.SetText("lmao lmao lmao lmao lmao lmao\nlmao lmao lmao lmao lmao lmao\nlmao lmao lmao lmao lmao lmao");
+
             ObjectComponents.Add(dialogue);
 
             HP = 2;

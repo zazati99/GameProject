@@ -16,6 +16,9 @@ namespace GameProject
         public static GraphicsDeviceManager Graphics;
         SpriteBatch spriteBatch;
 
+        // Static game variables
+        public static Vector2 TILE_SIZE = new Vector2(24, 24);
+
         // Game view
         GameView gameView;
 
@@ -94,7 +97,7 @@ namespace GameProject
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Azure);
+            GraphicsDevice.Clear(new Color(76, 51, 26));
 
             // Begin spritebatch and feed in values to make view correct
             spriteBatch.Begin

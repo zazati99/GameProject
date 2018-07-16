@@ -54,9 +54,11 @@ namespace GameProject.GameScreens
                 GameObjects[i].LoadContent(Content);
             }
 
+            /*
             ScreenBackground background = new ScreenBackground();
             background.LoadContent(Content, "jeff");
             ScreenBackgrounds.Add(background);
+            */
 
             Enemy npc = new Enemy(this);
             AddGameObject(npc);
@@ -84,11 +86,15 @@ namespace GameProject.GameScreens
 
             if (GameInput.KeyPressed(Keys.F6))
             {
-                AddTileMap(GameFileManager.LoadTileMap(this, "GameProject/Content/TestTile", TileMaps[TileMaps.Count - 2].Position + new Vector2(16 * 32, 0)));
+                AddTileMap(GameFileManager.LoadTileMap(this, "GameProject/Content/TestTile", TileMaps[TileMaps.Count - 2].Position + new Vector2(16 * MainGame.TILE_SIZE.X, 0)));
             }
             if (GameInput.KeyPressed(Keys.F7))
             {
-                TileMaps[TileMaps.Count-1].DestroyTileMap();
+                TileMap map = TileMaps[TileMaps.Count - 1];
+                map.DestroyTileMap();
+
+                map = null;
+                GC.Collect();
             }
 
             // Update camera

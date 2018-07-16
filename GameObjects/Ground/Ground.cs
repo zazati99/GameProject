@@ -49,7 +49,7 @@ namespace GameProject.GameObjects
         {
             HitBox hitBox = new HitBox(this);
             BoxCollider collider = new BoxCollider();
-            collider.Size = new Vector2(32, 32);
+            collider.Size = MainGame.TILE_SIZE;
             hitBox.SetCollider(collider);
             AddComponent(hitBox);
             hitBox.Solid = true;
@@ -85,6 +85,12 @@ namespace GameProject.GameObjects
             }
         }
 
+        //Update
+        public override void Update()
+        {
+            base.Update();
+        }
+
         // Draw the correct tile
         public override void Draw(SpriteBatch spriteBatch)
         {
@@ -107,6 +113,18 @@ namespace GameProject.GameObjects
             }
         }
 
+        // Add physics to ground
+        public void AddPhysics()
+        {
+            Physics physics = new Physics(this);
+            physics.GravityEnabled = true;
+            physics.Solid = true;
+            AddComponent(physics);
+
+            GetComponent<HitBox>().Solid = false;
+        }
+
+        // Does a ground object exist here?
         public bool IsGroundAtPlace(Vector2 position)
         {
             for (int i = 0; i < Screen.GameObjects.Count; i++)
@@ -119,6 +137,7 @@ namespace GameProject.GameObjects
             return false;
         }
 
+        // Get gorund object att this place
         public Ground GroundAtPlace(Vector2 position)
         {
             for (int i = 0; i < Screen.GameObjects.Count; i++)
@@ -135,21 +154,16 @@ namespace GameProject.GameObjects
         public Ground[] GetSurroundingGrounds()
         {
             List<Ground> groundList = new List<Ground>();
-            if (GroundAtPlace(Position + new Vector2(32, 0)) is Ground groundRight)
+
+            for (int i = 0; i < Screen.GameObjects.Count; i++)
             {
-                groundList.Add(groundRight);
-            }
-            if (GroundAtPlace(Position + new Vector2(-32, 0)) is Ground groundLeft)
-            {
-                groundList.Add(groundLeft);
-            }
-            if (GroundAtPlace(Position + new Vector2(0, 32)) is Ground groundDown)
-            {
-                groundList.Add(groundDown);
-            }
-            if (GroundAtPlace(Position + new Vector2(0, -32)) is Ground groundUp)
-            {
-                groundList.Add(groundUp);
+                if (Screen.GameObjects[i] is Ground ground)
+                {
+                    if (ground.Position == Position + new Vector2(MainGame.TILE_SIZE.X, 0)) groundList.Add(ground);
+                    else if (ground.Position == Position + new Vector2(-MainGame.TILE_SIZE.X, 0)) groundList.Add(ground);
+                    else if (ground.Position == Position + new Vector2(0, MainGame.TILE_SIZE.Y)) groundList.Add(ground);
+                    else if (ground.Position == Position + new Vector2(0, -MainGame.TILE_SIZE.Y)) groundList.Add(ground);
+                }
             }
 
             return groundList.ToArray();
@@ -159,10 +173,10 @@ namespace GameProject.GameObjects
         public void UpdateTile()
         {
             // Check tiles in different positions
-            bool right = IsGroundAtPlace(Position + new Vector2(32, 0));
-            bool down = IsGroundAtPlace(Position + new Vector2(0, 32));
-            bool left = IsGroundAtPlace(Position + new Vector2(-32, 0));
-            bool up = IsGroundAtPlace(Position + new Vector2(0, -32));
+            bool right = IsGroundAtPlace(Position + new Vector2(MainGame.TILE_SIZE.X, 0));
+            bool down = IsGroundAtPlace(Position + new Vector2(0, MainGame.TILE_SIZE.Y));
+            bool left = IsGroundAtPlace(Position + new Vector2(-MainGame.TILE_SIZE.X, 0));
+            bool up = IsGroundAtPlace(Position + new Vector2(0, -MainGame.TILE_SIZE.Y));
 
             // different combinations of tiles
             Point tile = new Point();

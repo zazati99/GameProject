@@ -14,9 +14,10 @@ namespace GameProject.GameObjects.ObjectComponents
         SpriteFont font;
         string fullText;
         string displayedText;
-        float textSpeed;
         float charIndex;
-        bool skipable;
+
+        public float textSpeed;
+        public bool skipable;
 
         Vector2 position;
         Vector2 boxSize;
@@ -32,6 +33,7 @@ namespace GameProject.GameObjects.ObjectComponents
             font = GameFonts.font;
             textSpeed = .1f;
             charIndex = 0;
+            skipable = false;
 
             displayedText = "";
             boxSize = new Vector2(250, 75);

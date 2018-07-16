@@ -34,8 +34,8 @@ namespace GameProject.GameObjects
             collider = new BoxCollider();
             if (collider is BoxCollider bc)
             {
-                bc.Size = new Vector2(32, 32);
-                bc.Offset = new Vector2(-16, -16);
+                bc.Size = new Vector2(12, 26);
+                bc.Offset = new Vector2(-6, -13);
             }
 
             // Mining Timer
@@ -50,10 +50,10 @@ namespace GameProject.GameObjects
         public virtual void DetermineTarget()
         {
             Vector2 hitPoint = player.Position;
-            if (GameInput.InputDown(GameInput.Up) || GameInput.LeftStick.Y >= .2f) hitPoint.Y -= 24;
-            if (GameInput.InputDown(GameInput.Down) || GameInput.LeftStick.Y <= -.2f) hitPoint.Y += 24;
-            if (GameInput.InputDown(GameInput.Left) || GameInput.LeftStick.X <= -.2f) hitPoint.X -= 16;
-            if (GameInput.InputDown(GameInput.Right) || GameInput.LeftStick.X >= .2f) hitPoint.X += 16;
+            if (GameInput.InputDown(GameInput.Up) || GameInput.LeftStick.Y >= .2f) hitPoint.Y -= 12;
+            if (GameInput.InputDown(GameInput.Down) || GameInput.LeftStick.Y <= -.2f) hitPoint.Y += 12;
+            if (GameInput.InputDown(GameInput.Left) || GameInput.LeftStick.X <= -.2f) hitPoint.X -= 8;
+            if (GameInput.InputDown(GameInput.Right) || GameInput.LeftStick.X >= .2f) hitPoint.X += 8;
 
             List<Ground> grounds = CheckToolCollisin(hitPoint);
             if (grounds.Count != 0)
@@ -112,7 +112,7 @@ namespace GameProject.GameObjects
         {
             if (target != null)
             {
-                ShapeRenderer.FillRectangle(spriteBatch, target.Position, new Vector2(32, 32), 0, Color.Red);
+                ShapeRenderer.FillRectangle(spriteBatch, target.Position, MainGame.TILE_SIZE, 0, Color.Red);
             }
         }
 

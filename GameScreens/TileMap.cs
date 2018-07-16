@@ -59,6 +59,11 @@ namespace GameProject.GameScreens
             {
                 GameObjects[i].UnloadContent();
             }
+
+            foreach (KeyValuePair<string, Texture2D> entry in TileSets)
+            {
+                entry.Value.Dispose();
+            }
         }
 
         // Destroy TileMap
