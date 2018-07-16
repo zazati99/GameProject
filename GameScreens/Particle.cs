@@ -32,12 +32,13 @@ namespace GameProject.GameScreens
         }
 
         // Draw particle
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
             spriteBatch.Draw
             (
                 Texture,
-                Position
+                Position,
+                layerDepth: layerDepth
             );
         }
     }

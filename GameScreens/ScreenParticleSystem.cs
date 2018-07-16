@@ -60,7 +60,7 @@ namespace GameProject.GameScreens
         {
             for (int i = 0; i < Particles.Count; i++)
             {
-                Particles[i].Draw(spriteBatch);
+                Particles[i].Draw(spriteBatch, LayerDepth);
             }
         }
 

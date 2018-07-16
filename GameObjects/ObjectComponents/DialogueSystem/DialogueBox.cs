@@ -31,14 +31,15 @@ namespace GameProject.GameObjects.ObjectComponents
 
             // variables
             font = GameFonts.font;
+            font.LineSpacing = 15;
             textSpeed = .1f;
             charIndex = 0;
             skipable = false;
 
             displayedText = "";
-            boxSize = new Vector2(225, 45);
+            boxSize = new Vector2(225, 55);
             position = new Vector2(GameView.GetView().X / 2 - boxSize.X / 2, GameView.GetView().Y - boxSize.Y - 10);
-            textOffset = new Vector2(4, 2);
+            textOffset = new Vector2(4, 3);
         }
 
         // Update the box and text
