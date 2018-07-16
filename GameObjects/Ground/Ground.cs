@@ -39,7 +39,7 @@ namespace GameProject.GameObjects
         public int groundDurability;
 
         // Tile variables
-        Texture2D tileTexture;
+        protected Texture2D tileTexture;
         Rectangle sourceRectangle;
 
         // Ground type

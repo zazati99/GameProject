@@ -29,19 +29,27 @@ namespace GameProject.GameObjects
         public override void LoadContent(ContentManager content, TileMap tileMap)
         {
 
-            Sprite sprite = new Sprite(this);
-            AddComponent(sprite);
-            sprite.AddTexture(content, "stone");
-
-        }
-
-        // Draws the normal way (for now)
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            for (int i = 0; i < ObjectComponents.Count; i++)
             {
-                ObjectComponents[i].Draw(spriteBatch);
+                if (tileMap.TileSets.ContainsKey("stone_sprite"))
+                {
+                    tileTexture = tileMap.TileSets["stone_sprite"];
+                }
+                else
+                {
+                    tileMap.TileSets.Add("stone_sprite", content.Load<Texture2D>("stone_sprite"));
+                    tileTexture = tileMap.TileSets["stone_sprite"];
+                }
+
+                UpdateTile();
+
+                Ground[] grounds = GetSurroundingGrounds();
+                for (int i = 0; i < grounds.Length; i++)
+                {
+                    grounds[i].UpdateTile();
+                }
             }
+
         }
+
     }
 }
