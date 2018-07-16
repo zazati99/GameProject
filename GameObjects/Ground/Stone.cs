@@ -14,6 +14,7 @@ namespace GameProject.GameObjects
         // Constructor
         public Stone(GameScreen gameScreen) : base(gameScreen)
         {
+
         }
 
         // Ground Initiaization

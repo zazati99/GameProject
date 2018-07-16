@@ -6,6 +6,7 @@ namespace GameProject.GameUtils
 {
     public class GameMath
     {
+        static Random random = new Random();
 
         // Approach a value
         public static float Approach(float value, float target, float speed)
@@ -31,5 +32,10 @@ namespace GameProject.GameUtils
             return value;
         }
 
+        // Random in range
+        public static int RandomRange(int min, int max)
+        {
+            return random.Next(min, max);
+        }
     }
 }

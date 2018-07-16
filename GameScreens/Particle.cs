@@ -9,7 +9,7 @@ namespace GameProject.GameScreens
         ScreenParticleSystem system;
 
         // le texture
-        Texture2D texture;
+        public Texture2D Texture;
 
         // particlee properties
         public Vector2 Position;
@@ -34,7 +34,7 @@ namespace GameProject.GameScreens
         {
             spriteBatch.Draw
             (
-                texture,
+                Texture,
                 Position
             );
         }

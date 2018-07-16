@@ -66,7 +66,7 @@ namespace GameProject.GameObjects
             slowDownSpeed = .25f;
             airSlowDownSpeed = .1f;
 
-            maxJumpHeight = 6;
+            maxJumpHeight = 4.9f;
             minJumpHeight = 2.5f;
             jumpBuffer = 0;
         }

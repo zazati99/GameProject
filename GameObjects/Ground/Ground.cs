@@ -198,7 +198,7 @@ namespace GameProject.GameObjects
             else if(right && down && left && up) tile = new Point(3, 3);
 
             // Change sourceRectangle
-            sourceRectangle = new Rectangle(tile * new Point(25, 25), new Point(25, 25));
+            sourceRectangle = new Rectangle(tile * new Point(26, 26), new Point(26, 26));
         }
     }
 }
