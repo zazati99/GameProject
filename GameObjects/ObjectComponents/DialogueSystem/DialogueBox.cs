@@ -36,7 +36,7 @@ namespace GameProject.GameObjects.ObjectComponents
             skipable = false;
 
             displayedText = "";
-            boxSize = new Vector2(250, 75);
+            boxSize = new Vector2(225, 45);
             position = new Vector2(GameView.GetView().X / 2 - boxSize.X / 2, GameView.GetView().Y - boxSize.Y - 10);
             textOffset = new Vector2(4, 2);
         }

@@ -29,9 +29,9 @@ namespace GameProject.GameUtils
         {
             this.graphics = graphics;
 
-            Position = new Vector2(640/2, 360/2);
+            Position = new Vector2(384/2, 216/2);
 
-            DefaultView = new Vector2(640, 360);
+            DefaultView = new Vector2(384, 216);
             View = DefaultView;
 
             DefaultSize = new Vector2(1280, 720);
