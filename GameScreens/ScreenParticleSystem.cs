@@ -17,13 +17,18 @@ namespace GameProject.GameScreens
         public List<Particle> Particles;
 
         // Particle textures
-        List<Texture2D> textures;
+        public List<Texture2D> Textures;
+
+        // System depth
+        float LayerDepth;
 
         // particle properties
         public Vector2 Position;
         public Vector2 PositionDeviation;
         public Vector2 Speed;
         public Vector2 SpeedDeviation;
+        public Vector2 Acceleration;
+        public Vector2 AccelerationDeviation;
         public int LifeSpan;
         public int LifeSpanDeviation;
 
@@ -33,7 +38,12 @@ namespace GameProject.GameScreens
             this.screen = screen;
 
             Particles = new List<Particle>();
-            textures = new List<Texture2D>();
+            Textures = new List<Texture2D>();
+
+            LayerDepth = .5f;
+
+            LifeSpan = 30;
+            LifeSpanDeviation = 0;
         }
 
         // Update particle system
@@ -61,10 +71,11 @@ namespace GameProject.GameScreens
             {
                 Particle particle = new Particle(this);
 
-                particle.Texture = textures[GameMath.RandomRange(0, textures.Count)];
+                particle.Texture = Textures[GameMath.RandomRange(0, Textures.Count)];
 
                 particle.Position = Position + new Vector2(GameMath.RandomRange((int)-PositionDeviation.X / 2, (int)PositionDeviation.X / 2), GameMath.RandomRange((int)-PositionDeviation.Y / 2, (int)PositionDeviation.Y / 2));
                 particle.Speed = Speed + new Vector2(GameMath.RandomRange((int)-SpeedDeviation.X / 2, (int)SpeedDeviation.X / 2), GameMath.RandomRange((int)-SpeedDeviation.Y / 2, (int)SpeedDeviation.Y / 2));
+                particle.Acceletation = Acceleration + new Vector2(GameMath.RandomRange((int)-AccelerationDeviation.X / 2, (int)AccelerationDeviation.X / 2), GameMath.RandomRange((int)-AccelerationDeviation.Y / 2, (int)AccelerationDeviation.Y / 2));
                 particle.LifeSpan = LifeSpan + GameMath.RandomRange(-LifeSpanDeviation / 2, LifeSpanDeviation / 2);
                 Particles.Add(particle);
             } 

@@ -31,6 +31,9 @@ namespace GameProject.GameScreens
         // List of mfin Backgrounds
         public List<ScreenBackground> ScreenBackgrounds;
 
+        // List of particleSystems
+        public List<ScreenParticleSystem> ScreenParticleSystems;
+
         // Screen Camera
         public ScreenCamera Camera;
 
@@ -40,6 +43,7 @@ namespace GameProject.GameScreens
             TileMaps = new List<TileMap>();
             GameObjects = new List<GameObject>();
             ScreenBackgrounds = new List<ScreenBackground>();
+            ScreenParticleSystems = new List<ScreenParticleSystem>();
             Camera = new ScreenCamera();
             Camera.Initialize();
         }
@@ -54,11 +58,15 @@ namespace GameProject.GameScreens
                 GameObjects[i].LoadContent(Content);
             }
 
-            /*
-            ScreenBackground background = new ScreenBackground();
-            background.LoadContent(Content, "jeff");
-            ScreenBackgrounds.Add(background);
-            */
+            ScreenParticleSystem particles = new ScreenParticleSystem(this);
+            particles.Acceleration = new Vector2(0, .2f);
+            particles.Speed = new Vector2(0, -4);
+            particles.SpeedDeviation = new Vector2(4, 1);
+            particles.Position = new Vector2(100, -25);
+            particles.Textures.Add(GameObject.CreateRectangle(Vector2.One, Color.Gray));
+            particles.Textures.Add(GameObject.CreateRectangle(Vector2.One, Color.DarkGray));
+            particles.LifeSpan = 90;
+            ScreenParticleSystems.Add(particles);
 
             Enemy npc = new Enemy(this);
             AddGameObject(npc);
@@ -84,6 +92,17 @@ namespace GameProject.GameScreens
                 GameObjects[i].Update();
             }
 
+            // Update particles
+            for (int i = 0; i < ScreenParticleSystems.Count; i++)
+            {
+                ScreenParticleSystems[i].Update();
+            }
+
+            // Updates
+            if (GameInput.KeyPressed(Keys.F10))
+            {
+                ScreenParticleSystems[0].Emit(5);
+            }
             if (GameInput.KeyPressed(Keys.F6))
             {
                 AddTileMap(GameFileManager.LoadTileMap(this, "GameProject/Content/TestTile", TileMaps[TileMaps.Count - 2].Position + new Vector2(16 * MainGame.TILE_SIZE.X, 0)));
@@ -114,6 +133,12 @@ namespace GameProject.GameScreens
             for (int i = 0; i < ScreenBackgrounds.Count; i++)
             {
                 ScreenBackgrounds[i].Draw(spriteBatch);
+            }
+
+            // Draw particle systems
+            for (int i = 0; i < ScreenParticleSystems.Count; i++)
+            {
+                ScreenParticleSystems[i].Draw(spriteBatch);
             }
         }
 

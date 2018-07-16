@@ -131,7 +131,7 @@ namespace GameProject.GameObjects
         }
 
         // Create a rectangle texture (should only bhe used for testing)
-        public Texture2D CreateRectangle(Vector2 size, Color color)
+        public static Texture2D CreateRectangle(Vector2 size, Color color)
         {
             Texture2D rect = new Texture2D(MainGame.Graphics.GraphicsDevice, (int)size.X, (int)size.Y);
 

@@ -14,6 +14,7 @@ namespace GameProject.GameScreens
         // particlee properties
         public Vector2 Position;
         public Vector2 Speed;
+        public Vector2 Acceletation;
         public int LifeSpan;
 
         // Constructor
@@ -26,6 +27,7 @@ namespace GameProject.GameScreens
         public void Update()
         {
             if ((--LifeSpan) <= 0) system.Particles.Remove(this);
+            Speed += Acceletation;
             Position += Speed;
         }
 

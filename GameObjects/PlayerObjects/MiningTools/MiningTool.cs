@@ -50,8 +50,8 @@ namespace GameProject.GameObjects
         public virtual void DetermineTarget()
         {
             Vector2 hitPoint = player.Position;
-            if (GameInput.InputDown(GameInput.Up) || GameInput.LeftStick.Y >= .2f) hitPoint.Y -= 12;
-            if (GameInput.InputDown(GameInput.Down) || GameInput.LeftStick.Y <= -.2f) hitPoint.Y += 12;
+            if (GameInput.InputDown(GameInput.Up) || GameInput.LeftStick.Y >= .2f) hitPoint.Y -= 16;
+            if (GameInput.InputDown(GameInput.Down) || GameInput.LeftStick.Y <= -.2f) hitPoint.Y += 16;
             if (GameInput.InputDown(GameInput.Left) || GameInput.LeftStick.X <= -.2f) hitPoint.X -= 8;
             if (GameInput.InputDown(GameInput.Right) || GameInput.LeftStick.X >= .2f) hitPoint.X += 8;
 
