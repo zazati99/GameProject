@@ -34,8 +34,8 @@ namespace GameProject.GameObjects
             collider = new BoxCollider();
             if (collider is BoxCollider bc)
             {
-                bc.Size = new Vector2(32, 32);
-                bc.Offset = new Vector2(-16, -16);
+                bc.Size = new Vector2(12, 26);
+                bc.Offset = new Vector2(-6, -13);
             }
 
             // Mining Timer
@@ -49,37 +49,27 @@ namespace GameProject.GameObjects
         // Determinee a target
         public virtual void DetermineTarget()
         {
-            Vector2 horizontalHitPoint = player.Position;
-            Vector2 verticalHitPoint = player.Position;
+            Vector2 hitPoint = player.Position;
+            if (GameInput.InputDown(GameInput.Up) || GameInput.LeftStick.Y >= .2f) hitPoint.Y -= 12;
+            if (GameInput.InputDown(GameInput.Down) || GameInput.LeftStick.Y <= -.2f) hitPoint.Y += 12;
+            if (GameInput.InputDown(GameInput.Left) || GameInput.LeftStick.X <= -.2f) hitPoint.X -= 8;
+            if (GameInput.InputDown(GameInput.Right) || GameInput.LeftStick.X >= .2f) hitPoint.X += 8;
 
-            if (GameInput.InputDown(GameInput.Up) || GameInput.LeftStick.Y >= .2f) verticalHitPoint += new Vector2(0, -21);
-            if (GameInput.InputDown(GameInput.Down) || GameInput.LeftStick.Y <= -.2f) verticalHitPoint += new Vector2(0, 21);
-
-            if (GameInput.InputDown(GameInput.Left) || GameInput.LeftStick.X <= -.2f) horizontalHitPoint += new Vector2(-5, 0);
-            if (GameInput.InputDown(GameInput.Right) || GameInput.LeftStick.X >= .2f) horizontalHitPoint += new Vector2(5, 0);
-
-            List<Ground> hGround = CheckToolCollisin(horizontalHitPoint);
-            List<Ground> vGround = CheckToolCollisin(verticalHitPoint);
-
-            if (hGround.Count != 0)
+            List<Ground> grounds = CheckToolCollisin(hitPoint);
+            if (grounds.Count != 0)
             {
-                Ground ground = hGround[0];
-                for(int i = 1; i < hGround.Count; i++)
+                Ground temp = grounds[0];
+                float shortestDistance = Vector2.DistanceSquared(player.Position, grounds[0].Position + new Vector2(16, 16));
+                for (int i = 1; i < grounds.Count; i++)
                 {
-                    if (Vector2.DistanceSquared(player.Position, hGround[i].Position + new Vector2(16, 16)) < Vector2.DistanceSquared(player.Position, ground.Position + new Vector2(16, 16)))
-                        ground = hGround[i];
+                    float distance;
+                    if ((distance = Vector2.DistanceSquared(player.Position, grounds[i].Position + new Vector2(16, 16))) < shortestDistance)
+                    {
+                        temp = grounds[i];
+                        shortestDistance = distance;
+                    }
                 }
-                target = ground;
-            }
-            else if (vGround.Count != 0)
-            {
-                Ground ground = vGround[0];
-                for (int i = 1; i < vGround.Count; i++)
-                {
-                    if (Vector2.DistanceSquared(player.Position, vGround[i].Position + new Vector2(16,16)) < Vector2.DistanceSquared(player.Position, ground.Position + new Vector2(16, 16)))
-                        ground = vGround[i];
-                }
-                target = ground;
+                target = temp;
             }
             else target = null;
         }
@@ -122,7 +112,7 @@ namespace GameProject.GameObjects
         {
             if (target != null)
             {
-                ShapeRenderer.FillRectangle(spriteBatch, target.Position, new Vector2(32, 32), 0, Color.Red);
+                ShapeRenderer.FillRectangle(spriteBatch, target.Position, MainGame.TILE_SIZE, 0, Color.Red);
             }
         }
 
