@@ -25,7 +25,7 @@ namespace GameProject.GameObjects
 
             Sprite sprite = new Sprite(this);
             AddComponent(sprite);
-            sprite.AddTexture(CreateRectangle(new Vector2(32, 32), Color.Gray));
+            sprite.AddTexture(CreateRectangle(new Vector2(24, 24), Color.Gray));
         }
 
         // Loads content

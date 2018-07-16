@@ -67,13 +67,13 @@ namespace GameProject.GameObjects
         // Load Content maymay
         public override void LoadContent(ContentManager content, TileMap tileMap)
         {
-            if (tileMap.TileSets.ContainsKey("DirtTile"))
+            if (tileMap.TileSets.ContainsKey("dirt_sprite"))
             {
-                tileTexture = tileMap.TileSets["DirtTile"];
+                tileTexture = tileMap.TileSets["dirt_sprite"];
             } else
             {
-                tileMap.TileSets.Add("DirtTile", content.Load<Texture2D>("DirtTile"));
-                tileTexture = tileMap.TileSets["DirtTile"];
+                tileMap.TileSets.Add("dirt_sprite", content.Load<Texture2D>("dirt_sprite"));
+                tileTexture = tileMap.TileSets["dirt_sprite"];
             }
 
             UpdateTile();
@@ -198,7 +198,7 @@ namespace GameProject.GameObjects
             else if(right && down && left && up) tile = new Point(3, 3);
 
             // Change sourceRectangle
-            sourceRectangle = new Rectangle(tile * new Point(34, 34), new Point(34, 34));
+            sourceRectangle = new Rectangle(tile * new Point(25, 25), new Point(25, 25));
         }
     }
 }
