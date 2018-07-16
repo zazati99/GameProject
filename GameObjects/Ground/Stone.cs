@@ -23,16 +23,16 @@ namespace GameProject.GameObjects
             GroundType = GROUND_TYPE.STONE;
 
             groundDurability = 10;
-
-            Sprite sprite = new Sprite(this);
-            AddComponent(sprite);
-            sprite.AddTexture(CreateRectangle(new Vector2(24, 24), Color.Gray));
         }
 
         // Loads content
         public override void LoadContent(ContentManager content)
         {
-            
+
+            Sprite sprite = new Sprite(this);
+            AddComponent(sprite);
+            sprite.AddTexture(content, "stone");
+
         }
 
         // Draws the normal way (for now)
