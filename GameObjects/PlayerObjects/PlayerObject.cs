@@ -72,9 +72,10 @@ namespace GameProject.GameObjects
             jumpBuffer = 0;
         }
 
+        // Load content
         public override void LoadContent(ContentManager content)
         {
-            miningTool.loadContent(content);
+            miningTool.LoadContent(content);
         }
 
         // Update components and do other logic
