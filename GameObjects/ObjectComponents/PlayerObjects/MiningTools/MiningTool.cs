@@ -12,7 +12,7 @@ namespace GameProject.GameObjects
     public class MiningTool
     {
 
-        Texture2D miningCrosshair;
+        Texture2D targetTexture;
 
         // Targeted ground object
         Ground target;
@@ -51,7 +51,7 @@ namespace GameProject.GameObjects
         }
 
         public virtual void loadContent(ContentManager content) {
-            miningCrosshair = content.Load<Texture2D>("Crosshair");
+            targetTexture = content.Load<Texture2D>("Crosshair");
         }
 
         // Determinee a target
@@ -120,7 +120,7 @@ namespace GameProject.GameObjects
         {
             if (target != null)
             {
-                spriteBatch.Draw(miningCrosshair, target.Position, layerDepth : 0);
+                spriteBatch.Draw(targetTexture, target.Position, layerDepth : 0);
             }
         }
 
