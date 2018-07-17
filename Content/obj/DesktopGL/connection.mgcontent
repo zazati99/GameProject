@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/sebbe/Source/repos/GameProject/GameProject/GameProject/Content/connection.png</SourceFile>
-  <SourceTime>2018-06-29T14:53:50.3862698+02:00</SourceTime>
-  <DestFile>C:/Users/sebbe/Source/repos/GameProject/GameProject/GameProject/Content/bin/DesktopGL/connection.xnb</DestFile>
-  <DestTime>2018-07-17T13:09:18.3546427+02:00</DestTime>
+  <SourceFile>Q:/Jobbet/GameProject/GameProject/GameProject/Content/connection.png</SourceFile>
+  <SourceTime>2018-06-29T14:53:59.8943047+02:00</SourceTime>
+  <DestFile>Q:/Jobbet/GameProject/GameProject/GameProject/Content/bin/DesktopGL/connection.xnb</DestFile>
+  <DestTime>2018-07-17T14:00:38.7021095+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
