@@ -19,7 +19,7 @@ namespace GameProject.GameObjects
         {
             HitBox hitBox = new HitBox(this);
             BoxCollider collider = new BoxCollider();
-            collider.Size = new Vector2(32, 64);
+            collider.Size = new Vector2(16, 48);
             hitBox.SetCollider(collider);
             AddComponent(hitBox);
 
@@ -30,8 +30,9 @@ namespace GameProject.GameObjects
 
             Sprite sprite = new Sprite(this);
             AddComponent(sprite);
+            sprite.AddTexture(gameScreen.Content, "gravling");
             sprite.AddTexture(CreateRectangle(new Vector2(32, 64), Color.Purple));
-
+          
             Dialogue dialogue = new Dialogue(this);
 
             DialogueBranch dialogueBranch = new DialogueBranch(dialogue);
