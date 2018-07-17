@@ -1,7 +1,9 @@
 ﻿using GameProject.GameObjects.ObjectComponents;
 using GameProject.GameScreens;
+using GameProject.GameUtils;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace GameProject.GameObjects
 {
@@ -58,6 +60,11 @@ namespace GameProject.GameObjects
         {
             HP -= damage;
             if (HP <= 0) DestroyObject();
+        }
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+        
         }
     }
 }
