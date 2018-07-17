@@ -31,7 +31,7 @@ namespace GameProject.GameObjects
             Sprite sprite = new Sprite(this);
             AddComponent(sprite);
             sprite.AddTexture(gameScreen.Content, "gravling");
-            sprite.AddTexture(CreateRectangle(new Vector2(32, 64), Color.Purple));
+            
           
             Dialogue dialogue = new Dialogue(this);
 
