@@ -49,12 +49,14 @@ namespace GameProject.GameObjects.ObjectComponents
         public void StartDialogue()
         {
             dialogueStarted = true;
+            MainGame.GAME_SPEED = 0;
         }
 
         // End dialogue
         public void EndDialogue()
         {
             dialogueStarted = false;
+            MainGame.GAME_SPEED = 1;
         }
     }
 }

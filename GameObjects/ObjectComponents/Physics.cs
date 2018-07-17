@@ -44,7 +44,7 @@ namespace GameProject.GameObjects.ObjectComponents
                     {
                         if (!objectHitBox.SolidMeeting(new Vector2(gameObject.Position.X, gameObject.Position.Y + Math.Sign(GRAVITY))))
                         {
-                            Velocity.Y += GRAVITY;
+                            Velocity.Y += GRAVITY * MainGame.GAME_SPEED;
                             Grounded = false;
                         }
                         else
@@ -54,7 +54,7 @@ namespace GameProject.GameObjects.ObjectComponents
                     }
 
                     // Horizontal collision
-                    if (objectHitBox.SolidMeeting(new Vector2(gameObject.Position.X + Velocity.X, gameObject.Position.Y)))
+                    if (objectHitBox.SolidMeeting(new Vector2(gameObject.Position.X + Velocity.X * MainGame.GAME_SPEED, gameObject.Position.Y)))
                     {
                         gameObject.Position.X = (Velocity.X > 0) ? (int)(gameObject.Position.X) : (int)gameObject.Position.X+1;
                         while (!objectHitBox.SolidMeeting(new Vector2(gameObject.Position.X + Math.Sign(Velocity.X), gameObject.Position.Y)))
@@ -62,10 +62,10 @@ namespace GameProject.GameObjects.ObjectComponents
                             gameObject.Position.X += Math.Sign(Velocity.X);
                         }
                         Velocity.X = 0;
-                    } gameObject.Position.X += Velocity.X; // Add velocity to position
+                    } gameObject.Position.X += Velocity.X * MainGame.GAME_SPEED; // Add velocity to position
 
                     // Vertical collision
-                    if (objectHitBox.SolidMeeting(new Vector2(gameObject.Position.X, gameObject.Position.Y + Velocity.Y)))
+                    if (objectHitBox.SolidMeeting(new Vector2(gameObject.Position.X, gameObject.Position.Y + Velocity.Y * MainGame.GAME_SPEED)))
                     {
                         gameObject.Position.Y = (Velocity.Y > 0) ? (int)(gameObject.Position.Y) : (int)gameObject.Position.Y + 1;
                         while (!objectHitBox.SolidMeeting(new Vector2(gameObject.Position.X, gameObject.Position.Y + Math.Sign(Velocity.Y))))
@@ -73,17 +73,17 @@ namespace GameProject.GameObjects.ObjectComponents
                             gameObject.Position.Y += Math.Sign(Velocity.Y);
                         }
                         Velocity.Y = 0;
-                    } gameObject.Position.Y += Velocity.Y; // Add velocity to position
+                    } gameObject.Position.Y += Velocity.Y * MainGame.GAME_SPEED; // Add velocity to position
                 }
             }
             else
             {
                 if (GravityEnabled)
                 {
-                    Velocity.Y += GRAVITY;
+                    Velocity.Y += GRAVITY * MainGame.GAME_SPEED;
                 }
 
-                gameObject.Position += Velocity;
+                gameObject.Position += Velocity * MainGame.GAME_SPEED;
             }
         }
 

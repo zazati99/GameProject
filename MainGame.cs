@@ -19,6 +19,8 @@ namespace GameProject
         // Static game variables
         public static Vector2 TILE_SIZE = new Vector2(24, 24);
 
+        public static float GAME_SPEED = 1f;
+
         // Game view
         GameView gameView;
 

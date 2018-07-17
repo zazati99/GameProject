@@ -132,13 +132,13 @@ namespace GameProject.GameObjects
         // Move horizontally
         public void HorizontalMovement(float targetSpeed)
         {
-            physics.Velocity.X = GameMath.Approach(physics.Velocity.X, targetSpeed, physics.Grounded ? accelerationSpeed : airAccelerationSpeed);
+            physics.Velocity.X = GameMath.Approach(physics.Velocity.X, targetSpeed, (physics.Grounded ? accelerationSpeed : airAccelerationSpeed)* MainGame.GAME_SPEED);
         }
 
         //Stop this lmao
         public void StopMoving()
         {
-            physics.Velocity.X = GameMath.Approach(physics.Velocity.X, 0, physics.Grounded ? slowDownSpeed : airSlowDownSpeed);
+            physics.Velocity.X = GameMath.Approach(physics.Velocity.X, 0, (physics.Grounded ? slowDownSpeed : airSlowDownSpeed) * MainGame.GAME_SPEED);
         }
 
         // jump
