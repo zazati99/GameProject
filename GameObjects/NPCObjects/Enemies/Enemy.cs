@@ -35,7 +35,6 @@ namespace GameProject.GameObjects
             AddComponent(sprite);
             sprite.AddTexture(gameScreen.Content, "gravling");
             
-          
             Dialogue dialogue = new Dialogue(this);
 
             DialogueBranch dialogueBranch = new DialogueBranch(dialogue);

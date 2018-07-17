@@ -52,7 +52,7 @@ namespace GameProject.GameUtils
             {
                 for (int  j = 0; j < 50; j++)
                 {
-                    Vector2 Position = new Vector2(32 * j, 32 * i);
+                    Vector2 Position = new Vector2(MainGame.TILE_SIZE.X * j, MainGame.TILE_SIZE.Y * i);
                     Ground ground = null;
                     for (int k = 0; k < map.GameObjects.Count; k++)
                     {
