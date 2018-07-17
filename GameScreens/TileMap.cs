@@ -20,6 +20,18 @@ namespace GameProject.GameScreens
         public static List<string> TileMapsRight = new List<string> {"GameProject/Content/TileRight"};
         public static List<string> TileMapsDown = new List<string> {"GameProject/Content/TileDown"};
         public static List<string> TileMapsLeft = new List<string> {"GameProject/Content/TileLeft"};
+        public static List<string> TileMapsNone = new List<string> { "GameProject/Content/TileNone" };
+        public static List<string> TileMapsLeftRight = new List<string> { "GameProject/Content/TileLeftRight" };
+        public static List<string> TileMapsUpDown = new List<string> { "GameProject/Content/TileUpDown" };
+        public static List<string> TileMapsUpRight = new List<string> { "GameProject/Content/TileUpRight" };
+        public static List<string> TileMapsUpLeft = new List<string> { "GameProject/Content/TileUpLeft" };
+        public static List<string> TileMapsDownRight = new List<string> { "GameProject/Content/DownRight" };
+        public static List<string> TileMapsDownLeft = new List<string> { "GameProject/Content/TileDownLeft" };
+        public static List<string> TileMapsUpDownRight = new List<string> { "GameProject/Content/TileUpDownRight" };
+        public static List<string> TileMapsUpDownLeft = new List<string> { "GameProject/Content/TileUpDownLeft" };
+        public static List<string> TileMapsLeftRightUp = new List<string> { "GameProject/Content/TileLeftRightUp" };
+        public static List<string> TileMapsLeftRightDown = new List<string> { "GameProject/Content/TileLeftRightDown" };
+        public static List<string> TileMapsAll = new List<string> { "GameProject/Content/TileAll" };
 
         // List of GameObjects
         public List<GameObject> GameObjects;
