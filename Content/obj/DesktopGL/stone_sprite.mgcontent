@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/sebbe/Source/repos/GameProject/GameProject/GameProject/Content/stone_sprite.png</SourceFile>
-  <SourceTime>2018-07-17T00:16:15.2276916+02:00</SourceTime>
+  <SourceTime>2018-07-17T13:08:44.5782733+02:00</SourceTime>
   <DestFile>C:/Users/sebbe/Source/repos/GameProject/GameProject/GameProject/Content/bin/DesktopGL/stone_sprite.xnb</DestFile>
-  <DestTime>2018-07-17T00:16:39.0838296+02:00</DestTime>
+  <DestTime>2018-07-17T13:09:18.4374213+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

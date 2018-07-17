@@ -15,6 +15,12 @@ namespace GameProject.GameScreens
 {
     public class TileMap
     {
+        // Lists of rooms
+        public static List<string> TileMapsUp = new List<string> {"GameProject/Content/TileUp"};
+        public static List<string> TileMapsRight = new List<string> {"GameProject/Content/TileRight"};
+        public static List<string> TileMapsDown = new List<string> {"GameProject/Content/TileDown"};
+        public static List<string> TileMapsLeft = new List<string> {"GameProject/Content/TileLeft"};
+
         // List of GameObjects
         public List<GameObject> GameObjects;
 

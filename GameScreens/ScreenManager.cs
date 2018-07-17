@@ -44,8 +44,8 @@ namespace GameProject.GameScreens
 
             currentScreen = new GameScreen();
             currentScreen.LoadContent(Content);
-            currentScreen.AddTileMap(GameFileManager.LoadTileMap(currentScreen, "GameProject/Content/TestTile", new Vector2(0,64)));
-            currentScreen.AddTileMap(GameFileManager.LoadTileMap(currentScreen, "GameProject/Content/TestTile", new Vector2(8*MainGame.TILE_SIZE.X, 64)));
+            currentScreen.AddTileMap(GameFileManager.LoadTileMap(currentScreen, TileMap.TileMapsRight[0], new Vector2(0,64)));
+            currentScreen.AddTileMap(GameFileManager.LoadTileMap(currentScreen, TileMap.TileMapsRight[0], new Vector2(8*MainGame.TILE_SIZE.X, 64)));
             currentScreen.AddGameObject(new PlayerObject(currentScreen));
         }
 
