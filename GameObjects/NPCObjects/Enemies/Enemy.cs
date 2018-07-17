@@ -20,6 +20,7 @@ namespace GameProject.GameObjects
             HitBox hitBox = new HitBox(this);
             BoxCollider collider = new BoxCollider();
             collider.Size = new Vector2(16, 48);
+            collider.Offset = new Vector2(20, 0);
             hitBox.SetCollider(collider);
             AddComponent(hitBox);
 
@@ -49,7 +50,7 @@ namespace GameProject.GameObjects
 
             ObjectComponents.Add(dialogue);
 
-            HP = 2;
+            HP = 200;
         }
 
         // Take damage
