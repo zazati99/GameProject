@@ -16,10 +16,10 @@ namespace GameProject.GameScreens
     public class TileMap
     {
         // Lists of rooms
-        public static List<string> TileMapsUp = new List<string> {"GameProject/Content/TileUp"};
-        public static List<string> TileMapsRight = new List<string> {"GameProject/Content/TileRight"};
-        public static List<string> TileMapsDown = new List<string> {"GameProject/Content/TileDown"};
-        public static List<string> TileMapsLeft = new List<string> {"GameProject/Content/TileLeft"};
+        public static List<string> TileMapsUp = new List<string> { "GameProject/Content/TileUp" };
+        public static List<string> TileMapsRight = new List<string> { "GameProject/Content/TileRight" };
+        public static List<string> TileMapsDown = new List<string> { "GameProject/Content/TileDown" };
+        public static List<string> TileMapsLeft = new List<string> { "GameProject/Content/TileLeft" };
         public static List<string> TileMapsNone = new List<string> { "GameProject/Content/TileNone" };
         public static List<string> TileMapsLeftRight = new List<string> { "GameProject/Content/TileLeftRight" };
         public static List<string> TileMapsUpDown = new List<string> { "GameProject/Content/TileUpDown" };
@@ -50,6 +50,12 @@ namespace GameProject.GameScreens
 
         // Size in tiles
         public Vector2 Size;
+
+        // Openings
+        public bool OpeningUp;
+        public bool OpeningRight;
+        public bool OpeningDown;
+        public bool OpeningLeft;
 
         // Constructor and Initialization
         public TileMap(GameScreen gameScreen)
@@ -93,6 +99,20 @@ namespace GameProject.GameScreens
             }
             UnloadContent();
             Screen.TileMaps.Remove(this);
+        }
+    }
+
+    // TileMap data 
+    public class TileMapData
+    {
+        public bool right;
+        public bool down;
+        public bool left;
+        public bool up;
+
+        public void CreateTileMap()
+        {
+
         }
     }
 }

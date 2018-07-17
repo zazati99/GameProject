@@ -153,6 +153,85 @@ namespace GameProject.GameScreens
 
         #region Screen functions
 
+        public void SetTileMaps(int width, int height, int[] poi, int start)
+        {
+            TileMap[] maps = new TileMap[width * height];
+
+            int mapPosition = start;
+
+            // Loop through each floor
+            for (int floor = 0; floor < height; floor++)
+            {
+                // if start is not on this floor, continue
+                if (start > (floor + 1) * width - 1)
+                    continue;
+
+                // Check for points of interest on floor
+                bool isPoiOnFloor = false;
+                List<int> poiOnFloor = new List<int>();
+
+                for (int i = 0; i < poi.Length; i++)
+                {
+                    if (poi[i] < (floor + 1) * width - 1 && poi[i] > floor * width)
+                    {
+                        isPoiOnFloor = true;
+                        poiOnFloor.Add(poi[i]);
+                    }
+                }
+
+                bool[] foundPoi = new bool[poiOnFloor.Count];
+                for (int i = 0; i < foundPoi.Length; i++) foundPoi[i] = false;
+
+                // Go through rooms
+                while (true)
+                {
+                    // is there room to the right and left?
+                    bool right = mapPosition < (floor + 1) * width - 1;
+                    bool left = mapPosition > floor * width;
+
+                    // Decide where to go
+                    if (right && left)
+                    {
+                        if (GameMath.RandomRange(0, 1) == 1)
+                        {
+                            mapPosition++;
+                        }
+                        else mapPosition--;
+                    }
+                    else if (right)
+                    {
+                        mapPosition++;
+                    }
+                    else mapPosition--;
+                    
+                    //  Has the points of interests been found?
+                    if (checkBoolArray(foundPoi))
+                    {
+
+                    }
+                    else
+                    {
+                        for (int i = 0; i < poiOnFloor.Count; i++)
+                        {
+                            if (poiOnFloor[i] == mapPosition)
+                            {
+                                foundPoi[i] = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        bool checkBoolArray(bool[] bools)
+        {
+            for (int i = 0; i < bools.Length; i++)
+            {
+                if (!bools[i]) return false; 
+            }
+            return true;
+        }
+
         // Add a Tile map
         public void AddTileMap(TileMap tileMap)
         {
