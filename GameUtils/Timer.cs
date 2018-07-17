@@ -5,16 +5,21 @@ namespace GameProject.GameUtils
     public class Timer
     {
         // Time til meme
-        int timeInFrames;
+        float timeInFrames;
+
+        // will gamespeed affect this?
+        public bool GameSpeedDependable;
 
         // Constructors
         public Timer(int timeInFrames)
         {
             this.timeInFrames = timeInFrames;
+            GameSpeedDependable = true;
         }
         public Timer()
         {
             timeInFrames = 0;
+            GameSpeedDependable = true;
         }
 
         // Set timer
@@ -26,7 +31,7 @@ namespace GameProject.GameUtils
         // Tick timer
         public void Tick()
         {
-            timeInFrames--;
+            timeInFrames -= GameSpeedDependable ? MainGame.GAME_SPEED : 1;
         }
 
         // Check timer

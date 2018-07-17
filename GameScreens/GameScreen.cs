@@ -58,10 +58,13 @@ namespace GameProject.GameScreens
                 GameObjects[i].LoadContent(Content);
             }
 
+            AddTileMap(GameFileManager.LoadTileMap(this, TileMap.TileMapsRight[0], new Vector2(0, 64)));
+            AddTileMap(GameFileManager.LoadTileMap(this, TileMap.TileMapsLeft[0], new Vector2(MainGame.TILE_SIZE.X * 8, 64)));
+            //AddTileMap(GameFileManager.LoadTileMap(this, TileMap.TileMapsRight[0], Vector2.Zero));
+
             ScreenBackground Background1 = new ScreenBackground();
             Background1.LoadContent(content, "Background1");
             ScreenBackgrounds.Add(Background1);
-
 
             ScreenParticleSystem particles = new ScreenParticleSystem(this);
             particles.Acceleration = new Vector2(0, .2f);

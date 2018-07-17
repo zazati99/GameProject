@@ -109,7 +109,7 @@ namespace GameProject.GameObjects
 
             base.Update();
 
-            if (GameInput.InputPressed(GameInput.Dig))
+            if (GameInput.InputPressed(GameInput.Dig) && !MainGame.GAME_PAUSED)
             {
                 if (ObjectAtPosition<IActivatable>(Position) is IActivatable IA)
                 {

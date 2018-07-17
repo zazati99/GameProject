@@ -20,6 +20,11 @@ namespace GameProject
         public static Vector2 TILE_SIZE = new Vector2(24, 24);
 
         public static float GAME_SPEED = 1f;
+        public static bool GAME_PAUSED = false;
+
+        static bool willChange = false;
+        static bool willPause;
+        static float nextGameSpeed;
 
         // Game view
         GameView gameView;
@@ -90,6 +95,13 @@ namespace GameProject
             // Input slut uppdatering
             GameInput.UpdateEnd();
 
+            // Fix paused things
+            if (willChange)
+            {
+                GAME_SPEED = nextGameSpeed;
+                GAME_PAUSED = willPause;
+            }
+
             base.Update(gameTime);
         }
 
@@ -138,6 +150,20 @@ namespace GameProject
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        // Change GameSpeed;
+        public static void ChangeGameSpeed(float speed)
+        {
+            willChange = true;
+            nextGameSpeed = speed;
+        }
+
+        // Switch paused
+        public static void ChangePaused(bool paused)
+        {
+            willChange = true;
+            willPause = paused;
         }
     }
 }
