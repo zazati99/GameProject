@@ -61,10 +61,14 @@ namespace GameProject.GameObjects
             HP -= damage;
             if (HP <= 0) DestroyObject();
         }
+
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-        
+            if (GetComponent<HitBox>().HitBoxCollider is BoxCollider col)
+            {
+                ShapeRenderer.DrawRectangle(spriteBatch, Position + col.Offset, col.Size, Color.Azure);
+            }
         }
     }
 }
