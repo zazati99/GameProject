@@ -7,6 +7,7 @@ using GameProject.GameObjects.ObjectComponents;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 
 namespace GameProject.GameObjects
 {
@@ -69,6 +70,11 @@ namespace GameProject.GameObjects
             maxJumpHeight = 4.9f;
             minJumpHeight = 2.5f;
             jumpBuffer = 0;
+        }
+
+        public override void LoadContent(ContentManager content)
+        {
+            miningTool.loadContent(content);
         }
 
         // Update components and do other logic
