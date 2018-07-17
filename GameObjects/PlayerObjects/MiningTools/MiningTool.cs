@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Content;
 
 using GameProject.GameUtils;
 using GameProject.GameObjects.ObjectComponents;
@@ -10,6 +11,9 @@ namespace GameProject.GameObjects
 {
     public class MiningTool
     {
+
+        Texture2D targetTexture;
+
         // Targeted ground object
         Ground target;
 
@@ -46,12 +50,17 @@ namespace GameProject.GameObjects
             MiningSpeed = 5;
         }
 
+        public virtual void loadContent(ContentManager content)
+        {
+            targetTexture = content.Load<Texture2D>("Crosshair");
+        }
+
         // Determinee a target
         public virtual void DetermineTarget()
         {
             Vector2 hitPoint = player.Position;
-            if (GameInput.InputDown(GameInput.Up) || GameInput.LeftStick.Y >= .2f) hitPoint.Y -= 16;
-            if (GameInput.InputDown(GameInput.Down) || GameInput.LeftStick.Y <= -.2f) hitPoint.Y += 16;
+            if (GameInput.InputDown(GameInput.Up) || GameInput.LeftStick.Y >= .2f) hitPoint.Y -= 12;
+            if (GameInput.InputDown(GameInput.Down) || GameInput.LeftStick.Y <= -.2f) hitPoint.Y += 12;
             if (GameInput.InputDown(GameInput.Left) || GameInput.LeftStick.X <= -.2f) hitPoint.X -= 8;
             if (GameInput.InputDown(GameInput.Right) || GameInput.LeftStick.X >= .2f) hitPoint.X += 8;
 
@@ -112,7 +121,7 @@ namespace GameProject.GameObjects
         {
             if (target != null)
             {
-                ShapeRenderer.FillRectangle(spriteBatch, target.Position, MainGame.TILE_SIZE, 0, Color.Red);
+                spriteBatch.Draw(targetTexture, target.Position, layerDepth: 0);
             }
         }
 
