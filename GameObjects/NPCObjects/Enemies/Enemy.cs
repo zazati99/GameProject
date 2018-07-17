@@ -19,7 +19,7 @@ namespace GameProject.GameObjects
         {
             HitBox hitBox = new HitBox(this);
             BoxCollider collider = new BoxCollider();
-            collider.Size = new Vector2(16, 48);
+            collider.Size = new Vector2(12, 48);
             collider.Offset = new Vector2(20, 0);
             hitBox.SetCollider(collider);
             AddComponent(hitBox);
