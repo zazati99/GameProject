@@ -21,8 +21,8 @@ namespace GameProject.GameObjects
         {
             HitBox hitBox = new HitBox(this);
             BoxCollider collider = new BoxCollider();
-            collider.Size = new Vector2(12, 48);
-            collider.Offset = new Vector2(20, 0);
+            collider.Size = new Vector2(17, 40);
+            collider.Offset = new Vector2(16, 8);
             hitBox.SetCollider(collider);
             AddComponent(hitBox);
 
@@ -62,13 +62,13 @@ namespace GameProject.GameObjects
             if (HP <= 0) DestroyObject();
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+       /* public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
             if (GetComponent<HitBox>().HitBoxCollider is BoxCollider col)
             {
                 ShapeRenderer.DrawRectangle(spriteBatch, Position + col.Offset, col.Size, Color.Azure);
             }
-        }
+        }*/
     }
 }
