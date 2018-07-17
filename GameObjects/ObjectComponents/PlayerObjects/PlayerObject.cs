@@ -7,6 +7,7 @@ using GameProject.GameObjects.ObjectComponents;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 
 namespace GameProject.GameObjects
 {
@@ -71,6 +72,11 @@ namespace GameProject.GameObjects
             jumpBuffer = 0;
         }
 
+        public override void LoadContent(ContentManager content)
+        {
+            miningTool.loadContent(content);
+        }
+
         // Update components and do other logic
         public override void Update()
         {
@@ -109,7 +115,7 @@ namespace GameProject.GameObjects
 
             base.Update();
 
-            if (GameInput.InputPressed(GameInput.Dig))
+            if (GameInput.InputPressed(GameInput.Dig) && !MainGame.GAME_PAUSED)
             {
                 if (ObjectAtPosition<IActivatable>(Position) is IActivatable IA)
                 {
@@ -132,13 +138,13 @@ namespace GameProject.GameObjects
         // Move horizontally
         public void HorizontalMovement(float targetSpeed)
         {
-            physics.Velocity.X = GameMath.Approach(physics.Velocity.X, targetSpeed, (physics.Grounded ? accelerationSpeed : airAccelerationSpeed)* MainGame.GAME_SPEED);
+            physics.Velocity.X = GameMath.Approach(physics.Velocity.X, targetSpeed, physics.Grounded ? accelerationSpeed : airAccelerationSpeed);
         }
 
         //Stop this lmao
         public void StopMoving()
         {
-            physics.Velocity.X = GameMath.Approach(physics.Velocity.X, 0, (physics.Grounded ? slowDownSpeed : airSlowDownSpeed) * MainGame.GAME_SPEED);
+            physics.Velocity.X = GameMath.Approach(physics.Velocity.X, 0, physics.Grounded ? slowDownSpeed : airSlowDownSpeed);
         }
 
         // jump

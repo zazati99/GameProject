@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Content;
 
 using GameProject.GameUtils;
 using GameProject.GameObjects.ObjectComponents;
@@ -10,6 +11,9 @@ namespace GameProject.GameObjects
 {
     public class MiningTool
     {
+
+        Texture2D miningCrosshair;
+
         // Targeted ground object
         Ground target;
 
@@ -44,6 +48,10 @@ namespace GameProject.GameObjects
             // stats
             MiningDamage = 1;
             MiningSpeed = 5;
+        }
+
+        public virtual void loadContent(ContentManager content) {
+            miningCrosshair = content.Load<Texture2D>("Crosshair");
         }
 
         // Determinee a target
@@ -112,7 +120,7 @@ namespace GameProject.GameObjects
         {
             if (target != null)
             {
-                ShapeRenderer.FillRectangle(spriteBatch, target.Position, MainGame.TILE_SIZE, 0, Color.Red);
+                spriteBatch.Draw(miningCrosshair, target.Position, layerDepth : 0);
             }
         }
 
