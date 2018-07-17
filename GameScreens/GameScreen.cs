@@ -58,6 +58,11 @@ namespace GameProject.GameScreens
                 GameObjects[i].LoadContent(Content);
             }
 
+            ScreenBackground Background1 = new ScreenBackground();
+            Background1.LoadContent(content, "Background1");
+            ScreenBackgrounds.Add(Background1);
+
+
             ScreenParticleSystem particles = new ScreenParticleSystem(this);
             particles.Acceleration = new Vector2(0, .2f);
             particles.Speed = new Vector2(0, -4);
