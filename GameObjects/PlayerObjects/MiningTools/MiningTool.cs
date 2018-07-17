@@ -50,8 +50,12 @@ namespace GameProject.GameObjects
             MiningSpeed = 5;
         }
 
+<<<<<<< HEAD
         public virtual void loadContent(ContentManager content)
         {
+=======
+        public virtual void loadContent(ContentManager content) {
+>>>>>>> b3485d9c3988f52a8366abbc0228081a69f2f8f6
             targetTexture = content.Load<Texture2D>("Crosshair");
         }
 
@@ -121,7 +125,11 @@ namespace GameProject.GameObjects
         {
             if (target != null)
             {
+<<<<<<< HEAD
                 spriteBatch.Draw(targetTexture, target.Position, layerDepth: 0);
+=======
+                spriteBatch.Draw(targetTexture, target.Position, layerDepth : 0);
+>>>>>>> b3485d9c3988f52a8366abbc0228081a69f2f8f6
             }
         }
 
