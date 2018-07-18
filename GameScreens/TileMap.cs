@@ -95,9 +95,17 @@ namespace GameProject.GameScreens
             }
         }
 
+        // Add a tile set
         public void AddTileSet(string nameAndPath)
         {
+            TileSets.Add(nameAndPath, Content.Load<Texture2D>(nameAndPath));
+        }
 
+        // Add a particle system
+        public void AddParticleSystem(string name, ScreenParticleSystem system)
+        {
+            ParticleSystems.Add(name, system);
+            Screen.ScreenParticleSystems.Add(system);
         }
 
         // Destroy TileMap

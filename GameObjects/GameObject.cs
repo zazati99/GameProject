@@ -113,6 +113,19 @@ namespace GameProject.GameObjects
             gameObject.UnloadContent();
         }
 
+        public float DistanceToObject<T>()
+        {
+            for (int i = 0; i < Screen.GameObjects.Count; i++)
+            {
+                if (Screen.GameObjects[i] is T)
+                {
+                    GameObject o = Screen.GameObjects[i];
+                    return Vector2.Distance(Position, o.Position);
+                }
+            }
+            return null;
+        }
+
         // Get object at position
         public GameObject ObjectAtPosition<T>(Vector2 position)
         {

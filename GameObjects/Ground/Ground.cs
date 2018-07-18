@@ -40,6 +40,7 @@ namespace GameProject.GameObjects
 
         // Tile variables
         protected Texture2D tileTexture;
+        protected ScreenParticleSystem particleSystem;
         Rectangle sourceRectangle;
 
         // Ground type
@@ -67,13 +68,31 @@ namespace GameProject.GameObjects
         // Load Content maymay
         public override void LoadContent(ContentManager content, TileMap tileMap)
         {
-            if (tileMap.TileSets.ContainsKey("dirt_sprite"))
+            // Tileset
+            if (tileMap.TileSets.ContainsKey("Images/Sprites/Tiles/dirt_sprite"))
             {
-                tileTexture = tileMap.TileSets["dirt_sprite"];
+                tileTexture = tileMap.TileSets["Images/Sprites/Tiles/dirt_sprite"];
             } else
             {
-                tileMap.TileSets.Add("dirt_sprite", content.Load<Texture2D>("Images/Sprites/Tiles/dirt_sprite"));
-                tileTexture = tileMap.TileSets["dirt_sprite"];
+                tileMap.AddTileSet("Images/Sprites/Tiles/dirt_sprite");
+                tileTexture = tileMap.TileSets["Images/Sprites/Tiles/dirt_sprite"];
+            }
+
+            // Add particle system
+            if (tileMap.ParticleSystems.ContainsKey("DirtParticles"))
+            {
+                particleSystem = tileMap.ParticleSystems["DirtParticles"];
+            } else
+            {
+                ScreenParticleSystem system = new ScreenParticleSystem(Screen);
+                system.Acceleration = new Vector2(0, .2f);
+                system.LifeSpan = 30;
+
+                system.PositionDeviation = new Vector2(8, 8);
+
+                system.Textures.Add(CreateRectangle(Vector2.One, new Color(40, 27, 3)));
+                system.Textures.Add(CreateRectangle(Vector2.One, new Color(70, 52, 18)));
+                system.Textures.Add(CreateRectangle(Vector2.One, new Color(82, 71, 49)));
             }
 
             UpdateTile();
