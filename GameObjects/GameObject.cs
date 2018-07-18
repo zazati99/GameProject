@@ -113,11 +113,40 @@ namespace GameProject.GameObjects
             gameObject.UnloadContent();
         }
 
+        // Get gameObject by type
+        public GameObject GetGameObject<T>()
+        {
+            GameObject o = null;
+
+            for (int i = 0; i < Screen.GameObjects.Count; i++)
+            {
+                if (Screen.GameObjects[i] is T)
+                {
+                    return Screen.GameObjects[i];
+                }
+            }
+
+            return o;
+        }
+
         public float DistanceToObject<T>()
         {
             for (int i = 0; i < Screen.GameObjects.Count; i++)
             {
                 if (Screen.GameObjects[i] is T)
+                {
+                    GameObject o = Screen.GameObjects[i];
+                    return Vector2.Distance(Position, o.Position);
+                }
+            }
+            return 0;
+        }
+
+        public float DistanceToObject(GameObject gameObject)
+        {
+            for (int i = 0; i < Screen.GameObjects.Count; i++)
+            {
+                if (Screen.GameObjects[i] == gameObject)
                 {
                     GameObject o = Screen.GameObjects[i];
                     return Vector2.Distance(Position, o.Position);
