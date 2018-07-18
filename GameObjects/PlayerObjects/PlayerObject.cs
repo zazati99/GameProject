@@ -51,7 +51,7 @@ namespace GameProject.GameObjects
             sprite = new Sprite(this);
             AddComponent(sprite);
             sprite.AddTexture(gameScreen.Content, "player_idle");
-            sprite.SpriteOffset = new Vector2(-23, -28);
+            sprite.SpriteOffset = new Vector2(-22, -28);
 
             // MAke this the tafget of the Screen camera
             Screen.Camera.SetTarget(this);
@@ -131,6 +131,7 @@ namespace GameProject.GameObjects
             base.Draw(spriteBatch);
             miningTool.Draw(spriteBatch);
 
+            ShapeRenderer.FillRectangle(spriteBatch, Position, Vector2.One, 0, Color.Red);
             spriteBatch.DrawString(GameFonts.font, physics.Velocity.X.ToString(), Position - new Vector2(GameFonts.font.MeasureString(physics.Velocity.X.ToString()).X/2, 48), Color.Black);
         }
 

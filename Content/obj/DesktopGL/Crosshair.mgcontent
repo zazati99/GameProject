@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/sebbe/Source/repos/GameProject/GameProject/GameProject/Content/gravling.png</SourceFile>
-  <SourceTime>2018-07-17T18:02:37.9113501+02:00</SourceTime>
-  <DestFile>C:/Users/sebbe/Source/repos/GameProject/GameProject/GameProject/Content/bin/DesktopGL/gravling.xnb</DestFile>
-  <DestTime>2018-07-17T22:43:34.2611905+02:00</DestTime>
+  <SourceFile>C:/Users/sebbe/Source/repos/GameProject/GameProject/GameProject/Content/Crosshair.png</SourceFile>
+  <SourceTime>2018-07-17T18:55:59.471457+02:00</SourceTime>
+  <DestFile>C:/Users/sebbe/Source/repos/GameProject/GameProject/GameProject/Content/bin/DesktopGL/Crosshair.xnb</DestFile>
+  <DestTime>2018-07-17T22:43:34.2731583+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 
 using GameProject.GameScreens;
+using GameProject.GameUtils;
 using GameProject.GameObjects.ObjectComponents;
 
 namespace GameProject.GameObjects
@@ -142,6 +143,15 @@ namespace GameProject.GameObjects
             return rect;
         }
 
-        #endregion
-    }
+        // Draw hitBox
+        public void DrawHitBox(SpriteBatch spriteBatch)
+        {
+            if (GetComponent<HitBox>().HitBoxCollider is BoxCollider col)
+            {
+                ShapeRenderer.DrawRectangle(spriteBatch, Position + col.Offset, col.Size, Color.Azure);
+            }
+        }
+
+    #endregion
+}
 }

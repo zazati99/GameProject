@@ -63,7 +63,7 @@ namespace GameProject.GameScreens
             //AddTileMap(GameFileManager.LoadTileMap(this, TileMap.TileMapsRight[0], Vector2.Zero));
 
             ScreenBackground Background1 = new ScreenBackground();
-            Background1.LoadContent(content, "Background1");
+            Background1.LoadContent(content, "dirt_background");
             ScreenBackgrounds.Add(Background1);
 
             ScreenParticleSystem particles = new ScreenParticleSystem(this);

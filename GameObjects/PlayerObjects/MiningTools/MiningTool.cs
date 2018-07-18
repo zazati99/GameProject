@@ -11,7 +11,7 @@ namespace GameProject.GameObjects
 {
     public class MiningTool
     {
-
+        // lmao who did this?
         Texture2D targetTexture;
 
         // Targeted ground object
@@ -38,7 +38,7 @@ namespace GameProject.GameObjects
             collider = new BoxCollider();
             if (collider is BoxCollider bc)
             {
-                bc.Size = new Vector2(12, 26);
+                bc.Size = new Vector2(12, 12);
                 bc.Offset = new Vector2(-6, -13);
             }
 
@@ -60,8 +60,8 @@ namespace GameProject.GameObjects
         public virtual void DetermineTarget()
         {
             Vector2 hitPoint = player.Position;
-            if (GameInput.InputDown(GameInput.Up) || GameInput.LeftStick.Y >= .2f) hitPoint.Y -= 12;
-            if (GameInput.InputDown(GameInput.Down) || GameInput.LeftStick.Y <= -.2f) hitPoint.Y += 12;
+            if (GameInput.InputDown(GameInput.Up) || GameInput.LeftStick.Y >= .2f) hitPoint.Y -= 24;
+            if (GameInput.InputDown(GameInput.Down) || GameInput.LeftStick.Y <= -.2f) hitPoint.Y += 24;
             if (GameInput.InputDown(GameInput.Left) || GameInput.LeftStick.X <= -.2f) hitPoint.X -= 8;
             if (GameInput.InputDown(GameInput.Right) || GameInput.LeftStick.X >= .2f) hitPoint.X += 8;
 
@@ -69,11 +69,11 @@ namespace GameProject.GameObjects
             if (grounds.Count != 0)
             {
                 Ground temp = grounds[0];
-                float shortestDistance = Vector2.DistanceSquared(player.Position, grounds[0].Position + new Vector2(16, 16));
+                float shortestDistance = Vector2.DistanceSquared(player.Position, grounds[0].Position + MainGame.TILE_SIZE / 2);
                 for (int i = 1; i < grounds.Count; i++)
                 {
                     float distance;
-                    if ((distance = Vector2.DistanceSquared(player.Position, grounds[i].Position + new Vector2(16, 16))) < shortestDistance)
+                    if ((distance = Vector2.DistanceSquared(player.Position, grounds[i].Position + MainGame.TILE_SIZE/2)) < shortestDistance)
                     {
                         temp = grounds[i];
                         shortestDistance = distance;
