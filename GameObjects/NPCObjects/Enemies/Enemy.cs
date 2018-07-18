@@ -23,7 +23,7 @@ namespace GameProject.GameObjects
             HitBox hitBox = new HitBox(this);
             BoxCollider collider = new BoxCollider();
             collider.Size = new Vector2(17, 40);
-            collider.Offset = new Vector2(16, 8);
+            collider.Offset = new Vector2(-10, -16);
             hitBox.SetCollider(collider);
             AddComponent(hitBox);
 
@@ -34,6 +34,7 @@ namespace GameProject.GameObjects
 
             Sprite sprite = new Sprite(this);
             AddComponent(sprite);
+            sprite.SpriteOffset = new Vector2(-24,-24);
             sprite.AddTexture(gameScreen.Content, "Images/Sprites/Enemy/gravling");
             
             Dialogue dialogue = new Dialogue(this);
@@ -63,7 +64,7 @@ namespace GameProject.GameObjects
         {
             GameObject player = GetGameObject<PlayerObject>();
 
-            if (DistanceToObject(player) > 20)
+            if (DistanceToObject(player) > 32)
             {
                 float speed = 2f * Math.Sign(player.Position.X - Position.X);
                 HorizontalMovement(speed);
@@ -87,24 +88,22 @@ namespace GameProject.GameObjects
         public new void HorizontalMovement(float targetSpeed)
         {
             Physics physics = GetComponent<Physics>();
-            physics.Velocity.X = GameMath.Approach(physics.Velocity.X, targetSpeed, physics.Grounded ? 1f : 1f);
+            physics.Velocity.X = GameMath.Approach(physics.Velocity.X, targetSpeed, physics.Grounded ? .25f : .15f);
         }
 
         //Stop this lmao
         public new void StopMoving()
         {
             Physics physics = GetComponent<Physics>();
-            physics.Velocity.X = GameMath.Approach(physics.Velocity.X, 0, physics.Grounded ? 1f : 1f);
+            physics.Velocity.X = GameMath.Approach(physics.Velocity.X, 0, physics.Grounded ? .15f : .1f);
         }
 
-        /* public override void Draw(SpriteBatch spriteBatch)
-         {
-             base.Draw(spriteBatch);
-             if (GetComponent<HitBox>().HitBoxCollider is BoxCollider col)
-             {
-                 ShapeRenderer.DrawRectangle(spriteBatch, Position + col.Offset, col.Size, Color.Azure);
-             }
-         }*/
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+            DrawHitBox(spriteBatch);
+            ShapeRenderer.FillRectangle(spriteBatch, Position, Vector2.One, 0, Color.Red);
+        }
     }
 
 
