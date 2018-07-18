@@ -93,6 +93,9 @@ namespace GameProject.GameObjects
                 system.Textures.Add(CreateRectangle(Vector2.One, new Color(40, 27, 3)));
                 system.Textures.Add(CreateRectangle(Vector2.One, new Color(70, 52, 18)));
                 system.Textures.Add(CreateRectangle(Vector2.One, new Color(82, 71, 49)));
+
+                tileMap.AddParticleSystem("DirtParticles", system);
+                particleSystem = system;
             }
 
             UpdateTile();
@@ -120,6 +123,15 @@ namespace GameProject.GameObjects
         public void TakeDamage(int damage)
         {
             groundDurability -= damage;
+
+            if (particleSystem != null)
+            {
+                particleSystem.Position = Position + MainGame.TILE_SIZE / 2;
+                particleSystem.Speed = new Vector2(0, 0);
+                particleSystem.SpeedDeviation = new Vector2(4, 4);
+                particleSystem.Emit(5);
+            }
+
             if (groundDurability <= 0)
             {
                 Ground[] grounds = GetSurroundingGrounds();

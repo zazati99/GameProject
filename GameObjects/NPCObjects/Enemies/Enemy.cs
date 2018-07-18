@@ -64,7 +64,7 @@ namespace GameProject.GameObjects
         {
             GameObject player = GetGameObject<PlayerObject>();
 
-            if (DistanceToObject(player) > 32)
+            if (Math.Abs(player.Position.X - Position.X) > 32)
             {
                 float speed = 2f * Math.Sign(player.Position.X - Position.X);
                 HorizontalMovement(speed);
@@ -73,6 +73,8 @@ namespace GameProject.GameObjects
             { 
                 StopMoving();
             }
+
+            if (player.Position.Y < Position.Y - 20) Jump();
 
             base.Update();
         }
@@ -96,6 +98,13 @@ namespace GameProject.GameObjects
         {
             Physics physics = GetComponent<Physics>();
             physics.Velocity.X = GameMath.Approach(physics.Velocity.X, 0, physics.Grounded ? .15f : .1f);
+        }
+
+        // Le jump
+        public new void Jump()
+        {
+            Physics physics = GetComponent<Physics>();
+            if (physics.Grounded) physics.Velocity.Y = -5;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
