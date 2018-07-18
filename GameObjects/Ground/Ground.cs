@@ -45,6 +45,7 @@ namespace GameProject.GameObjects
 
         // Ground type
         public GROUND_TYPE GroundType;
+        SoundEffect soundEffect;
 
         public Ground(GameScreen gameScreen) : base(gameScreen)
         {
@@ -136,6 +137,9 @@ namespace GameProject.GameObjects
             {
                 Ground[] grounds = GetSurroundingGrounds();
                 DestroyObject();
+                soundEffect = new SoundEffect();
+                soundEffect = Content.Load < Sounds / SpriteEffects / HitD > ();
+                
 
                 for (int i = 0; i < grounds.Length; i++)
                 {
