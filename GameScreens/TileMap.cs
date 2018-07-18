@@ -39,6 +39,9 @@ namespace GameProject.GameScreens
         // Dictionary of TileSets
         public Dictionary<string, Texture2D> TileSets;
 
+        // Dictionary of Particle systems
+        public Dictionary<string, ScreenParticleSystem> ParticleSystems;
+
         // GameScreen screen
         public GameScreen Screen;
 
@@ -62,7 +65,9 @@ namespace GameProject.GameScreens
         {
             Screen = gameScreen;
             GameObjects = new List<GameObject>();
+
             TileSets = new Dictionary<string, Texture2D>();
+            ParticleSystems = new Dictionary<string, ScreenParticleSystem>();
         }
 
         // Load the content
@@ -88,6 +93,11 @@ namespace GameProject.GameScreens
             {
                 entry.Value.Dispose();
             }
+        }
+
+        public void AddTileSet(string nameAndPath)
+        {
+
         }
 
         // Destroy TileMap
