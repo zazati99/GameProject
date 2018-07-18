@@ -267,3 +267,9 @@
 /processorParam:Quality=Best
 /build:Sounds/Music/Memer.wav
 
+#begin Sounds/Effects/HitD.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Effects/HitD.wav
+
