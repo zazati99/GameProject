@@ -47,7 +47,7 @@ namespace GameProject.GameObjects
 
             // stats
             MiningDamage = 1;
-            MiningSpeed = 5;
+            MiningSpeed = 30;
         }
 
         // Load content

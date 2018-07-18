@@ -62,7 +62,7 @@ namespace GameProject.GameObjects
         public virtual void InitializeGround()
         {
             GroundType = GROUND_TYPE.DIRT;
-            groundDurability = 5;
+            groundDurability = 2;
         }
 
         // Load Content maymay
@@ -91,7 +91,7 @@ namespace GameProject.GameObjects
                 system.PositionDeviation = new Vector2(8, 8);
 
                 system.Textures.Add(CreateRectangle(Vector2.One, new Color(40, 27, 3)));
-                system.Textures.Add(CreateRectangle(Vector2.One, new Color(70, 52, 18)));
+                system.Textures.Add(CreateRectangle(Vector2.One*2, new Color(70, 52, 18)));
                 system.Textures.Add(CreateRectangle(Vector2.One, new Color(82, 71, 49)));
 
                 tileMap.AddParticleSystem("DirtParticles", system);
@@ -142,6 +142,24 @@ namespace GameProject.GameObjects
                     grounds[i].UpdateTile();
                 }
             }
+        }
+
+        // Emit particles from ground
+        public void EmitParticles()
+        {
+
+            if (GetGameObject<PlayerObject>() is PlayerObject player)
+            {
+                float yDif = player.Position.Y - Position.Y + MainGame.TILE_SIZE.Y / 2 - 10;
+                float xDif = player.Position.X - Position.X + MainGame.TILE_SIZE.X / 2 - 10;
+
+                if (xDif > yDif)
+                {
+
+                }
+
+            }
+
         }
 
         // Add physics to ground

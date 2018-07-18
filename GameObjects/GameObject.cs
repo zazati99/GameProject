@@ -196,6 +196,12 @@ namespace GameProject.GameObjects
             }
         }
 
+        // Draw center dot
+        public void DrawCenterDot(SpriteBatch spriteBatch)
+        {
+            ShapeRenderer.FillRectangle(spriteBatch, Position, Vector2.One, 0, Color.Red);
+        }
+
     #endregion
 }
 }

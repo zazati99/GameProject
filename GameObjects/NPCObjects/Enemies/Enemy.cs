@@ -110,8 +110,9 @@ namespace GameProject.GameObjects
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
+
             DrawHitBox(spriteBatch);
-            ShapeRenderer.FillRectangle(spriteBatch, Position, Vector2.One, 0, Color.Red);
+            DrawCenterDot(spriteBatch);
         }
     }
 
