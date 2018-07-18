@@ -3,6 +3,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Audio;
 
 using GameProject.GameScreens;
 using GameProject.GameObjects.ObjectComponents;
@@ -99,6 +100,9 @@ namespace GameProject.GameObjects
                 particleSystem = system;
             }
 
+            // Load soundEffect
+            soundEffect = content.Load<SoundEffect>("Sounds/Effects/HitD");
+
             UpdateTile();
 
             Ground[] grounds = GetSurroundingGrounds();
@@ -137,14 +141,14 @@ namespace GameProject.GameObjects
             {
                 Ground[] grounds = GetSurroundingGrounds();
                 DestroyObject();
-                soundEffect = new SoundEffect();
-                soundEffect = Content.Load < Sounds / SpriteEffects / HitD > ();
-                
 
                 for (int i = 0; i < grounds.Length; i++)
                 {
                     grounds[i].UpdateTile();
                 }
+
+                if (soundEffect != null)
+                    soundEffect.Play();
             }
         }
 

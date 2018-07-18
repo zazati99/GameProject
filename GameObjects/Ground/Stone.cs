@@ -22,7 +22,7 @@ namespace GameProject.GameObjects
         {
             GroundType = GROUND_TYPE.STONE;
 
-            groundDurability = 10;
+            groundDurability = 3;
         }
 
         // Loads content
