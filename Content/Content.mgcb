@@ -57,7 +57,7 @@
 /processorParam:TextureFormat=Color
 /build:font.bmp
 
-#begin dirt.png
+#begin Images/Background/Background1.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -67,9 +67,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:dirt.png
+/build:Images/Background/Background1.png
 
-#begin DirtTile.png
+#begin Images/Background/dirt_background.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -79,9 +79,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:DirtTile.png
+/build:Images/Background/dirt_background.png
 
-#begin player_idle.png
+#begin Images/Sprites/Enemy/gravling.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -91,9 +91,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:player_idle.png
+/build:Images/Sprites/Enemy/gravling.png
 
-#begin dirt_sprite.png
+#begin Images/Sprites/Tiles/dirt.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -103,9 +103,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:dirt_sprite.png
+/build:Images/Sprites/Tiles/dirt.png
 
-#begin stone.png
+#begin Images/Sprites/Tiles/dirt_sprite.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -115,9 +115,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:stone.png
+/build:Images/Sprites/Tiles/dirt_sprite.png
 
-#begin stone_sprite.png
+#begin Images/Sprites/Tiles/DirtTile.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -127,9 +127,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:stone_sprite.png
+/build:Images/Sprites/Tiles/DirtTile.png
 
-#begin gravling.png
+#begin Images/Sprites/Tiles/stone.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -139,9 +139,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:gravling.png
+/build:Images/Sprites/Tiles/stone.png
 
-#begin Background1.png
+#begin Images/Sprites/Tiles/stone_sprite.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -151,9 +151,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Background1.png
+/build:Images/Sprites/Tiles/stone_sprite.png
 
-#begin Crosshair.png
+#begin Images/Sprites/Player/player_idle.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -163,9 +163,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Crosshair.png
+/build:Images/Sprites/Player/player_idle.png
 
-#begin dirt_background.png
+#begin Images/Sprites/Player/Mining/Crosshair.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -175,5 +175,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:dirt_background.png
+/build:Images/Sprites/Player/Mining/Crosshair.png
 

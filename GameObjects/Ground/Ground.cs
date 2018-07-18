@@ -72,7 +72,7 @@ namespace GameProject.GameObjects
                 tileTexture = tileMap.TileSets["dirt_sprite"];
             } else
             {
-                tileMap.TileSets.Add("dirt_sprite", content.Load<Texture2D>("dirt_sprite"));
+                tileMap.TileSets.Add("dirt_sprite", content.Load<Texture2D>("Images/Sprites/Tiles/dirt_sprite"));
                 tileTexture = tileMap.TileSets["dirt_sprite"];
             }
 

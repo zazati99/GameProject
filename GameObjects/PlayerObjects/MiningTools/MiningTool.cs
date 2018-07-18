@@ -53,7 +53,7 @@ namespace GameProject.GameObjects
         // Load content
         public virtual void LoadContent(ContentManager content) {
 
-            targetTexture = content.Load<Texture2D>("Crosshair");
+            targetTexture = content.Load<Texture2D>("Images/Sprites/Player/Mining/Crosshair");
         }
 
         // Determinee a target

@@ -50,7 +50,7 @@ namespace GameProject.GameObjects
 
             sprite = new Sprite(this);
             AddComponent(sprite);
-            sprite.AddTexture(gameScreen.Content, "player_idle");
+            sprite.AddTexture(gameScreen.Content, "Images/Sprites/Player/player_idle");
             sprite.SpriteOffset = new Vector2(-22, -28);
 
             // MAke this the tafget of the Screen camera

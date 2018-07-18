@@ -23,7 +23,7 @@ namespace GameProject.GameScreens
         // Load the content dude
         public void LoadContent(ContentManager content, string path)
         {
-            texture = content.Load<Texture2D>(path);
+            texture = content.Load<Texture2D>("Images/Background/dirt_background");
             iterateAmount = new Point((int)(GameView.GetView().X / texture.Width) + 3, (int)(GameView.GetView().Y / texture.Height) + 3);
         }
 

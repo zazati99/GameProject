@@ -36,7 +36,7 @@ namespace GameProject.GameObjects
                 }
                 else
                 {
-                    tileMap.TileSets.Add("stone_sprite", content.Load<Texture2D>("stone_sprite"));
+                    tileMap.TileSets.Add("stone_sprite", content.Load<Texture2D>("Images/Sprites/Tiles/stone_sprite"));
                     tileTexture = tileMap.TileSets["stone_sprite"];
                 }
 

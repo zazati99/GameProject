@@ -33,7 +33,7 @@ namespace GameProject.GameObjects
 
             Sprite sprite = new Sprite(this);
             AddComponent(sprite);
-            sprite.AddTexture(gameScreen.Content, "gravling");
+            sprite.AddTexture(gameScreen.Content, "Images/Sprites/Enemy/gravling");
             
             Dialogue dialogue = new Dialogue(this);
 
