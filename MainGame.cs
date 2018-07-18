@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 
 using GameProject.GameScreens;
 using GameProject.GameUtils;
@@ -42,6 +44,8 @@ namespace GameProject
             gameView = new GameView(Graphics);
         }
 
+        private Song backgroundMusic;
+
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
@@ -67,6 +71,11 @@ namespace GameProject
 
             // Loads content in ScreenManager
             ScreenManager.Instance.LoadContent(Content);
+
+            // Loads a masterpeice
+            backgroundMusic = Content.Load<Song>("Sounds/Music/Meme");
+            MediaPlayer.Play(backgroundMusic);
+            MediaPlayer.IsRepeating = true;
         }
 
         /// <summary>

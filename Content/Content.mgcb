@@ -177,3 +177,9 @@
 /processorParam:TextureFormat=Color
 /build:Images/Sprites/Player/Mining/Crosshair.png
 
+#begin Sounds/Music/Meme.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/Music/Meme.wav
+
