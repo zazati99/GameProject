@@ -88,9 +88,10 @@ namespace GameProject.GameObjects
             {
                 ScreenParticleSystem system = new ScreenParticleSystem(Screen);
                 system.Acceleration = new Vector2(0, .2f);
-                system.LifeSpan = 30;
+                system.AccelerationDeviation = new Vector2(0.1f);
+                system.LifeSpan = 20;
 
-                system.PositionDeviation = new Vector2(8, 8);
+                system.PositionDeviation = new Vector2(12, 12);
 
                 system.Textures.Add(CreateRectangle(Vector2.One, new Color(40, 27, 3)));
                 system.Textures.Add(CreateRectangle(Vector2.One*2, new Color(70, 52, 18)));
@@ -155,38 +156,17 @@ namespace GameProject.GameObjects
 
             if (GetGameObject<PlayerObject>() is PlayerObject player)
             {
-                float yDif = Math.Abs(player.Position.Y - Position.Y + MainGame.TILE_SIZE.Y / 2);
-                float xDif = Math.Abs(player.Position.X - Position.X + MainGame.TILE_SIZE.X / 2);
+                float difX = player.Position.X - (Position.X + MainGame.TILE_SIZE.X / 2);
+                float difY = player.Position.Y - (Position.Y + MainGame.TILE_SIZE.Y / 2);
 
-                if (xDif > yDif)
-                {
-                    if (player.Position.X < Position.X)
-                    {
-                        particleSystem.Speed = new Vector2(3, 0);
-                        particleSystem.SpeedDeviation = new Vector2(1, 0);
-                    }
-                    else
-                    {
-                        particleSystem.Speed = new Vector2(3, 0);
-                        particleSystem.SpeedDeviation = new Vector2(1, 0);
-                    }
-                }
-                else
-                {
-                    if (player.Position.Y > Position.Y)
-                    {
-                        particleSystem.Speed = new Vector2(0, 3);
-                        particleSystem.SpeedDeviation = new Vector2(0, 1);
-                    }
-                    else
-                    {
-                        particleSystem.Speed = new Vector2(0, 3);
-                        particleSystem.SpeedDeviation = new Vector2(0, 1);
-                    }
-                }
+                float angle = (float)Math.Atan2(difY, difX);
+
+                particleSystem.Speed = new Vector2((float)(Math.Cos(angle) * 3), (float)(Math.Sin(angle) * 3));
+
+                particleSystem.SpeedDeviation = new Vector2(2, 2);
 
                 particleSystem.Position = Position + MainGame.TILE_SIZE / 2;
-                particleSystem.Emit(3);
+                particleSystem.Emit(4);
             }
         }
 
