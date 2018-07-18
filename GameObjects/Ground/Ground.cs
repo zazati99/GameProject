@@ -131,10 +131,7 @@ namespace GameProject.GameObjects
 
             if (particleSystem != null)
             {
-                particleSystem.Position = Position + MainGame.TILE_SIZE / 2;
-                particleSystem.Speed = new Vector2(0, 0);
-                particleSystem.SpeedDeviation = new Vector2(4, 4);
-                particleSystem.Emit(5);
+                EmitParticles();
             }
 
             if (groundDurability <= 0)
@@ -158,16 +155,39 @@ namespace GameProject.GameObjects
 
             if (GetGameObject<PlayerObject>() is PlayerObject player)
             {
-                float yDif = player.Position.Y - Position.Y + MainGame.TILE_SIZE.Y / 2 - 10;
-                float xDif = player.Position.X - Position.X + MainGame.TILE_SIZE.X / 2 - 10;
+                float yDif = Math.Abs(player.Position.Y - Position.Y + MainGame.TILE_SIZE.Y / 2);
+                float xDif = Math.Abs(player.Position.X - Position.X + MainGame.TILE_SIZE.X / 2);
 
                 if (xDif > yDif)
                 {
-
+                    if (player.Position.X < Position.X)
+                    {
+                        particleSystem.Speed = new Vector2(3, 0);
+                        particleSystem.SpeedDeviation = new Vector2(1, 0);
+                    }
+                    else
+                    {
+                        particleSystem.Speed = new Vector2(3, 0);
+                        particleSystem.SpeedDeviation = new Vector2(1, 0);
+                    }
+                }
+                else
+                {
+                    if (player.Position.Y > Position.Y)
+                    {
+                        particleSystem.Speed = new Vector2(0, 3);
+                        particleSystem.SpeedDeviation = new Vector2(0, 1);
+                    }
+                    else
+                    {
+                        particleSystem.Speed = new Vector2(0, 3);
+                        particleSystem.SpeedDeviation = new Vector2(0, 1);
+                    }
                 }
 
+                particleSystem.Position = Position + MainGame.TILE_SIZE / 2;
+                particleSystem.Emit(3);
             }
-
         }
 
         // Add physics to ground
