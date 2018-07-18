@@ -66,7 +66,7 @@ namespace GameProject.GameObjects
 
             if (DistanceToObject(player) > 32)
             {
-                float speed = 8f * Math.Sign(player.Position.X - Position.X);
+                float speed = 2f * Math.Sign(player.Position.X - Position.X);
                 HorizontalMovement(speed);
             }
             else
