@@ -4,6 +4,7 @@ using GameProject.GameUtils;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace GameProject.GameObjects
 {
@@ -57,6 +58,26 @@ namespace GameProject.GameObjects
             HP = 200;
         }
 
+        // Update components and do other logic
+        public override void Update()
+        {
+            GameObject player = GetGameObject<PlayerObject>();
+
+            if (DistanceToObject(player) >= 20)
+            {
+
+                float speed = 2f * Math.Sign(player.Position.X - Position.X);
+                HorizontalMovement(speed);
+            }
+            else
+            {
+
+                StopMoving();
+
+            }
+
+        }
+
         // Take damage
         public virtual void TakeDamage(int damage)
         {
@@ -64,13 +85,29 @@ namespace GameProject.GameObjects
             if (HP <= 0) DestroyObject();
         }
 
-       /* public override void Draw(SpriteBatch spriteBatch)
+        // Move horizontally
+        public void HorizontalMovement(float targetSpeed)
         {
-            base.Draw(spriteBatch);
-            if (GetComponent<HitBox>().HitBoxCollider is BoxCollider col)
-            {
-                ShapeRenderer.DrawRectangle(spriteBatch, Position + col.Offset, col.Size, Color.Azure);
-            }
-        }*/
+            Physics physics = GetComponent<Physics>();
+            physics.Velocity.X = GameMath.Approach(physics.Velocity.X, targetSpeed, physics.Grounded ? 1f : 1f);
+        }
+
+        //Stop this lmao
+        public void StopMoving()
+        {
+            Physics physics = GetComponent<Physics>();
+            physics.Velocity.X = GameMath.Approach(physics.Velocity.X, 0, physics.Grounded ? 1f : 1f);
+        }
+
+        /* public override void Draw(SpriteBatch spriteBatch)
+         {
+             base.Draw(spriteBatch);
+             if (GetComponent<HitBox>().HitBoxCollider is BoxCollider col)
+             {
+                 ShapeRenderer.DrawRectangle(spriteBatch, Position + col.Offset, col.Size, Color.Azure);
+             }
+         }*/
     }
+
+
 }
