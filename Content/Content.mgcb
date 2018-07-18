@@ -273,3 +273,15 @@
 /processorParam:Quality=Best
 /build:Sounds/Effects/HitD.wav
 
+#begin Sounds/Effects/HitDD.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Effects/HitDD.wav
+
+#begin Sounds/Effects/HitMe.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Effects/HitMe.wav
+
