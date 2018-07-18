@@ -123,7 +123,7 @@ namespace GameProject.GameObjects
                     return Vector2.Distance(Position, o.Position);
                 }
             }
-            return null;
+            return 0;
         }
 
         // Get object at position
