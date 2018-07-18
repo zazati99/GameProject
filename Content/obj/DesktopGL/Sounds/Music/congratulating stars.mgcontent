@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>Q:/Jobbet/GameProject/GameProject/GameProject/Content/Sounds/Music/congratulating stars.mp3</SourceFile>
+  <SourceTime>2017-04-13T17:16:34.4177171+02:00</SourceTime>
+  <DestFile>Q:/Jobbet/GameProject/GameProject/GameProject/Content/bin/DesktopGL/Sounds/Music/congratulating stars.xnb</DestFile>
+  <DestTime>2018-07-18T18:05:28.211759+02:00</DestTime>
+  <Importer>Mp3Importer</Importer>
+  <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2017-03-01T16:05:36+01:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>Q:/Jobbet/GameProject/GameProject/GameProject/Content/bin/DesktopGL/Sounds/Music/congratulating stars.ogg</string>
+  </BuildOutput>
+</PipelineBuildEvent>
