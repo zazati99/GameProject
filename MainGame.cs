@@ -73,7 +73,7 @@ namespace GameProject
             ScreenManager.Instance.LoadContent(Content);
 
             // Loads a masterpeice
-            backgroundMusic = Content.Load<Song>("Sounds/Music/congratulating stars");
+            backgroundMusic = Content.Load<Song>("Sounds/Music/Memer");
             MediaPlayer.Play(backgroundMusic);
             MediaPlayer.IsRepeating = true;
         }

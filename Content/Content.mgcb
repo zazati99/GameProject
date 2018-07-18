@@ -261,3 +261,9 @@
 /processorParam:Quality=Best
 /build:Sounds/Music/congratulating stars.mp3
 
+#begin Sounds/Music/Memer.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/Music/Memer.wav
+
