@@ -63,19 +63,17 @@ namespace GameProject.GameObjects
         {
             GameObject player = GetGameObject<PlayerObject>();
 
-            if (DistanceToObject(player) >= 20)
+            if (DistanceToObject(player) > 20)
             {
-
                 float speed = 2f * Math.Sign(player.Position.X - Position.X);
                 HorizontalMovement(speed);
             }
             else
-            {
-
+            { 
                 StopMoving();
-
             }
 
+            base.Update();
         }
 
         // Take damage
@@ -86,14 +84,14 @@ namespace GameProject.GameObjects
         }
 
         // Move horizontally
-        public void HorizontalMovement(float targetSpeed)
+        public new void HorizontalMovement(float targetSpeed)
         {
             Physics physics = GetComponent<Physics>();
             physics.Velocity.X = GameMath.Approach(physics.Velocity.X, targetSpeed, physics.Grounded ? 1f : 1f);
         }
 
         //Stop this lmao
-        public void StopMoving()
+        public new void StopMoving()
         {
             Physics physics = GetComponent<Physics>();
             physics.Velocity.X = GameMath.Approach(physics.Velocity.X, 0, physics.Grounded ? 1f : 1f);

@@ -129,6 +129,7 @@ namespace GameProject.GameObjects
             return o;
         }
 
+        // Distance to a Game Object
         public float DistanceToObject<T>()
         {
             for (int i = 0; i < Screen.GameObjects.Count; i++)
@@ -142,6 +143,7 @@ namespace GameProject.GameObjects
             return 0;
         }
 
+        // Distance to a GameObject
         public float DistanceToObject(GameObject gameObject)
         {
             for (int i = 0; i < Screen.GameObjects.Count; i++)
