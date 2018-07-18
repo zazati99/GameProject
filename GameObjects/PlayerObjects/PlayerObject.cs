@@ -80,49 +80,62 @@ namespace GameProject.GameObjects
 
         // Update components and do other logic
         public override void Update()
-        {
-            // Horizontal movement controlls
-            bool left = GameInput.InputDown(GameInput.Left);
-            bool right = GameInput.InputDown(GameInput.Right);
-            if (left || right)
+        {  
+            // When you walking
+            if (GameInput.ControllerMode)
             {
-                HorizontalMovement(((right ? 1 : 0) - (left ? 1 : 0)) * maxSpeed);
-            }
-            else if (GameInput.LeftStick.X != 0)
-            {
-                HorizontalMovement(GameInput.LeftStick.X * maxSpeed);
-            }
-            else StopMoving();
-
-            // Jumping controlls
-            if (GameInput.InputPressed(GameInput.Jump))
-                jumpBuffer = 3;
-
-            if (physics.Grounded)
-            {
-                if (jumpBuffer > 0)
-                    Jump();
-            }
-
-            if (!GameInput.InputDown(GameInput.Jump))
-                physics.Velocity.Y = Math.Max(physics.Velocity.Y, -minJumpHeight);
-
-            jumpBuffer--;
-
-            // Mining
-            miningTool.DetermineTarget();
-            miningTool.Attack();
-            miningTool.Dig();
-
-            base.Update();
-
-            if (GameInput.InputPressed(GameInput.Dig) && !MainGame.GAME_PAUSED)
-            {
-                if (ObjectAtPosition<IActivatable>(Position) is IActivatable IA)
+                if (GameInput.LeftStick.X != 0 && !MainGame.GAME_PAUSED)
                 {
-                    IA.Activate();
+                    HorizontalMovement(GameInput.LeftStick.X * maxSpeed);
+                }
+                else StopMoving();
+            }
+            else
+            {
+                bool left = GameInput.InputDown(GameInput.Left);
+                bool right = GameInput.InputDown(GameInput.Right);
+                if ((left || right) && !MainGame.GAME_PAUSED)
+                {
+                    HorizontalMovement(((right ? 1 : 0) - (left ? 1 : 0)) * maxSpeed);
+                }
+                else StopMoving();
+            }
+
+            // Check if paused, if not perform stuff
+            if (!MainGame.GAME_PAUSED)
+            {
+
+                // Jumping controlls
+                if (GameInput.InputPressed(GameInput.Jump))
+                    jumpBuffer = 3;
+
+                if (physics.Grounded)
+                {
+                    if (jumpBuffer > 0)
+                        Jump();
+                }
+
+                if (!GameInput.InputDown(GameInput.Jump))
+                    physics.Velocity.Y = Math.Max(physics.Velocity.Y, -minJumpHeight);
+
+                jumpBuffer--;
+
+                // Mining and attacking
+                miningTool.DetermineTarget();
+                miningTool.Attack();
+                miningTool.Dig();
+
+                // ACtivate object that is touched
+                if (GameInput.InputPressed(GameInput.Dig))
+                {
+                    if (ObjectAtPosition<IActivatable>(Position) is IActivatable IA)
+                    {
+                        IA.Activate();
+                    }
                 }
             }
+
+            base.Update();
         }
 
         // Drawing sprite and other things
@@ -131,7 +144,6 @@ namespace GameProject.GameObjects
             base.Draw(spriteBatch);
             miningTool.Draw(spriteBatch);
 
-            ShapeRenderer.FillRectangle(spriteBatch, Position, Vector2.One, 0, Color.Red);
             spriteBatch.DrawString(GameFonts.font, physics.Velocity.X.ToString(), Position - new Vector2(GameFonts.font.MeasureString(physics.Velocity.X.ToString()).X/2, 48), Color.Black);
         }
 

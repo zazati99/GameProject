@@ -49,7 +49,7 @@ namespace GameProject.GameObjects.ObjectComponents
         public void StartDialogue()
         {
             dialogueStarted = true;
-            MainGame.ChangeGameSpeed(0);
+            //MainGame.ChangeGameSpeed(0);
             MainGame.ChangePaused(true);
         }
 
@@ -57,7 +57,7 @@ namespace GameProject.GameObjects.ObjectComponents
         public void EndDialogue()
         {
             dialogueStarted = false;
-            MainGame.ChangeGameSpeed(1);
+            //MainGame.ChangeGameSpeed(1);
             MainGame.ChangePaused(false);
         }
     }

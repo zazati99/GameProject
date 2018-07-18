@@ -22,8 +22,10 @@ namespace GameProject
         public static float GAME_SPEED = 1f;
         public static bool GAME_PAUSED = false;
 
-        static bool willChange = false;
-        static bool willPause;
+        static bool willChangeGameSpeed;
+        static bool willChangePausedState;
+
+        static bool nextPausedState;
         static float nextGameSpeed;
 
         // Game view
@@ -96,10 +98,15 @@ namespace GameProject
             GameInput.UpdateEnd();
 
             // Fix paused things
-            if (willChange)
+            if (willChangeGameSpeed)
             {
                 GAME_SPEED = nextGameSpeed;
-                GAME_PAUSED = willPause;
+                willChangeGameSpeed = false;
+            }
+            if (willChangePausedState)
+            {
+                GAME_PAUSED = nextPausedState;
+                willChangePausedState = false;
             }
 
             base.Update(gameTime);
@@ -155,15 +162,15 @@ namespace GameProject
         // Change GameSpeed;
         public static void ChangeGameSpeed(float speed)
         {
-            willChange = true;
+            willChangeGameSpeed = true;
             nextGameSpeed = speed;
         }
 
         // Switch paused
         public static void ChangePaused(bool paused)
         {
-            willChange = true;
-            willPause = paused;
+            willChangePausedState = true;
+            nextPausedState = paused;
         }
     }
 }

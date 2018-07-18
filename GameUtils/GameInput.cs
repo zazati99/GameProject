@@ -24,12 +24,30 @@ namespace GameProject.GameUtils
 
         public static Vector2 LeftStick; // Left stick on controller
 
+        // Controller mode
+        public static bool ControllerMode;
+
         // ska köras innan något annat i MainGame
         public static void UpdateStart()
         {
+            // Get keyboardstates
             currentKeyboardState = Keyboard.GetState();
             currentGamePadState = GamePad.GetState(0);
 
+            // Check if controller or keyboard mode
+            if (currentGamePadState.IsConnected)
+            {
+                bool keyboardButtonPressed = currentKeyboardState.GetPressedKeys().Length > 0;
+                GamePadState emptyInput = new GamePadState(Vector2.Zero, Vector2.Zero, 0, 0, 0);
+                if (currentGamePadState != emptyInput && !keyboardButtonPressed)
+                {
+                    ControllerMode = true;
+                }
+                else if (keyboardButtonPressed) ControllerMode = false;
+            }
+            else ControllerMode = false;
+
+            // Get left thumbsitck
             LeftStick = currentGamePadState.ThumbSticks.Left;
         }
 
