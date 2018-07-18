@@ -255,3 +255,9 @@
 /processorParam:TextureFormat=Color
 /build:Images/Sprites/Player/Animations/Walking/player_walk5.png
 
+#begin Sounds/Music/congratulating stars.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/Music/congratulating stars.mp3
+
