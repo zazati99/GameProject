@@ -315,3 +315,9 @@
 /processorParam:Quality=Best
 /build:Sounds/Effects/bitar.wav
 
+#begin Sounds/Effects/Stoned.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Effects/Stoned.wav
+
