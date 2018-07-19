@@ -72,6 +72,7 @@ namespace GameProject.GameScreens
 
             TileSets = new Dictionary<string, Texture2D>();
             ParticleSystems = new Dictionary<string, ScreenParticleSystem>();
+            DestroySoundEffects = new Dictionary<Type, SoundEffect>();
         }
 
         // Load the content

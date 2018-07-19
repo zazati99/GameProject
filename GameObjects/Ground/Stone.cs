@@ -28,28 +28,23 @@ namespace GameProject.GameObjects
         // Loads content
         public override void LoadContent(ContentManager content, TileMap tileMap)
         {
-
+            if (tileMap.TileSets.ContainsKey("stone_sprite"))
             {
-                if (tileMap.TileSets.ContainsKey("stone_sprite"))
-                {
-                    tileTexture = tileMap.TileSets["stone_sprite"];
-                }
-                else
-                {
-                    tileMap.TileSets.Add("stone_sprite", content.Load<Texture2D>("Images/Sprites/Tiles/stone_sprite"));
-                    tileTexture = tileMap.TileSets["stone_sprite"];
-                }
-
-                UpdateTile();
-
-                Ground[] grounds = GetSurroundingGrounds();
-                for (int i = 0; i < grounds.Length; i++)
-                {
-                    grounds[i].UpdateTile();
-                }
+                tileTexture = tileMap.TileSets["stone_sprite"];
+            }
+            else
+            {
+                tileMap.TileSets.Add("stone_sprite", content.Load<Texture2D>("Images/Sprites/Tiles/stone_sprite"));
+                tileTexture = tileMap.TileSets["stone_sprite"];
             }
 
-        }
+            UpdateTile();
 
+            Ground[] grounds = GetSurroundingGrounds();
+            for (int i = 0; i < grounds.Length; i++)
+            {
+                grounds[i].UpdateTile();
+            }
+        }
     }
 }

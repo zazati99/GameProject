@@ -46,7 +46,9 @@ namespace GameProject.GameObjects
 
         // Ground type
         public GROUND_TYPE GroundType;
-        SoundEffect soundEffect;
+
+        // SoundEffects
+        SoundEffect destroySoundEffect;
 
         public Ground(GameScreen gameScreen) : base(gameScreen)
         {
@@ -101,8 +103,15 @@ namespace GameProject.GameObjects
                 particleSystem = system;
             }
 
-            // Load soundEffect
-            soundEffect = content.Load<SoundEffect>("Sounds/Effects/Kak");
+            // Load Sound effect
+            if (tileMap.DestroySoundEffects.ContainsKey(GetType()))
+            {
+                destroySoundEffect = tileMap.DestroySoundEffects[GetType()];
+            } else
+            {
+                tileMap.AddDestroySoundEffect(GetType(), content.Load<SoundEffect>("Sounds/Effects/Kak"));
+                destroySoundEffect = tileMap.DestroySoundEffects[GetType()];
+            }
 
             UpdateTile();
 
@@ -145,8 +154,8 @@ namespace GameProject.GameObjects
                     grounds[i].UpdateTile();
                 }
 
-                if (soundEffect != null)
-                    soundEffect.Play();
+                if (destroySoundEffect != null)
+                    destroySoundEffect.Play();
             }
         }
 
