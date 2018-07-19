@@ -309,3 +309,9 @@
 /processorParam:Quality=Best
 /build:Sounds/Effects/Kak.wav
 
+#begin Sounds/Effects/bitar.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Effects/bitar.wav
+
