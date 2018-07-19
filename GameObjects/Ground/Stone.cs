@@ -6,6 +6,7 @@ using GameProject.GameScreens;
 using GameProject.GameObjects.ObjectComponents;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 
 namespace GameProject.GameObjects
 {
@@ -36,6 +37,17 @@ namespace GameProject.GameObjects
             {
                 tileMap.TileSets.Add("stone_sprite", content.Load<Texture2D>("Images/Sprites/Tiles/stone_sprite"));
                 tileTexture = tileMap.TileSets["stone_sprite"];
+            }
+
+            // Load Sound effect
+            if (tileMap.DestroySoundEffects.ContainsKey(GetType()))
+            {
+                destroySoundEffect = tileMap.DestroySoundEffects[GetType()];
+            }
+            else
+            {
+                tileMap.AddDestroySoundEffect(GetType(), content.Load<SoundEffect>("Sounds/Effects/Stoned"));
+                destroySoundEffect = tileMap.DestroySoundEffects[GetType()];
             }
 
             UpdateTile();
