@@ -10,6 +10,7 @@ using System.Xml.Serialization;
 
 using GameProject.GameObjects;
 using GameProject.GameObjects.ObjectComponents;
+using Microsoft.Xna.Framework.Audio;
 
 namespace GameProject.GameScreens
 {
@@ -41,6 +42,9 @@ namespace GameProject.GameScreens
 
         // Dictionary of Particle systems
         public Dictionary<string, ScreenParticleSystem> ParticleSystems;
+
+        // Dictionary of Sound Effects
+        public Dictionary<Type, SoundEffect> DestroySoundEffects;
 
         // GameScreen screen
         public GameScreen Screen;
@@ -106,6 +110,12 @@ namespace GameProject.GameScreens
         {
             ParticleSystems.Add(name, system);
             Screen.ScreenParticleSystems.Add(system);
+        }
+
+        // Add Destroy sound effectr
+        public void AddDestroySoundEffect(Type type ,SoundEffect effect)
+        {
+            DestroySoundEffects.Add(type, effect);
         }
 
         // Destroy TileMap
