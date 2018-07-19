@@ -91,6 +91,7 @@ namespace GameProject.GameObjects
         {
             Physics physics = GetComponent<Physics>();
             physics.Velocity.X = GameMath.Approach(physics.Velocity.X, targetSpeed, physics.Grounded ? .25f : .15f);
+            GetComponent<Sprite>().FlipSprite = targetSpeed < 0;
         }
 
         //Stop this lmao
@@ -110,9 +111,6 @@ namespace GameProject.GameObjects
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-
-            DrawHitBox(spriteBatch);
-            DrawCenterDot(spriteBatch);
         }
     }
 
