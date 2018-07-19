@@ -267,3 +267,9 @@
 /processorParam:Quality=Best
 /build:Sounds/Effects/Stoned.wav
 
+#begin Sounds/Music/Meme.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Music/Meme.wav
+
