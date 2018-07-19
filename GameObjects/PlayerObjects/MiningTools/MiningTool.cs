@@ -48,6 +48,18 @@ namespace GameProject.GameObjects
             // stats
             MiningDamage = 1;
             MiningSpeed = 30;
+
+            Sprite miningSprite = new Sprite(player);
+
+            miningSprite.AddTexture(player.Screen.Content, "Images/Sprites/Player/Mining/Shovel/player_mining1");
+            miningSprite.AddTexture(player.Screen.Content, "Images/Sprites/Player/Mining/Shovel/player_mining2");
+            miningSprite.AddTexture(player.Screen.Content, "Images/Sprites/Player/Mining/Shovel/player_mining3");
+            miningSprite.AddTexture(player.Screen.Content, "Images/Sprites/Player/Mining/Shovel/player_mining4");
+
+            miningSprite.SpriteOffset = new Vector2(-22, -28);
+            miningSprite.ImageSpeed = .15f;
+
+            player.SpriteManager.AddSprite("miningSprite", miningSprite);
         }
 
         // Load content
@@ -97,6 +109,7 @@ namespace GameProject.GameObjects
                         target.TakeDamage(MiningDamage);
                         miningTimer.Set(MiningSpeed);
                     }
+                    player.SpriteManager.ChangeSprite("miningSprite");
                 }
             }
         }

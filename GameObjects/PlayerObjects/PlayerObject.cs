@@ -29,7 +29,7 @@ namespace GameProject.GameObjects
         Physics physics;
         HitBox hitBox;
 
-        SpriteManager spriteManager;
+        public SpriteManager SpriteManager;
         Sprite spriteIdle;
         Sprite spriteWalking;
 
@@ -52,7 +52,7 @@ namespace GameProject.GameObjects
             AddComponent(hitBox);
 
             // Sprites
-            spriteManager = new SpriteManager(this);
+            SpriteManager = new SpriteManager(this);
 
             // Walking animation
             spriteWalking = new Sprite(this);
@@ -69,15 +69,15 @@ namespace GameProject.GameObjects
             spriteWalking.ImageSpeed = 0.145f;
             spriteWalking.SpriteOffset = new Vector2(-22, -28);
 
-            spriteManager.AddSprite("spriteWalking", spriteWalking);
+            SpriteManager.AddSprite("spriteWalking", spriteWalking);
 
             // Idle sprite
             spriteIdle = new Sprite(this);
             spriteIdle.SpriteOffset = new Vector2(-22, -28);
             spriteIdle.AddTexture(gameScreen.Content, "Images/Sprites/Player/player_idle");
-            spriteManager.AddSprite("spriteIdle", spriteIdle);
+            SpriteManager.AddSprite("spriteIdle", spriteIdle);
 
-            AddComponent(spriteManager);
+            AddComponent(SpriteManager);
 
             // MAke this the tafget of the Screen camera
             Screen.Camera.SetTarget(this);
@@ -180,19 +180,19 @@ namespace GameProject.GameObjects
         {
             physics.Velocity.X = GameMath.Approach(physics.Velocity.X, targetSpeed, physics.Grounded ? accelerationSpeed : airAccelerationSpeed);
             
-            if (spriteManager.GetCurrentSprite() != spriteWalking)
+            if (SpriteManager.GetCurrentSprite() != spriteWalking)
             {
-                spriteManager.ChangeSprite("spriteWalking");
+                SpriteManager.ChangeSprite("spriteWalking");
                 spriteWalking.ImageIndex = 0;
             }
-            spriteManager.ChangeFlipOnAllSprites(targetSpeed < 0);
+            SpriteManager.ChangeFlipOnAllSprites(targetSpeed < 0);
         }
 
         // Stop this lmao
         public void StopMoving()
         {
             physics.Velocity.X = GameMath.Approach(physics.Velocity.X, 0, physics.Grounded ? slowDownSpeed : airSlowDownSpeed);
-            spriteManager.ChangeSprite("spriteIdle");
+            SpriteManager.ChangeSprite("spriteIdle");
         }
 
         // jump
