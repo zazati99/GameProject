@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>Q:/Jobbet/GameProject/GameProject/GameProject/Content/Sounds/Effects/Lun.wav</SourceFile>
-  <SourceTime>2018-07-19T18:39:05.8115285+02:00</SourceTime>
-  <DestFile>Q:/Jobbet/GameProject/GameProject/GameProject/Content/bin/DesktopGL/Sounds/Effects/Lun.xnb</DestFile>
-  <DestTime>2018-07-19T18:40:02.5051543+02:00</DestTime>
+  <SourceFile>Q:/Jobbet/GameProject/GameProject/GameProject/Content/Sounds/Effects/Sne.wav</SourceFile>
+  <SourceTime>2018-07-19T19:23:41.435512+02:00</SourceTime>
+  <DestFile>Q:/Jobbet/GameProject/GameProject/GameProject/Content/bin/DesktopGL/Sounds/Effects/Sne.xnb</DestFile>
+  <DestTime>2018-07-19T19:24:19.2231054+02:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>Q:/Jobbet/GameProject/GameProject/GameProject/Content/Images/Sprites/Player/Mining/Shovel/player_mining4.png</SourceFile>
-  <SourceTime>2018-07-19T18:42:39.7830585+02:00</SourceTime>
+  <SourceTime>2018-07-19T19:17:24.1606859+02:00</SourceTime>
   <DestFile>Q:/Jobbet/GameProject/GameProject/GameProject/Content/bin/DesktopGL/Images/Sprites/Player/Mining/Shovel/player_mining4.xnb</DestFile>
-  <DestTime>2018-07-19T18:43:58.2591036+02:00</DestTime>
+  <DestTime>2018-07-19T19:24:19.0059335+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

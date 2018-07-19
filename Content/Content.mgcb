@@ -333,3 +333,9 @@
 /processorParam:TextureFormat=Color
 /build:Images/Sprites/Player/Mining/Shovel/player_mining3.png
 
+#begin Sounds/Effects/Sne.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Effects/Sne.wav
+
