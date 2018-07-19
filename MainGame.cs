@@ -74,7 +74,7 @@ namespace GameProject
 
            // Loads a masterpeice
             backgroundMusic = Content.Load<Song>("Sounds/Music/Memer");
-            MediaPlayer.Play(backgroundMusic);
+            //MediaPlayer.Play(backgroundMusic);
             MediaPlayer.IsRepeating = true;
         }
 
