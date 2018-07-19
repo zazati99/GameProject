@@ -50,5 +50,11 @@ namespace GameProject.GameObjects.ObjectComponents
                 item.Value.FlipSprite = flipStatus;
             }
         }
+
+        // Get current sprite
+        public Sprite GetCurrentSprite()
+        {
+            return Sprites[key];
+        }
     }
 }

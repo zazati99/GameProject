@@ -59,12 +59,14 @@ namespace GameProject.GameObjects
 
             spriteWalking.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk1");
             spriteWalking.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk2");
+            spriteWalking.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk2");
             spriteWalking.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk3");
             spriteWalking.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk4");
             spriteWalking.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk5");
+            spriteWalking.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk5");
             spriteWalking.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk6");
 
-            spriteWalking.ImageSpeed = 0.13f;
+            spriteWalking.ImageSpeed = 0.145f;
             spriteWalking.SpriteOffset = new Vector2(-22, -28);
 
             spriteManager.AddSprite("spriteWalking", spriteWalking);
@@ -177,11 +179,16 @@ namespace GameProject.GameObjects
         public void HorizontalMovement(float targetSpeed)
         {
             physics.Velocity.X = GameMath.Approach(physics.Velocity.X, targetSpeed, physics.Grounded ? accelerationSpeed : airAccelerationSpeed);
-            spriteManager.ChangeSprite("spriteWalking");
+            
+            if (spriteManager.GetCurrentSprite() != spriteWalking)
+            {
+                spriteManager.ChangeSprite("spriteWalking");
+                spriteWalking.ImageIndex = 0;
+            }
             spriteManager.ChangeFlipOnAllSprites(targetSpeed < 0);
         }
 
-        //Stop this lmao
+        // Stop this lmao
         public void StopMoving()
         {
             physics.Velocity.X = GameMath.Approach(physics.Velocity.X, 0, physics.Grounded ? slowDownSpeed : airSlowDownSpeed);
