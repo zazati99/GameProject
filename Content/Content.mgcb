@@ -339,3 +339,15 @@
 /processorParam:Quality=Best
 /build:Sounds/Effects/Sne.wav
 
+#begin Sounds/Effects/Lun.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Effects/Lun.wav
+
+#begin Sounds/Effects/Be.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Effects/Be.wav
+
