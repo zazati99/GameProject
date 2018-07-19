@@ -21,6 +21,8 @@ namespace GameProject.GameObjects.ObjectComponents
         public Color SpriteColor; // Color of spritee (white is normal)
         public Vector2 SpriteOffset; // position offset
 
+        public bool FlipSprite;
+
         // Constructor and initialization
         public Sprite(GameObject gameObject) : base(gameObject)
         {
@@ -30,6 +32,8 @@ namespace GameProject.GameObjects.ObjectComponents
             SpriteColor = Color.White;
             SpriteOffset = Vector2.Zero;
             LayerDepth = 0.5f;
+
+            FlipSprite = false;
         }
 
         // Disposes images
@@ -74,7 +78,8 @@ namespace GameProject.GameObjects.ObjectComponents
                 Images[(int)ImageIndex],
                 gameObject.Position + SpriteOffset,
                 color: SpriteColor,
-                layerDepth: LayerDepth
+                layerDepth: LayerDepth,
+                effects: FlipSprite ? SpriteEffects.FlipHorizontally : SpriteEffects.None
             );
         }
 

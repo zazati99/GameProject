@@ -28,7 +28,10 @@ namespace GameProject.GameObjects
         // Components
         Physics physics;
         HitBox hitBox;
-        Sprite sprite;
+
+        SpriteManager spriteManager;
+        Sprite spriteIdle;
+        Sprite spriteWalking;
 
         // Mining tool
         MiningTool miningTool;
@@ -48,21 +51,31 @@ namespace GameProject.GameObjects
             hitBox.SetCollider(boxCollider);
             AddComponent(hitBox);
 
-            sprite = new Sprite(this);
-            AddComponent(sprite);
+            // Sprites
+            spriteManager = new SpriteManager(this);
 
-            sprite.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk1");
-            sprite.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk2");
-            sprite.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk2");
-            sprite.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk3");
-            sprite.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk4");
-            sprite.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk5");
-            sprite.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk5");
-            sprite.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk6");
+            // Walking animation
+            spriteWalking = new Sprite(this);
 
-            sprite.ImageSpeed = 0.13f;
+            spriteWalking.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk1");
+            spriteWalking.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk2");
+            spriteWalking.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk3");
+            spriteWalking.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk4");
+            spriteWalking.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk5");
+            spriteWalking.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk6");
 
-            sprite.SpriteOffset = new Vector2(-22, -28);
+            spriteWalking.ImageSpeed = 0.13f;
+            spriteWalking.SpriteOffset = new Vector2(-22, -28);
+
+            spriteManager.AddSprite("spriteWalking", spriteWalking);
+
+            // Idle sprite
+            spriteIdle = new Sprite(this);
+            spriteIdle.SpriteOffset = new Vector2(-22, -28);
+            spriteIdle.AddTexture(gameScreen.Content, "Images/Sprites/Player/player_idle");
+            spriteManager.AddSprite("spriteIdle", spriteIdle);
+
+            AddComponent(spriteManager);
 
             // MAke this the tafget of the Screen camera
             Screen.Camera.SetTarget(this);
@@ -164,12 +177,15 @@ namespace GameProject.GameObjects
         public void HorizontalMovement(float targetSpeed)
         {
             physics.Velocity.X = GameMath.Approach(physics.Velocity.X, targetSpeed, physics.Grounded ? accelerationSpeed : airAccelerationSpeed);
+            spriteManager.ChangeSprite("spriteWalking");
+            spriteManager.ChangeFlipOnAllSprites(targetSpeed < 0);
         }
 
         //Stop this lmao
         public void StopMoving()
         {
             physics.Velocity.X = GameMath.Approach(physics.Velocity.X, 0, physics.Grounded ? slowDownSpeed : airSlowDownSpeed);
+            spriteManager.ChangeSprite("spriteIdle");
         }
 
         // jump
