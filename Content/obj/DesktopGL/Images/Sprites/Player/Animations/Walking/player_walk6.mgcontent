@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>Q:/Jobbet/GameProject/GameProject/GameProject/Content/Images/Sprites/Player/Animations/Walking/player_walk6.png</SourceFile>
-  <SourceTime>2018-07-18T17:28:20.0615143+02:00</SourceTime>
-  <DestFile>Q:/Jobbet/GameProject/GameProject/GameProject/Content/bin/DesktopGL/Images/Sprites/Player/Animations/Walking/player_walk6.xnb</DestFile>
-  <DestTime>2018-07-18T18:09:44.2174211+02:00</DestTime>
+  <SourceFile>C:/Users/sebbe/Source/repos/GameProject/GameProject/GameProject/Content/Images/Sprites/Player/Animations/Walking/player_walk6.png</SourceFile>
+  <SourceTime>2018-07-19T05:03:13.2587038+02:00</SourceTime>
+  <DestFile>C:/Users/sebbe/Source/repos/GameProject/GameProject/GameProject/Content/bin/DesktopGL/Images/Sprites/Player/Animations/Walking/player_walk6.xnb</DestFile>
+  <DestTime>2018-07-19T05:20:04.4289097+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

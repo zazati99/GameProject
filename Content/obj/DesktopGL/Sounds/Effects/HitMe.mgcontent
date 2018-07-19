@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>Q:/Jobbet/GameProject/GameProject/GameProject/Content/Sounds/Effects/HitMe.wav</SourceFile>
-  <SourceTime>2018-07-18T19:06:23.009389+02:00</SourceTime>
-  <DestFile>Q:/Jobbet/GameProject/GameProject/GameProject/Content/bin/DesktopGL/Sounds/Effects/HitMe.xnb</DestFile>
-  <DestTime>2018-07-18T19:06:50.8251801+02:00</DestTime>
+  <SourceFile>C:/Users/sebbe/Source/repos/GameProject/GameProject/GameProject/Content/Sounds/Effects/HitMe.wav</SourceFile>
+  <SourceTime>2018-07-18T19:10:47.7660247+02:00</SourceTime>
+  <DestFile>C:/Users/sebbe/Source/repos/GameProject/GameProject/GameProject/Content/bin/DesktopGL/Sounds/Effects/HitMe.xnb</DestFile>
+  <DestTime>2018-07-19T05:20:04.3306668+02:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

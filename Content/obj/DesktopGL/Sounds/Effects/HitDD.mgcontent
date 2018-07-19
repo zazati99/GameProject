@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>Q:/Jobbet/GameProject/GameProject/GameProject/Content/Sounds/Effects/HitDD.wav</SourceFile>
-  <SourceTime>2018-07-18T19:03:13.6676997+02:00</SourceTime>
-  <DestFile>Q:/Jobbet/GameProject/GameProject/GameProject/Content/bin/DesktopGL/Sounds/Effects/HitDD.xnb</DestFile>
-  <DestTime>2018-07-18T19:03:39.9227581+02:00</DestTime>
+  <SourceFile>C:/Users/sebbe/Source/repos/GameProject/GameProject/GameProject/Content/Sounds/Effects/HitDD.wav</SourceFile>
+  <SourceTime>2018-07-18T19:10:47.7650275+02:00</SourceTime>
+  <DestFile>C:/Users/sebbe/Source/repos/GameProject/GameProject/GameProject/Content/bin/DesktopGL/Sounds/Effects/HitDD.xnb</DestFile>
+  <DestTime>2018-07-19T05:20:04.2518776+02:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

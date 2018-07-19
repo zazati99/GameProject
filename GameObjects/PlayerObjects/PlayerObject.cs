@@ -53,12 +53,14 @@ namespace GameProject.GameObjects
 
             sprite.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk1");
             sprite.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk2");
+            sprite.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk2");
             sprite.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk3");
             sprite.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk4");
             sprite.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk5");
+            sprite.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk5");
             sprite.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk6");
 
-            sprite.ImageSpeed = 0.1f;
+            sprite.ImageSpeed = 0.13f;
 
             sprite.SpriteOffset = new Vector2(-22, -28);
 
