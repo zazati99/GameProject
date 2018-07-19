@@ -48,7 +48,7 @@ namespace GameProject.GameObjects
         public GROUND_TYPE GroundType;
 
         // SoundEffects
-        SoundEffect destroySoundEffect;
+        protected SoundEffect destroySoundEffect;
 
         public Ground(GameScreen gameScreen) : base(gameScreen)
         {
