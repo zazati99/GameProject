@@ -303,3 +303,9 @@
 /processorParam:Quality=Best
 /build:Sounds/Music/Jeff.mp3
 
+#begin Sounds/Effects/Kak.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Effects/Kak.wav
+
