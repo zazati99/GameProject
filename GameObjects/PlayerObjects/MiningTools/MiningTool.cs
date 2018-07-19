@@ -55,6 +55,7 @@ namespace GameProject.GameObjects
             miningSprite.AddTexture(player.Screen.Content, "Images/Sprites/Player/Mining/Shovel/player_mining2");
             miningSprite.AddTexture(player.Screen.Content, "Images/Sprites/Player/Mining/Shovel/player_mining3");
             miningSprite.AddTexture(player.Screen.Content, "Images/Sprites/Player/Mining/Shovel/player_mining4");
+            miningSprite.AddTexture(player.Screen.Content, "Images/Sprites/Player/Mining/Shovel/player_mining5");
 
             miningSprite.SpriteOffset = new Vector2(-22, -28);
             miningSprite.ImageSpeed = .15f;
