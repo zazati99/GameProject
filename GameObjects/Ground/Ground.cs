@@ -109,7 +109,7 @@ namespace GameProject.GameObjects
                 destroySoundEffect = tileMap.DestroySoundEffects[GetType()];
             } else
             {
-                tileMap.AddDestroySoundEffect(GetType(), content.Load<SoundEffect>("Sounds/Effects/Kak"));
+                tileMap.AddDestroySoundEffect(GetType(), content.Load<SoundEffect>("Sounds/Effects/Lun"));
                 destroySoundEffect = tileMap.DestroySoundEffects[GetType()];
             }
 

@@ -321,3 +321,9 @@
 /processorParam:TextureFormat=Color
 /build:Images/Sprites/Player/Mining/Shovel/player_mining4.png
 
+#begin Sounds/Effects/Lun.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Effects/Lun.wav
+
