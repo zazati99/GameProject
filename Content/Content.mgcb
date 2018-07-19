@@ -285,3 +285,9 @@
 /processorParam:TextureFormat=Color
 /build:Images/Sprites/Player/Animations/Walking/player_walk6.png
 
+#begin Sounds/Effects/Kek.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Effects/Kek.wav
+

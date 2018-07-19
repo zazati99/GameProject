@@ -102,7 +102,7 @@ namespace GameProject.GameObjects
             }
 
             // Load soundEffect
-            soundEffect = content.Load<SoundEffect>("Sounds/Effects/HitDD");
+            soundEffect = content.Load<SoundEffect>("Sounds/Effects/Kek");
 
             UpdateTile();
 
