@@ -30,7 +30,8 @@ namespace GameProject.GameUtils
                         Ground.GROUND_TYPE groundType = (Ground.GROUND_TYPE)int.Parse(line[i].ToString());
                         Ground ground = Ground.MakeGround(screen, groundType);
                         map.GameObjects.Add(ground);
-                        screen.GameObjects.Add(ground);
+                        ground.SetTileMap(map);
+                        //screen.GameObjects.Add(ground);
                         ground.Position.X = xPos;
                         ground.Position.Y = yPos;
                     }

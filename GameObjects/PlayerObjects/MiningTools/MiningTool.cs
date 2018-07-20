@@ -53,12 +53,13 @@ namespace GameProject.GameObjects
 
             miningSprite.AddTexture(player.Screen.Content, "Images/Sprites/Player/Mining/Shovel/player_mining1");
             miningSprite.AddTexture(player.Screen.Content, "Images/Sprites/Player/Mining/Shovel/player_mining2");
+            miningSprite.AddTexture(player.Screen.Content, "Images/Sprites/Player/Mining/Shovel/player_mining2");
             miningSprite.AddTexture(player.Screen.Content, "Images/Sprites/Player/Mining/Shovel/player_mining3");
             miningSprite.AddTexture(player.Screen.Content, "Images/Sprites/Player/Mining/Shovel/player_mining4");
             miningSprite.AddTexture(player.Screen.Content, "Images/Sprites/Player/Mining/Shovel/player_mining5");
 
             miningSprite.SpriteOffset = new Vector2(-22, -28);
-            miningSprite.ImageSpeed = .19f;
+            miningSprite.ImageSpeed = 1f / (MiningSpeed / 6);
 
             player.SpriteManager.AddSprite("miningSprite", miningSprite);
         }
@@ -112,7 +113,9 @@ namespace GameProject.GameObjects
                     }
                     player.SpriteManager.ChangeSprite("miningSprite");
                 }
+                else player.SpriteManager.GetSprite("miningSprite").ImageIndex = 0;
             }
+            else player.SpriteManager.GetSprite("miningSprite").ImageIndex = 0;
         }
 
         // Atac

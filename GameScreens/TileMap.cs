@@ -52,6 +52,9 @@ namespace GameProject.GameScreens
         // Content Manager for Tile mape
         public ContentManager Content;
 
+        // is tileMap loaded to screen?
+        public bool IsLoaded;
+
         // Position of tile Map
         public Vector2 Position;
 
@@ -117,6 +120,38 @@ namespace GameProject.GameScreens
         public void AddDestroySoundEffect(Type type ,SoundEffect effect)
         {
             DestroySoundEffects.Add(type, effect);
+        }
+
+        // UnloadFrom Screen
+        public void Unload()
+        {
+            for (int i = 0; i < GameObjects.Count; i++)
+            {
+                Screen.GameObjects.Remove(GameObjects[i]);
+            }
+            IsLoaded = false;
+        }
+
+        // Load Screen
+        public void Load()
+        {
+            for (int i = 0; i < GameObjects.Count; i++)
+            {
+                Screen.GameObjects.Add(GameObjects[i]);
+            }
+            for (int i = 0; i < GameObjects.Count; i++)
+            {
+                if (GameObjects[i] is Ground g)
+                {
+                    //g.UpdateTile();
+                    Ground[] grounds = g.GetSurroundingGrounds();
+                    for (int j = 0; j < grounds.Length; j++)
+                    {
+                        grounds[j].UpdateTile();
+                    }
+                }
+            }
+            IsLoaded = true;
         }
 
         // Destroy TileMap

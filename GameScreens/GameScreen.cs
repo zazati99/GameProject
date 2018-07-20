@@ -37,6 +37,8 @@ namespace GameProject.GameScreens
         // Screen Camera
         public ScreenCamera Camera;
 
+        TileMap[] tileMaps;
+
         // Constructor
         public GameScreen()
         {
@@ -46,6 +48,8 @@ namespace GameProject.GameScreens
             ScreenParticleSystems = new List<ScreenParticleSystem>();
             Camera = new ScreenCamera();
             Camera.Initialize();
+
+            tileMaps = new TileMap[9];
         }
 
         // Load content for screen
@@ -58,9 +62,24 @@ namespace GameProject.GameScreens
                 GameObjects[i].LoadContent(Content);
             }
 
-            AddTileMap(GameFileManager.LoadTileMap(this, TileMap.TileMapsRight[0], new Vector2(0, 64)));
-            AddTileMap(GameFileManager.LoadTileMap(this, TileMap.TileMapsLeft[0], new Vector2(MainGame.TILE_SIZE.X * 8, 64)));
+            //AddTileMap(GameFileManager.LoadTileMap(this, TileMap.TileMapsRight[0], new Vector2(0, 64)));
+            //AddTileMap(GameFileManager.LoadTileMap(this, TileMap.TileMapsLeft[0], new Vector2(MainGame.TILE_SIZE.X * 8, 64)));
             //AddTileMap(GameFileManager.LoadTileMap(this, TileMap.TileMapsRight[0], Vector2.Zero));
+
+            for (int y = 0; y < 3; y++)
+            {
+                for (int x = 0; x < 3; x++)
+                {
+                    TileMap tm = GameFileManager.LoadTileMap(this, TileMap.TileMapsRight[0], new Vector2(0 + MainGame.TILE_SIZE.X * 8 * x, 64 + MainGame.TILE_SIZE.Y * 8 * y));
+                    tileMaps[y * 3 + x] = tm;
+                    tm.LoadContent(Content);
+                }
+            }
+
+            for (int i = 0; i < tileMaps.Length; i++)
+            {
+                tileMaps[i].Load();
+            }
 
             ScreenBackground Background1 = new ScreenBackground();
             Background1.LoadContent(content, "dirt_background");
@@ -94,6 +113,29 @@ namespace GameProject.GameScreens
         // Updates everything on screen
         public virtual void Update()
         {
+            PlayerObject player = null;
+            for (int i = 0; i < GameObjects.Count; i++)
+            {
+                if (GameObjects[i] is PlayerObject p) player = p;
+            }
+
+            for (int i = 0; i < tileMaps.Length; i++)
+            {
+                if (tileMaps[i].IsLoaded)
+                {
+                    if (Vector2.Distance(player.Position, tileMaps[i].Position) > 250)
+                    {
+                        tileMaps[i].Unload();
+                    }
+                } else
+                {
+                    if (Vector2.Distance(player.Position, tileMaps[i].Position) < 250)
+                    {
+                        tileMaps[i].Load();
+                    }
+                }
+            }
+
             // Update objects
             for (int i = 0; i < GameObjects.Count; i++)
             {
@@ -107,21 +149,13 @@ namespace GameProject.GameScreens
             }
 
             // Updates
-            if (GameInput.KeyPressed(Keys.F10))
-            {
-                ScreenParticleSystems[0].Emit(5);
-            }
             if (GameInput.KeyPressed(Keys.F6))
             {
-                AddTileMap(GameFileManager.LoadTileMap(this, "GameProject/Content/TestTile", TileMaps[TileMaps.Count - 2].Position + new Vector2(16 * MainGame.TILE_SIZE.X, 0)));
+                tileMaps[0].Unload();
             }
             if (GameInput.KeyPressed(Keys.F7))
             {
-                TileMap map = TileMaps[TileMaps.Count - 1];
-                map.DestroyTileMap();
-
-                map = null;
-                GC.Collect();
+                tileMaps[0].Load();
             }
 
             // Update camera

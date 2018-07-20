@@ -39,6 +39,9 @@ namespace GameProject.GameObjects
         // lmao hp
         public int groundDurability;
 
+        // TileMap object belongs to
+        protected TileMap tileMap;
+
         // Tile variables
         protected Texture2D tileTexture;
         protected ScreenParticleSystem particleSystem;
@@ -148,6 +151,7 @@ namespace GameProject.GameObjects
             {
                 Ground[] grounds = GetSurroundingGrounds();
                 DestroyObject();
+                tileMap.GameObjects.Remove(this);
 
                 for (int i = 0; i < grounds.Length; i++)
                 {
@@ -233,6 +237,12 @@ namespace GameProject.GameObjects
             }
 
             return groundList.ToArray();
+        }
+
+        // Set Tile Map
+        public void SetTileMap(TileMap tileMap)
+        {
+            this.tileMap = tileMap;
         }
 
         // Update Tile

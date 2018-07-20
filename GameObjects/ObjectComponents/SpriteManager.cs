@@ -56,5 +56,11 @@ namespace GameProject.GameObjects.ObjectComponents
         {
             return Sprites[key];
         }
+
+        // Get sprite
+        public Sprite GetSprite(string spriteName)
+        {
+            return Sprites[spriteName];
+        }
     }
 }
