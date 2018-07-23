@@ -162,6 +162,11 @@ namespace GameProject
             // Målar screenmanager och allt i den som GameScreens
             ScreenManager.Instance.DrawGUI(spriteBatch);
 
+            // Draw fps
+            string fps = (1 / gameTime.ElapsedGameTime.TotalSeconds).ToString();
+            spriteBatch.DrawString(GameFonts.font, fps, new Vector2(15, 20), Color.White);
+            spriteBatch.DrawString(GameFonts.font, GameInput.ControllerMode ? "Controller Mode" : "Keyboard Mode", new Vector2(15, 35), Color.White);
+
             // end of normal spritebatch
             spriteBatch.End();
 

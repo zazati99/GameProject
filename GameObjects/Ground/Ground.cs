@@ -21,114 +21,52 @@ namespace GameProject.GameObjects
         }
 
         // Create a type fo ground
-        public static Ground MakeGround(GameScreen screen, GROUND_TYPE groundType)
+        public static Ground MakeGround(GameScreen screen, TileMap tileMap, GROUND_TYPE groundType)
         {
-            Ground ground = null;
             switch (groundType)
             {
                 case GROUND_TYPE.DIRT:
-                    ground = new Ground(screen);
-                    break;
+                    return new Dirt(screen, tileMap);
                 case GROUND_TYPE.STONE:
-                    ground = new Stone(screen);
-                    break;
+                    return new Stone(screen, tileMap);
             }
-            return ground;
+            return null;
         }
-
-        // lmao hp
-        public int groundDurability;
 
         // TileMap object belongs to
         protected TileMap tileMap;
 
-        // Tile variables
-        protected Texture2D tileTexture;
-        protected ScreenParticleSystem particleSystem;
-        Rectangle sourceRectangle;
-
         // Ground type
         public GROUND_TYPE GroundType;
 
-        // SoundEffects
-        protected SoundEffect destroySoundEffect;
+        // lmao hp
+        public int groundDurability;
 
-        public Ground(GameScreen gameScreen) : base(gameScreen)
+        // Tile content
+        protected Texture2D tileTexture; // TExture of tile
+        protected ScreenParticleSystem particleSystem; // paticleSystem
+        protected SoundEffect destroySoundEffect; // Sound effect that will be played when destroyed
+        protected Rectangle sourceRectangle; // Rectangle of tile that will ben drawn
+
+        // Constructor
+        public Ground(GameScreen gameScreen, TileMap tileMap) : base(gameScreen)
         {
+            // set tilemap
+            this.tileMap = tileMap;
+
+            // Load standard properties
             HitBox hitBox = new HitBox(this);
             BoxCollider collider = new BoxCollider();
             collider.Size = MainGame.TILE_SIZE;
             hitBox.SetCollider(collider);
             AddComponent(hitBox);
             hitBox.Solid = true;
-
-            InitializeGround();
-        }
-
-        // Initialize stats for specific grounds
-        public virtual void InitializeGround()
-        {
-            GroundType = GROUND_TYPE.DIRT;
-            groundDurability = 2;
         }
 
         // Load Content maymay
         public override void LoadContent(ContentManager content, TileMap tileMap)
         {
-            // Tileset
-            if (tileMap.TileSets.ContainsKey("Images/Sprites/Tiles/dirt_sprite"))
-            {
-                tileTexture = tileMap.TileSets["Images/Sprites/Tiles/dirt_sprite"];
-            } else
-            {
-                tileMap.AddTileSet("Images/Sprites/Tiles/dirt_sprite");
-                tileTexture = tileMap.TileSets["Images/Sprites/Tiles/dirt_sprite"];
-            }
 
-            // Add particle system
-            if (tileMap.ParticleSystems.ContainsKey("DirtParticles"))
-            {
-                particleSystem = tileMap.ParticleSystems["DirtParticles"];
-            } else
-            {
-                ScreenParticleSystem system = new ScreenParticleSystem(Screen);
-                system.Acceleration = new Vector2(0, .2f);
-                system.AccelerationDeviation = new Vector2(0.1f);
-                system.LifeSpan = 20;
-
-                system.PositionDeviation = new Vector2(12, 12);
-
-                system.Textures.Add(CreateRectangle(Vector2.One, new Color(40, 27, 3)));
-                system.Textures.Add(CreateRectangle(Vector2.One*2, new Color(70, 52, 18)));
-                system.Textures.Add(CreateRectangle(Vector2.One, new Color(82, 71, 49)));
-
-                tileMap.AddParticleSystem("DirtParticles", system);
-                particleSystem = system;
-            }
-
-            // Load Sound effect
-            if (tileMap.DestroySoundEffects.ContainsKey(GetType()))
-            {
-                destroySoundEffect = tileMap.DestroySoundEffects[GetType()];
-            } else
-            {
-                tileMap.AddDestroySoundEffect(GetType(), content.Load<SoundEffect>("Sounds/Effects/Be")); //De finns 3 "bra", "Sne", "Be" och "Lun"
-                destroySoundEffect = tileMap.DestroySoundEffects[GetType()];
-            }
-
-            UpdateTile();
-
-            Ground[] grounds = GetSurroundingGrounds();
-            for (int i = 0; i < grounds.Length; i++)
-            {
-                grounds[i].UpdateTile();
-            }
-        }
-
-        //Update
-        public override void Update()
-        {
-            base.Update();
         }
 
         // Draw the correct tile
@@ -166,7 +104,6 @@ namespace GameProject.GameObjects
         // Emit particles from ground
         public void EmitParticles()
         {
-
             if (GetGameObject<PlayerObject>() is PlayerObject player)
             {
                 float difX = player.Position.X - (Position.X + MainGame.TILE_SIZE.X / 2);
@@ -239,12 +176,6 @@ namespace GameProject.GameObjects
             return groundList.ToArray();
         }
 
-        // Set Tile Map
-        public void SetTileMap(TileMap tileMap)
-        {
-            this.tileMap = tileMap;
-        }
-
         // Update Tile
         public void UpdateTile()
         {
@@ -276,5 +207,35 @@ namespace GameProject.GameObjects
             // Change sourceRectangle
             sourceRectangle = new Rectangle(tile * new Point(26, 26), new Point(26, 26));
         }
+
+        #region Load Different types of content
+
+        // Load Ground Content
+        public void LoadGroundTexture(GROUND_TYPE type, string path) // Texture
+        {
+            if (tileMap.TileSets.ContainsKey(type))
+            {
+                tileTexture = tileMap.TileSets[type];
+            }
+            else
+            {
+                tileMap.AddTileSet(type, path);
+                tileTexture = tileMap.TileSets[type];
+            }
+        }
+        public void LoadGroundDestroySound(GROUND_TYPE type, string path) // Destroy sound
+        {
+            if (tileMap.DestroySoundEffects.ContainsKey(GroundType))
+            {
+                destroySoundEffect = tileMap.DestroySoundEffects[GroundType];
+            }
+            else
+            {
+                tileMap.AddDestroySoundEffect(GroundType, path);
+                destroySoundEffect = tileMap.DestroySoundEffects[GroundType];
+            }
+        }
+
+        #endregion
     }
 }

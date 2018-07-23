@@ -83,8 +83,7 @@ namespace GameProject.GameObjects
             Screen.Camera.SetTarget(this);
 
             // Mining tool;
-            miningTool = new MiningTool();
-            miningTool.Initialize(this);
+            miningTool = new GodShovel(this);
 
             // Movement initialization
             maxSpeed = 2;

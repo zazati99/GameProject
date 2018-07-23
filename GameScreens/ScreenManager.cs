@@ -42,15 +42,15 @@ namespace GameProject.GameScreens
         {
             Content = new ContentManager(content.ServiceProvider, "Content");
 
-            currentScreen = new GameScreen();
+            currentScreen = new TestScreen();
             currentScreen.LoadContent(Content);
-            currentScreen.AddGameObject(new PlayerObject(currentScreen));
         }
 
         // Unloads content lul
         public void UnloadContent()
         {
             Content.Unload();
+            currentScreen.UnloadContent();
         }
 
         // Updaterar currentScreen och kanske annat i framtiden

@@ -12,26 +12,25 @@ namespace GameProject.GameObjects
     public class MiningTool
     {
         // lmao who did this?
-        Texture2D targetTexture;
+        protected Texture2D targetTexture;
 
         // Targeted ground object
-        Ground target;
+        protected Ground target;
 
         // Collider that will check for target
-        Collider collider;
+        protected Collider collider;
 
         // Player object
-        PlayerObject player;
+        protected PlayerObject player;
 
         // Mining timer
-        Timer miningTimer;
+        protected Timer miningTimer;
 
         // MiningStats
         public int MiningDamage;
         public int MiningSpeed;
 
-        // Initialize tool
-        public virtual void Initialize(PlayerObject player)
+        public MiningTool(PlayerObject player)
         {
             this.player = player;
 
@@ -44,24 +43,6 @@ namespace GameProject.GameObjects
 
             // Mining Timer
             miningTimer = new Timer();
-
-            // stats
-            MiningDamage = 1;
-            MiningSpeed = 30;
-
-            Sprite miningSprite = new Sprite(player);
-
-            miningSprite.AddTexture(player.Screen.Content, "Images/Sprites/Player/Mining/Shovel/player_mining1");
-            miningSprite.AddTexture(player.Screen.Content, "Images/Sprites/Player/Mining/Shovel/player_mining2");
-            miningSprite.AddTexture(player.Screen.Content, "Images/Sprites/Player/Mining/Shovel/player_mining2");
-            miningSprite.AddTexture(player.Screen.Content, "Images/Sprites/Player/Mining/Shovel/player_mining3");
-            miningSprite.AddTexture(player.Screen.Content, "Images/Sprites/Player/Mining/Shovel/player_mining4");
-            miningSprite.AddTexture(player.Screen.Content, "Images/Sprites/Player/Mining/Shovel/player_mining5");
-
-            miningSprite.SpriteOffset = new Vector2(-22, -28);
-            miningSprite.ImageSpeed = 1f / (MiningSpeed / 6);
-
-            player.SpriteManager.AddSprite("miningSprite", miningSprite);
         }
 
         // Load content

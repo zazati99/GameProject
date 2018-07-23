@@ -13,50 +13,17 @@ namespace GameProject.GameObjects
     public class Stone : Ground
     {
         // Constructor
-        public Stone(GameScreen gameScreen) : base(gameScreen)
-        {
-
-        }
-
-        // Ground Initiaization
-        public override void InitializeGround()
+        public Stone(GameScreen gameScreen, TileMap tileMap) : base(gameScreen, tileMap)
         {
             GroundType = GROUND_TYPE.STONE;
-
             groundDurability = 3;
         }
 
         // Loads content
-        public override void LoadContent(ContentManager content, TileMap tileMap)
+        public override void LoadContent(ContentManager content)
         {
-            if (tileMap.TileSets.ContainsKey("stone_sprite"))
-            {
-                tileTexture = tileMap.TileSets["stone_sprite"];
-            }
-            else
-            {
-                tileMap.TileSets.Add("stone_sprite", content.Load<Texture2D>("Images/Sprites/Tiles/stone_sprite"));
-                tileTexture = tileMap.TileSets["stone_sprite"];
-            }
-
-            // Load Sound effect
-            if (tileMap.DestroySoundEffects.ContainsKey(GetType()))
-            {
-                destroySoundEffect = tileMap.DestroySoundEffects[GetType()];
-            }
-            else
-            {
-                tileMap.AddDestroySoundEffect(GetType(), content.Load<SoundEffect>("Sounds/Effects/Stoned"));
-                destroySoundEffect = tileMap.DestroySoundEffects[GetType()];
-            }
-
-            UpdateTile();
-
-            Ground[] grounds = GetSurroundingGrounds();
-            for (int i = 0; i < grounds.Length; i++)
-            {
-                grounds[i].UpdateTile();
-            }
+            LoadGroundTexture(GroundType, "Images/Sprites/Tiles/stone_sprite");
+            LoadGroundDestroySound(GroundType, "Sounds/Effects/Stoned");
         }
     }
 }

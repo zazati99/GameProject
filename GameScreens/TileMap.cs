@@ -38,13 +38,13 @@ namespace GameProject.GameScreens
         public List<GameObject> GameObjects;
 
         // Dictionary of TileSets
-        public Dictionary<string, Texture2D> TileSets;
+        public Dictionary<Ground.GROUND_TYPE, Texture2D> TileSets;
 
         // Dictionary of Particle systems
-        public Dictionary<string, ScreenParticleSystem> ParticleSystems;
+        public Dictionary<Ground.GROUND_TYPE, ScreenParticleSystem> ParticleSystems;
 
         // Dictionary of Sound Effects
-        public Dictionary<Type, SoundEffect> DestroySoundEffects;
+        public Dictionary<Ground.GROUND_TYPE, SoundEffect> DestroySoundEffects;
 
         // GameScreen screen
         public GameScreen Screen;
@@ -54,6 +54,7 @@ namespace GameProject.GameScreens
 
         // is tileMap loaded to screen?
         public bool IsLoaded;
+        public bool IsTilesFixed;
 
         // Position of tile Map
         public Vector2 Position;
@@ -73,9 +74,9 @@ namespace GameProject.GameScreens
             Screen = gameScreen;
             GameObjects = new List<GameObject>();
 
-            TileSets = new Dictionary<string, Texture2D>();
-            ParticleSystems = new Dictionary<string, ScreenParticleSystem>();
-            DestroySoundEffects = new Dictionary<Type, SoundEffect>();
+            TileSets = new Dictionary<Ground.GROUND_TYPE, Texture2D>();
+            ParticleSystems = new Dictionary<Ground.GROUND_TYPE, ScreenParticleSystem>();
+            DestroySoundEffects = new Dictionary<Ground.GROUND_TYPE, SoundEffect>();
         }
 
         // Load the content
@@ -85,7 +86,7 @@ namespace GameProject.GameScreens
 
             for (int i = 0; i < GameObjects.Count; i++)
             {
-                GameObjects[i].LoadContent(Content, this);
+                GameObjects[i].LoadContent(Content);
             }
         }
 
@@ -97,61 +98,76 @@ namespace GameProject.GameScreens
                 GameObjects[i].UnloadContent();
             }
 
-            foreach (KeyValuePair<string, Texture2D> entry in TileSets)
+            foreach (KeyValuePair<Ground.GROUND_TYPE, Texture2D> entry in TileSets)
             {
                 entry.Value.Dispose();
             }
         }
 
         // Add a tile set
-        public void AddTileSet(string nameAndPath)
+        public void AddTileSet(Ground.GROUND_TYPE type, string nameAndPath)
         {
-            TileSets.Add(nameAndPath, Content.Load<Texture2D>(nameAndPath));
+            TileSets.Add(type, Content.Load<Texture2D>(nameAndPath));
         }
 
         // Add a particle system
-        public void AddParticleSystem(string name, ScreenParticleSystem system)
+        public void AddParticleSystem(Ground.GROUND_TYPE type, ScreenParticleSystem system)
         {
-            ParticleSystems.Add(name, system);
+            ParticleSystems.Add(type, system);
             Screen.ScreenParticleSystems.Add(system);
         }
 
         // Add Destroy sound effectr
-        public void AddDestroySoundEffect(Type type ,SoundEffect effect)
+        public void AddDestroySoundEffect(Ground.GROUND_TYPE type, string path)
         {
-            DestroySoundEffects.Add(type, effect);
+            DestroySoundEffects.Add(type, Content.Load<SoundEffect>(path));
         }
 
         // UnloadFrom Screen
         public void Unload()
         {
-            for (int i = 0; i < GameObjects.Count; i++)
+            if (IsLoaded)
             {
-                Screen.GameObjects.Remove(GameObjects[i]);
+                for (int i = 0; i < GameObjects.Count; i++)
+                {
+                    Screen.GameObjects.Remove(GameObjects[i]);
+                }
+                IsLoaded = false;
+                IsTilesFixed = false;
             }
-            IsLoaded = false;
         }
 
         // Load Screen
         public void Load()
         {
-            for (int i = 0; i < GameObjects.Count; i++)
+            if (!IsLoaded)
             {
-                Screen.GameObjects.Add(GameObjects[i]);
-            }
-            for (int i = 0; i < GameObjects.Count; i++)
-            {
-                if (GameObjects[i] is Ground g)
+                for (int i = 0; i < GameObjects.Count; i++)
                 {
-                    //g.UpdateTile();
-                    Ground[] grounds = g.GetSurroundingGrounds();
-                    for (int j = 0; j < grounds.Length; j++)
+                    Screen.GameObjects.Add(GameObjects[i]);
+                }
+                IsLoaded = true;
+            }
+        }
+
+        // Fix tiles in tile map
+        public void FixTiles()
+        {
+            if (!IsTilesFixed)
+            {
+                for (int i = 0; i < GameObjects.Count; i++)
+                {
+                    if (GameObjects[i] is Ground g)
                     {
-                        grounds[j].UpdateTile();
+                        Ground[] grounds = g.GetSurroundingGrounds();
+                        for (int j = 0; j < grounds.Length; j++)
+                        {
+                            grounds[j].UpdateTile();
+                        }
                     }
                 }
+                IsTilesFixed = true;
             }
-            IsLoaded = true;
         }
 
         // Destroy TileMap
@@ -163,20 +179,6 @@ namespace GameProject.GameScreens
             }
             UnloadContent();
             Screen.TileMaps.Remove(this);
-        }
-    }
-
-    // TileMap data 
-    public class TileMapData
-    {
-        public bool right;
-        public bool down;
-        public bool left;
-        public bool up;
-
-        public void CreateTileMap()
-        {
-
         }
     }
 }

@@ -48,7 +48,8 @@ namespace GameProject.GameUtils
             else ControllerMode = false;
 
             // Get left thumbsitck
-            LeftStick = currentGamePadState.ThumbSticks.Left;
+            LeftStick.X = GameMath.Clamp(currentGamePadState.ThumbSticks.Left.X * 1.1f, -1, 1);
+            LeftStick.Y = GameMath.Clamp(currentGamePadState.ThumbSticks.Left.Y * 1.1f, -1, 1);
         }
 
         // Ska köras i slutet av update i MainGame
