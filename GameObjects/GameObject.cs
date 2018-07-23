@@ -163,12 +163,12 @@ namespace GameProject.GameObjects
             GameObject o = null;
             for (int i = 0; i < Screen.GameObjects.Count; i++)
             {
-                if (Screen.GameObjects[i] is GameObject temp)
+                if (Screen.GameObjects[i] is T)
                 {
-                    if (temp.GetComponent<HitBox>() is HitBox hitBox)
+                    if (Screen.GameObjects[i].GetComponent<HitBox>() is HitBox hitBox)
                     {
-                        if (hitBox.HitBoxCollider.IsCollidingWithPoint(temp.Position, position))
-                            return temp;
+                        if (hitBox.HitBoxCollider.IsCollidingWithPoint(Screen.GameObjects[i].Position, position))
+                            return Screen.GameObjects[i];
                     }
                 }
             }
@@ -203,5 +203,5 @@ namespace GameProject.GameObjects
         }
 
     #endregion
-}
+    }
 }

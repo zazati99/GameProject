@@ -18,6 +18,9 @@ namespace GameProject.GameObjects.ObjectComponents
         // Is the Dialogue started?
         bool dialogueStarted;
 
+        // frame that stops dialouge from updating
+        bool nonUpdateFrame = false;
+
         // Constructor and initialization
         public Dialogue(GameObject gameObject) : base(gameObject)
         {
@@ -29,7 +32,10 @@ namespace GameProject.GameObjects.ObjectComponents
         public override void Update()
         {
             if (dialogueStarted)
-                DialogueBranches[Key].Update();
+            {
+                if (!nonUpdateFrame) DialogueBranches[Key].Update();
+                nonUpdateFrame = false;
+            }
         }
 
         // Draw the dialogue
@@ -49,7 +55,7 @@ namespace GameProject.GameObjects.ObjectComponents
         public void StartDialogue()
         {
             dialogueStarted = true;
-            //MainGame.ChangeGameSpeed(0);
+            nonUpdateFrame = true;
             MainGame.ChangePaused(true);
         }
 
@@ -57,7 +63,6 @@ namespace GameProject.GameObjects.ObjectComponents
         public void EndDialogue()
         {
             dialogueStarted = false;
-            //MainGame.ChangeGameSpeed(1);
             MainGame.ChangePaused(false);
         }
     }

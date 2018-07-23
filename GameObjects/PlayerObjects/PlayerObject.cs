@@ -160,6 +160,7 @@ namespace GameProject.GameObjects
                 }
             }
 
+            // Update components
             base.Update();
         }
 
