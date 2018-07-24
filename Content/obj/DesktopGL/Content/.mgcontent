@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/jeff.jpg</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/PepeDab.png</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/connection.png</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/font.bmp</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Images/Background/Background1.png</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Images/Background/dirt_background.png</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Images/Sprites/Enemy/gravling.png</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Images/Sprites/Tiles/dirt.png</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Images/Sprites/Tiles/dirt_sprite.png</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Images/Sprites/Tiles/DirtTile.png</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Images/Sprites/Tiles/stone.png</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Images/Sprites/Tiles/stone_sprite.png</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Images/Sprites/Player/player_idle.png</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Images/Sprites/Player/Mining/Crosshair.png</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Sounds/Music/Memer.wav</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Images/Sprites/Player/Animations/Walking/player_walk1.png</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Images/Sprites/Player/Animations/Walking/player_walk2.png</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Images/Sprites/Player/Animations/Walking/player_walk3.png</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Images/Sprites/Player/Animations/Walking/player_walk4.png</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Images/Sprites/Player/Animations/Walking/player_walk5.png</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Images/Sprites/Player/Animations/Walking/player_walk6.png</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Sounds/Effects/Kak.wav</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Sounds/Effects/Stoned.wav</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Sounds/Music/Meme.wav</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Images/Sprites/Player/Mining/Shovel/player_mining1.png</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Images/Sprites/Player/Mining/Shovel/player_mining2.png</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Images/Sprites/Player/Mining/Shovel/player_mining4.png</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Images/Sprites/Player/Mining/Shovel/player_mining5.png</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Images/Sprites/Player/Mining/Shovel/player_mining3.png</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Sounds/Effects/Sne.wav</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Sounds/Effects/Lun.wav</File>
+    <File>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Sounds/Effects/Be.wav</File>
+  </SourceFiles>
+</SourceFileCollection>

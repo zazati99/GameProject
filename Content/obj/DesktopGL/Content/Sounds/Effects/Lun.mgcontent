@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/Sounds/Effects/Lun.wav</SourceFile>
+  <SourceTime>2018-07-24T08:02:42-07:00</SourceTime>
+  <DestFile>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/bin/DesktopGL/Content/Sounds/Effects/Lun.xnb</DestFile>
+  <DestTime>2018-07-24T08:10:36-07:00</DestTime>
+  <Importer>WavImporter</Importer>
+  <ImporterTime>2018-07-22T04:07:20-07:00</ImporterTime>
+  <Processor>SoundEffectProcessor</Processor>
+  <ProcessorTime>2018-07-22T04:07:20-07:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>
