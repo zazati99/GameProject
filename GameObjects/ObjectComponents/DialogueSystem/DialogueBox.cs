@@ -67,13 +67,15 @@ namespace GameProject.GameObjects.ObjectComponents
 
             // Makes substring that will be displayed
             displayedText = fullText.Substring(0, (int)charIndex);
+
+            // Fix the position
+            position = new Vector2(GameView.GetView().X / 2 - boxSize.X / 2, GameView.GetView().Y - boxSize.Y - 10);
         }
 
         // Draw the box and text
         public void DrawGUI(SpriteBatch spriteBatch)
         {
             ShapeRenderer.FillRectangle(spriteBatch, position, boxSize, 0, Color.Black);
-
             spriteBatch.DrawString(font, displayedText, position + textOffset, Color.White);
         }
 
