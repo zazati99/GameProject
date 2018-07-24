@@ -117,10 +117,12 @@ namespace GameProject.GameScreens
         {
             while (threadRunning)
             {
-                for (int i = 0; i < tileMaps.Length; i++)
+                int lenght = tileMaps.Length;
+                for (int i = 0; i < lenght; i++)
                 {
                     if (tileMaps[i].IsLoaded)
                     {
+                        if (lenght != tileMaps.Length) break;
                         tileMaps[i].FixTiles();
                     }
                 }
