@@ -19,6 +19,9 @@ namespace GameProject.GameUtils
             int xPos = (int)position.X;
             int yPos = (int)position.Y;
 
+            map.Size.X = int.Parse(reader.ReadLine());
+            map.Size.Y = int.Parse(reader.ReadLine());
+
             string line;
             while ((line = reader.ReadLine()) != null)
             {
@@ -34,10 +37,8 @@ namespace GameProject.GameUtils
                         ground.Position.Y = yPos;
                     }
                     xPos += (int)MainGame.TILE_SIZE.X;
-                    map.Size.X++;
                 }
                 yPos += (int)MainGame.TILE_SIZE.Y;
-                map.Size.Y++;
             }
 
             reader.Close();
@@ -48,6 +49,9 @@ namespace GameProject.GameUtils
         public static void SaveTileMap(TileMap map, string path)
         {
             StreamWriter writer = new StreamWriter(path);
+
+            writer.WriteLine(map.Size.X);
+            writer.WriteLine(map.Size.Y);
 
             for (int i = 0; i < map.Size.X; i++)
             {
@@ -73,6 +77,38 @@ namespace GameProject.GameUtils
 
             writer.Close();
         }
+
+        // Save an array of tilemaps
+        public static void SaveTileMapArray(TileMap[] tileMaps, string path)
+        {
+            Directory.CreateDirectory(path);
+            for (int i = 0; i < tileMaps.Length; i++)
+            {
+                SaveTileMap(tileMaps[i], path + "/" + i);
+            }
+        }
+
+        // Load TIleMap array
+        public static TileMap[] LoadTileMapArray(string path, GameScreen screen, Point widthHeight, Vector2 startPos)
+        {
+            TileMap[] maps = new TileMap[widthHeight.X * widthHeight.Y];
+
+            Vector2 position;
+
+            position.Y = startPos.Y;
+            for (int i = 0; i < widthHeight.X; i++)
+            {
+                position.X = startPos.X;
+                for (int j = 0; j < widthHeight.Y; j++)
+                {
+                    maps[i * widthHeight.Y + j] = LoadTileMap(screen, path + "/" + (i * widthHeight.Y + j), position);
+                    position.X += maps[i * widthHeight.Y + j].Size.X * MainGame.TILE_SIZE.X;
+                }
+                position.Y += maps[(i+1) * widthHeight.Y - 1].Size.Y * MainGame.TILE_SIZE.Y;
+            }
+
+            return maps;
+        } 
 
         // Load XML Object
         public static T Load<T>(string path)
