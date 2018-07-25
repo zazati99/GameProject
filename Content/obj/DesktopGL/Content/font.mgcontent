@@ -3,7 +3,7 @@
   <SourceFile>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/font.bmp</SourceFile>
   <SourceTime>2018-07-24T08:02:42-07:00</SourceTime>
   <DestFile>/Users/sebastianjohansson/Projects/GameProject/GameProject/GameProject/Content/bin/DesktopGL/Content/font.xnb</DestFile>
-  <DestTime>2018-07-24T10:43:24-07:00</DestTime>
+  <DestTime>2018-07-25T07:11:40-07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-07-22T04:07:20-07:00</ImporterTime>
   <Processor>FontTextureProcessor</Processor>

@@ -22,7 +22,6 @@ namespace GameProject.GameScreens
         // Thread that loads stuff
         Thread LoadThread;
         bool threadRunning;
-        bool canLoad;
 
         // Constructor
         public TestScreen() : base()
@@ -53,16 +52,6 @@ namespace GameProject.GameScreens
             Background1.LoadContent(content, "dirt_background");
             ScreenBackgrounds.Add(Background1);
 
-            ScreenParticleSystem particles = new ScreenParticleSystem(this);
-            particles.Acceleration = new Vector2(0, .2f);
-            particles.Speed = new Vector2(0, -4);
-            particles.SpeedDeviation = new Vector2(4, 1);
-            particles.Position = new Vector2(100, -25);
-            particles.Textures.Add(GameObject.CreateRectangle(Vector2.One, Color.Gray));
-            particles.Textures.Add(GameObject.CreateRectangle(Vector2.One, Color.DarkGray));
-            particles.LifeSpan = 90;
-            ScreenParticleSystems.Add(particles);
-
             Enemy npc = new Enemy(this);
             AddGameObject(npc);
             npc.Position.X = 200;
@@ -86,6 +75,12 @@ namespace GameProject.GameScreens
 
             if (GameInput.KeyPressed(Keys.F4))
                 GameFileManager.SaveTileMap(tileMaps[0], "tileMapSaveTest");
+
+            if (GameInput.KeyPressed(Keys.F3))
+            {
+                tileMaps[0] = GameFileManager.LoadTileMap(this, "tileMapSaveTest", new Vector2(0, 64));
+                tileMaps[0].LoadContent(Content);
+            }
 
             base.Update();
         }
