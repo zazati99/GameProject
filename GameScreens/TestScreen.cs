@@ -83,6 +83,10 @@ namespace GameProject.GameScreens
         public override void Update()
         {
             CheckTileMaps();
+
+            if (GameInput.KeyPressed(Keys.F4))
+                GameFileManager.SaveTileMap(tileMaps[0], "tileMapSaveTest");
+
             base.Update();
         }
 

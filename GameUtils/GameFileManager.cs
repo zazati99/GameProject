@@ -34,8 +34,10 @@ namespace GameProject.GameUtils
                         ground.Position.Y = yPos;
                     }
                     xPos += (int)MainGame.TILE_SIZE.X;
+                    map.Size.X++;
                 }
                 yPos += (int)MainGame.TILE_SIZE.Y;
+                map.Size.Y++;
             }
 
             reader.Close();
@@ -47,11 +49,11 @@ namespace GameProject.GameUtils
         {
             StreamWriter writer = new StreamWriter(path);
 
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < map.Size.X; i++)
             {
-                for (int  j = 0; j < 50; j++)
+                for (int  j = 0; j < map.Size.Y; j++)
                 {
-                    Vector2 Position = new Vector2(MainGame.TILE_SIZE.X * j, MainGame.TILE_SIZE.Y * i);
+                    Vector2 Position = map.Position + new Vector2(MainGame.TILE_SIZE.X * j, MainGame.TILE_SIZE.Y * i);
                     Ground ground = null;
                     for (int k = 0; k < map.GameObjects.Count; k++)
                     {
