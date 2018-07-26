@@ -35,7 +35,8 @@ namespace GameProject.GameScreens
         public override void LoadContent(ContentManager content)
         {
             base.LoadContent(content);
-            
+
+            // Test save meme
             if (Directory.Exists("Save"))
             {
                 tileMaps = GameFileManager.LoadTileMapArray("Save/Map", this, new Point(15, 15), new Vector2(0, 64));

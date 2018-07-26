@@ -155,14 +155,21 @@ namespace GameProject.GameScreens
         {
             if (!IsTilesFixed)
             {
-                for (int i = 0; i < GameObjects.Count; i++)
+                foreach (GameObject o in GameObjects)
                 {
-                    if (GameObjects[i] is Ground g)
+                    if (o is Ground g)
                     {
                         Ground[] grounds = g.GetSurroundingGrounds();
-                        for (int j = 0; j < grounds.Length; j++)
+                        if (grounds.Length == 0)
                         {
-                            grounds[j].UpdateTile();
+                            g.UpdateTile();
+                        } 
+                        else 
+                        {
+                            foreach (Ground ground in grounds)
+                            {
+                                ground.UpdateTile();
+                            }
                         }
                     }
                 }
