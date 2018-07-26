@@ -134,9 +134,9 @@ namespace GameProject.GameObjects
         // Does a ground object exist here?
         public bool IsGroundAtPlace(Vector2 position)
         {
-            foreach (GameObject o in Screen.GameObjects)
+            for (int i = 0; i < Screen.GameObjects.Count; i++)
             {
-                if (o is Ground ground)
+                if (Screen.GameObjects[i] is Ground ground)
                 {
                     if (ground.Position == position) return true;
                 }
@@ -147,9 +147,9 @@ namespace GameProject.GameObjects
         // Get gorund object att this place
         public Ground GroundAtPlace(Vector2 position)
         {
-            foreach (GameObject o in Screen.GameObjects)
+            for (int i = 0; i < Screen.GameObjects.Count; i++)
             {
-                if (o is Ground ground)
+                if (Screen.GameObjects[i] is Ground ground)
                 {
                     if (ground.Position == position) return ground;
                 }
@@ -162,9 +162,9 @@ namespace GameProject.GameObjects
         {
             List<Ground> groundList = new List<Ground>();
 
-            foreach (GameObject o in Screen.GameObjects)
+            for (int i = 0; i < Screen.GameObjects.Count; i++)
             {
-                if (o is Ground ground)
+                if (Screen.GameObjects[i] is Ground ground)
                 {
                     if (ground.Position == Position + new Vector2(MainGame.TILE_SIZE.X, 0)) groundList.Add(ground);
                     else if (ground.Position == Position + new Vector2(-MainGame.TILE_SIZE.X, 0)) groundList.Add(ground);
