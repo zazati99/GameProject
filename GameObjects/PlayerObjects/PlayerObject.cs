@@ -67,13 +67,13 @@ namespace GameProject.GameObjects
             spriteWalking.AddTexture(gameScreen.Content, "Images/Sprites/Player//Animations/Walking/player_walk6");
 
             spriteWalking.ImageSpeed = 0.145f;
-            spriteWalking.SpriteOffset = new Vector2(-22, -28);
+            spriteWalking.SpriteOffset = new Vector2(-24, -28);
 
             SpriteManager.AddSprite("spriteWalking", spriteWalking);
 
             // Idle sprite
             spriteIdle = new Sprite(this);
-            spriteIdle.SpriteOffset = new Vector2(-22, -28);
+            spriteIdle.SpriteOffset = new Vector2(-24, -28);
             spriteIdle.AddTexture(gameScreen.Content, "Images/Sprites/Player/player_idle");
             SpriteManager.AddSprite("spriteIdle", spriteIdle);
 

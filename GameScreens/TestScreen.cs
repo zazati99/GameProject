@@ -8,6 +8,7 @@ using GameProject.GameUtils;
 
 using System;
 using System.Threading;
+using System.IO;
 
 namespace GameProject.GameScreens
 {
@@ -34,24 +35,25 @@ namespace GameProject.GameScreens
         public override void LoadContent(ContentManager content)
         {
             base.LoadContent(content);
-
-            /*
-            for (int y = 0; y < 15; y++)
-            {
-                for (int x = 0; x < 15; x++)
-                {
-                    TileMap tm = GameFileManager.LoadTileMap(this, TileMap.TileMapsRight[0], new Vector2(0 + MainGame.TILE_SIZE.X * 8 * x, 64 + MainGame.TILE_SIZE.Y * 8 * y));
-                    tileMaps[y * 15 + x] = tm;
-                    tm.LoadContent(Content);
-                }
-            }
-            */
-
             
-            tileMaps = GameFileManager.LoadTileMapArray("hey", this, new Point(15, 15), new Vector2(0, 64));
-            for (int i = 0; i < tileMaps.Length; i++)
+            if (Directory.Exists("Save"))
             {
-                tileMaps[i].LoadContent(Content);
+                tileMaps = GameFileManager.LoadTileMapArray("Save/Map", this, new Point(15, 15), new Vector2(0, 64));
+                for (int i = 0; i < tileMaps.Length; i++)
+                {
+                    tileMaps[i].LoadContent(Content);
+                }
+            } else
+            {
+                for (int y = 0; y < 15; y++)
+                {
+                    for (int x = 0; x < 15; x++)
+                    {
+                        TileMap tm = GameFileManager.LoadTileMap(this, TileMap.TileMapsRight[0], new Vector2(0 + MainGame.TILE_SIZE.X * 8 * x, 64 + MainGame.TILE_SIZE.Y * 8 * y));
+                        tileMaps[y * 15 + x] = tm;
+                        tm.LoadContent(Content);
+                    }
+                }
             }
             
 
@@ -76,21 +78,13 @@ namespace GameProject.GameScreens
         {
             base.UnloadContent();
             threadRunning = false;
+            GameFileManager.SaveTileMapArray(tileMaps, "Save/Map");
         }
 
         // Update
         public override void Update()
         {
             CheckTileMaps();
-
-            if (GameInput.KeyPressed(Keys.F4))
-                GameFileManager.SaveTileMapArray(tileMaps, "hey");
-
-            if (GameInput.KeyPressed(Keys.F3))
-            {
-                tileMaps[0] = GameFileManager.LoadTileMap(this, "tileMapSaveTest", new Vector2(0, 64));
-                tileMaps[0].LoadContent(Content);
-            }
 
             base.Update();
         }
@@ -99,7 +93,6 @@ namespace GameProject.GameScreens
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            spriteBatch.DrawString(GameFonts.font, tileMaps[0].Size.ToString(), new Vector2(15, 55), Color.White);
         }
 
         // Check tileMaps
