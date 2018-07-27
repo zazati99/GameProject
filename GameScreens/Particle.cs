@@ -15,7 +15,7 @@ namespace GameProject.GameScreens
         public Vector2 Position;
         public Vector2 Speed;
         public Vector2 Acceletation;
-        public int LifeSpan;
+        public float LifeSpan;
 
         // Constructor
         public Particle(ScreenParticleSystem system)
@@ -26,9 +26,9 @@ namespace GameProject.GameScreens
         // Update particle
         public void Update()
         {
-            if ((--LifeSpan) <= 0) system.Particles.Remove(this);
-            Speed += Acceletation;
-            Position += Speed;
+            if ((LifeSpan -= MainGame.GAME_SPEED) <= 0) system.Particles.Remove(this);
+            Speed += Acceletation * MainGame.GAME_SPEED;
+            Position += Speed * MainGame.GAME_SPEED;
         }
 
         // Draw particle

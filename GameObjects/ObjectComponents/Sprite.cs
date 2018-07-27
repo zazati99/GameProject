@@ -48,24 +48,24 @@ namespace GameProject.GameObjects.ObjectComponents
             // Add Image Speed to Image Index and loop
             if (ImageSpeed > 0)
             {
-                if (ImageIndex + ImageSpeed < Images.Count)
+                if (ImageIndex + ImageSpeed * MainGame.GAME_SPEED < Images.Count)
                 {
-                    ImageIndex += ImageSpeed;
+                    ImageIndex += ImageSpeed * MainGame.GAME_SPEED;
                 }
                 else
                 {
-                    ImageIndex = ImageIndex + ImageSpeed - Images.Count;
+                    ImageIndex = ImageIndex + ImageSpeed * MainGame.GAME_SPEED - Images.Count;
                 }
             }
             else if (ImageSpeed < 0)
             {
-                if (ImageIndex + ImageSpeed >= 0)
+                if (ImageIndex + ImageSpeed * MainGame.GAME_SPEED >= 0)
                 {
-                    ImageIndex += ImageSpeed;
+                    ImageIndex += ImageSpeed * MainGame.GAME_SPEED;
                 }
                 else
                 {
-                    ImageIndex = Images.Count + (ImageIndex + ImageSpeed);
+                    ImageIndex = Images.Count + (ImageIndex + ImageSpeed) * MainGame.GAME_SPEED;
                 }
             }
         }

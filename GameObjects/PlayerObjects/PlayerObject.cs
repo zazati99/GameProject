@@ -103,6 +103,8 @@ namespace GameProject.GameObjects
             miningTool.LoadContent(content);
         }
 
+        bool targetSpeed = true;
+
         // Update components and do other logic
         public override void Update()
         {  
@@ -122,7 +124,7 @@ namespace GameProject.GameObjects
                 if ((left || right) && !MainGame.GAME_PAUSED)
                 {
                     HorizontalMovement(((right ? 1 : 0) - (left ? 1 : 0)) * maxSpeed);
-                }
+                } 
                 else StopMoving();
             }
 
@@ -159,6 +161,9 @@ namespace GameProject.GameObjects
                     }
                 }
             }
+
+            MainGame.GAME_SPEED = GameMath.Lerp(MainGame.GAME_SPEED, targetSpeed ? 1 : .25f, .1f);
+            if (GameInput.KeyPressed(Keys.P)) targetSpeed = !targetSpeed;
 
             // Update components
             base.Update();

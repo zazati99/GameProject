@@ -131,7 +131,7 @@ namespace GameProject.GameScreens
                         }
                     }
                 }
-                Thread.Sleep(150);
+                Thread.Sleep(175);
             }
         }
     }
