@@ -134,26 +134,34 @@ namespace GameProject.GameObjects
         // Does a ground object exist here?
         public bool IsGroundAtPlace(Vector2 position)
         {
-            for (int i = 0; i < Screen.GameObjects.Count; i++)
+            try
             {
-                if (Screen.GameObjects[i] is Ground ground)
+                for (int i = 0; i < Screen.GameObjects.Count; i++)
                 {
-                    if (ground.Position == position) return true;
+                    if (Screen.GameObjects[i] is Ground ground)
+                    {
+                        if (ground.Position == position) return true;
+                    }
                 }
             }
+            catch (IndexOutOfRangeException e){}
             return false;
         }
 
         // Get gorund object att this place
         public Ground GroundAtPlace(Vector2 position)
         {
-            for (int i = 0; i < Screen.GameObjects.Count; i++)
+            try 
             {
-                if (Screen.GameObjects[i] is Ground ground)
+                for (int i = 0; i < Screen.GameObjects.Count; i++)
                 {
-                    if (ground.Position == position) return ground;
+                    if (Screen.GameObjects[i] is Ground ground)
+                    {
+                        if (ground.Position == position) return ground;
+                    }
                 }
-            }
+            } 
+            catch(IndexOutOfRangeException e){}
             return null;
         }
 
@@ -162,17 +170,20 @@ namespace GameProject.GameObjects
         {
             List<Ground> groundList = new List<Ground>();
 
-            for (int i = 0; i < Screen.GameObjects.Count; i++)
+            try 
             {
-                if (Screen.GameObjects[i] is Ground ground)
+                for (int i = 0; i < Screen.GameObjects.Count; i++)
                 {
-                    if (ground.Position == Position + new Vector2(MainGame.TILE_SIZE.X, 0)) groundList.Add(ground);
-                    else if (ground.Position == Position + new Vector2(-MainGame.TILE_SIZE.X, 0)) groundList.Add(ground);
-                    else if (ground.Position == Position + new Vector2(0, MainGame.TILE_SIZE.Y)) groundList.Add(ground);
-                    else if (ground.Position == Position + new Vector2(0, -MainGame.TILE_SIZE.Y)) groundList.Add(ground);
+                    if (Screen.GameObjects[i] is Ground ground)
+                    {
+                        if (ground.Position == Position + new Vector2(MainGame.TILE_SIZE.X, 0)) groundList.Add(ground);
+                        else if (ground.Position == Position + new Vector2(-MainGame.TILE_SIZE.X, 0)) groundList.Add(ground);
+                        else if (ground.Position == Position + new Vector2(0, MainGame.TILE_SIZE.Y)) groundList.Add(ground);
+                        else if (ground.Position == Position + new Vector2(0, -MainGame.TILE_SIZE.Y)) groundList.Add(ground);
+                    }
                 }
             }
-
+            catch (IndexOutOfRangeException e){}
             return groundList.ToArray();
         }
 

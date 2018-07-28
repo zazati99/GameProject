@@ -153,27 +153,34 @@ namespace GameProject.GameScreens
         // Fix tiles in tile map
         public void FixTiles()
         {
-            if (!IsTilesFixed)
+            try 
             {
-                for (int i = 0; i < GameObjects.Count; i++)
+                if (!IsTilesFixed)
                 {
-                    if (GameObjects[i] is Ground g)
+                    for (int i = 0; i < GameObjects.Count; i++)
                     {
-                        Ground[] grounds = g.GetSurroundingGrounds();
-                        if (grounds.Length == 0)
+                        if (GameObjects[i] is Ground g)
                         {
-                            g.UpdateTile();
-                        } 
-                        else 
-                        {
-                            foreach (Ground ground in grounds)
+                            Ground[] grounds = g.GetSurroundingGrounds();
+                            if (grounds.Length == 0)
                             {
-                                ground.UpdateTile();
+                                g.UpdateTile();
+                            }
+                            else
+                            {
+                                foreach (Ground ground in grounds)
+                                {
+                                    ground.UpdateTile();
+                                }
                             }
                         }
                     }
-                }
-                IsTilesFixed = true;
+                    IsTilesFixed = true;
+                } 
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                IsTilesFixed = false;   
             }
         }
 
