@@ -27,7 +27,7 @@ namespace GameProject.GameScreens
         // Constructor
         public TestScreen() : base()
         {
-            tileMaps = new TileMap[225];
+            tileMaps = new TileMap[400];
             LoadThread = new Thread(FixTiles);
         }
 
@@ -39,19 +39,19 @@ namespace GameProject.GameScreens
             // Test save meme
             if (Directory.Exists("Save"))
             {
-                tileMaps = GameFileManager.LoadTileMapArray("Save/Map", this, new Point(15, 15), new Vector2(0, 64));
+                tileMaps = GameFileManager.LoadTileMapArray("Save/Map", this, new Point(20, 20), new Vector2(0, 64));
                 for (int i = 0; i < tileMaps.Length; i++)
                 {
                     tileMaps[i].LoadContent(Content);
                 }
             } else
             {
-                for (int y = 0; y < 15; y++)
+                for (int y = 0; y < 20; y++)
                 {
-                    for (int x = 0; x < 15; x++)
+                    for (int x = 0; x < 20; x++)
                     {
                         TileMap tm = GameFileManager.LoadTileMap(this, TileMap.TileMapsRight[0], new Vector2(0 + MainGame.TILE_SIZE.X * 8 * x, 64 + MainGame.TILE_SIZE.Y * 8 * y));
-                        tileMaps[y * 15 + x] = tm;
+                        tileMaps[y * 20 + x] = tm;
                         tm.LoadContent(Content);
                     }
                 }
@@ -99,19 +99,27 @@ namespace GameProject.GameScreens
         // Check tileMaps
         void CheckTileMaps()
         {
-            for (int i = 0; i < tileMaps.Length; i++)
+            for (int i = 0; i < 20; i++)
             {
-                if (Math.Abs(player.Position.Y - tileMaps[i].Position.Y - 96) > 350)
+                if (Math.Abs(player.Position.Y - tileMaps[i * 20].Position.Y - 96) > 350)
                 {
-                    tileMaps[i].Unload();
+                    if (!tileMaps[i * 20].IsLoaded) continue;
+                    for (int j = 0; j < 20; j++)
+                    {
+                        tileMaps[i * 20 + j].Unload();
+                    }
+                    continue;
                 }
-                else if (Math.Abs(player.Position.X - tileMaps[i].Position.X - 96) > 400)
+
+                for (int j = 0; j < 20; j++)
                 {
-                    tileMaps[i].Unload();
-                }
-                else
-                {
-                    tileMaps[i].Load();
+                    if (Math.Abs(player.Position.X - tileMaps[i * 20 + j].Position.X - 96) > 400)
+                    {
+                        tileMaps[i * 20 + j].Unload();
+                    } else
+                    {
+                        tileMaps[i * 20 + j].Load();
+                    }
                 }
             }
         }
@@ -125,10 +133,7 @@ namespace GameProject.GameScreens
                 {
                     if (tileMaps[i].IsLoaded)
                     {
-                        lock(GameObjects)
-                        {
-                            tileMaps[i].FixTiles();
-                        }
+                        tileMaps[i].FixTiles();
                     }
                 }
                 Thread.Sleep(175);

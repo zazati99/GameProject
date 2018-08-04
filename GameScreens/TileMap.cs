@@ -133,7 +133,7 @@ namespace GameProject.GameScreens
                     Screen.GameObjects.Remove(GameObjects[i]);
                 }
                 IsLoaded = false;
-                IsTilesFixed = false;
+                //IsTilesFixed = false;
             }
         }
 
@@ -162,6 +162,7 @@ namespace GameProject.GameScreens
                         if (GameObjects[i] is Ground g)
                         {
                             Ground[] grounds = g.GetSurroundingGrounds();
+                            if (i == 0) g.UpdateTile();
                             if (grounds.Length == 0)
                             {
                                 g.UpdateTile();
@@ -180,8 +181,7 @@ namespace GameProject.GameScreens
             }
             catch (IndexOutOfRangeException e)
             {
-                IsTilesFixed = false;   
-            }
+                FixTiles();            }
         }
 
         // Destroy TileMap

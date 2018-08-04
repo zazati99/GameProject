@@ -144,7 +144,7 @@ namespace GameProject.GameObjects
                     }
                 }
             }
-            catch (IndexOutOfRangeException e){}
+            catch (IndexOutOfRangeException e){ return IsGroundAtPlace(position); }
             return false;
         }
 
@@ -161,7 +161,7 @@ namespace GameProject.GameObjects
                     }
                 }
             } 
-            catch(IndexOutOfRangeException e){}
+            catch(IndexOutOfRangeException e){ return GroundAtPlace(position); }
             return null;
         }
 
@@ -183,7 +183,7 @@ namespace GameProject.GameObjects
                     }
                 }
             }
-            catch (IndexOutOfRangeException e){}
+            catch (IndexOutOfRangeException e){ return GetSurroundingGrounds(); }
             return groundList.ToArray();
         }
 

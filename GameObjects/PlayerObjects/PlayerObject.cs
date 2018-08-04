@@ -24,6 +24,8 @@ namespace GameProject.GameObjects
         float maxJumpHeight;
         float minJumpHeight;
         int jumpBuffer; // Lets you jump even if you press button too early
+        int ledgeBuffer; // Lets you jump whem walking of ledge
+        bool prevGrounded; // Was player grounded previous frame
 
         // Components
         Physics physics;
@@ -83,7 +85,7 @@ namespace GameProject.GameObjects
             Screen.Camera.SetTarget(this);
 
             // Mining tool;
-            miningTool = new GodShovel(this);
+            miningTool = new StartShovel(this);
 
             // Movement initialization
             maxSpeed = 2;
@@ -95,6 +97,7 @@ namespace GameProject.GameObjects
             maxJumpHeight = 4.9f;
             minJumpHeight = 2.5f;
             jumpBuffer = 0;
+            ledgeBuffer = 0;
         }
 
         // Load content
@@ -146,6 +149,7 @@ namespace GameProject.GameObjects
                     physics.Velocity.Y = Math.Max(physics.Velocity.Y, -minJumpHeight);
 
                 jumpBuffer--;
+                ledgeBuffer--;
 
                 // Mining and attacking
                 miningTool.DetermineTarget();
@@ -204,6 +208,7 @@ namespace GameProject.GameObjects
         public void Jump()
         {
             physics.Velocity.Y = -maxJumpHeight;
+            ledgeBuffer = 0;
         }
 
         #endregion
